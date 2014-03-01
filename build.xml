@@ -1,0 +1,22 @@
+ <project name="init" default="build" basedir=".">
+  
+	<path id="simian.classpath">
+		<fileset dir="bin">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+  
+	<taskdef resource="simiantask.properties" classpathref="simian.classpath"/>
+
+	<property name="simian.threshold" value="9"/>
+    
+	<target name="check-simian">
+		<simian threshold="${simian.threshold}" reportDuplicateText="true" failOnDuplication="true" ignoreLiterals="false" ignoreNumbers="true" ignoreModifiers="true">
+			<fileset dir=".">
+				<include name="**/*.m"/>
+				<exclude name="tools/**/*.m"/>
+			</fileset>
+		</simian>
+	</target>
+	
+</project>
