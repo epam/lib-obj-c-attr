@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>@</key>
+	<string>id</string>
+	<key>c</key>
+	<string>char</string>
+	<key>i</key>
+	<string>int</string>
+	<key>s</key>
+	<string>short</string>
+	<key>l</key>
+	<string>long</string>
+	<key>q</key>
+	<string>long long</string>
+	<key>C</key>
+	<string>unsigned char</string>
+	<key>I</key>
+	<string>unsigned int</string>
+	<key>S</key>
+	<string>unsigned short</string>
+	<key>L</key>
+	<string>unsigned long</string>
+	<key>Q</key>
+	<string>unsigned long long</string>
+	<key>f</key>
+	<string>float</string>
+	<key>d</key>
+	<string>double</string>
+	<key>B</key>
+	<string>bool</string>
+	<key>v</key>
+	<string>void</string>
+	<key>*</key>
+	<string>char *</string>
+	<key>#</key>
+	<string>Class</string>
+	<key>:</key>
+	<string>SEL</string>
+	<key>?</key>
+	<string>function pointer</string>
+	<key>^</key>
+	<string>pointer</string>
+</dict>
+</plist>
