@@ -1,7 +1,7 @@
 require 'xcodeproj'
 
 class ROADConfigurator
-    @@road_attributes_code_generator_url = 'https://github.com/epam/road-ios-framework/raw/master/tools/binaries/ROADAttributesCodeGenerator'
+    @@road_attributes_code_generator_url = 'https://github.com/epam/lib-obj-c-attr/raw/master/tools/binaries/ROADAttributesCodeGenerator'
 
     def self.set_github_credentials(username, password)
         @@github_username = username
@@ -16,13 +16,13 @@ class ROADConfigurator
 
         road_framework_path = nil
         installer_representation.pods.each do |pod_representation|
-            if pod_representation.name == 'ROADFramework'
+            if pod_representation.name == 'libObjCAttr'
                 road_framework_path = pod_representation.root
             end
         end
 
         if road_framework_path.nil?
-            puts 'ROADConfigurator.rb called without RoadFramework being defined in Podfile.'
+            puts 'ROADConfigurator.rb called without libObjCAttr being defined in Podfile.'
             Process.exit!(true)
         end
 
@@ -55,21 +55,21 @@ class ROADConfigurator
                 end
 
                 run_script_user = "\"${SRCROOT}/#{target.xcconfig_relative_path.split('Pods/Pods')[0]}binaries/ROADAttributesCodeGenerator\""\
-                " -src=\"${SRCROOT}/${PROJECT_NAME}\""\
-                " -dst=\"${SRCROOT}/${PROJECT_NAME}/ROADGeneratedAttributes/\""
-                ROADConfigurator::add_script_to_project_targets(run_script_user, 'ROAD - generate attributes', user_project, user_targets)
+                " -src=\"${SRCROOT}/${TARGET_NAME}\""\
+                " -dst=\"${SRCROOT}/${TARGET_NAME}/ROADGeneratedAttributes/\""
+                ROADConfigurator::add_script_to_project_targets(run_script_user, 'libObjCAttr - generate attributes', user_project, user_targets)
             end
         end
     end
 
     def self.modify_pods_project(installer_representation)
         installer_representation.project.targets.each do |pods_target|
-            if pods_target.name.scan("ROADFramework").size > 0
+            if pods_target.name.scan("libObjCAttr").size > 0
 
                 #======= Code for work around which works only for repeated command of "pod install" =======
-                group_for_genrated_attributes = installer_representation.project.main_group['Pods/ROADFramework/ROADGeneratedAttributes']
+                group_for_genrated_attributes = installer_representation.project.main_group['Pods/libObjCAttr/ROADGeneratedAttributes']
                 if group_for_genrated_attributes
-                    installer_representation.project.main_group['Pods/ROADFramework/ROADGeneratedAttributes'].files.each do |file|
+                    installer_representation.project.main_group['Pods/libObjCAttr/ROADGeneratedAttributes'].files.each do |file|
                         file.referrers.each do |referrer|
                             installer_representation.project.objects_by_uuid.delete(referrer.uuid)
                         end
@@ -79,17 +79,17 @@ class ROADConfigurator
                 #================================================================================
 
                 path_proj_pods = installer_representation.config.project_pods_root
-                genereted_attributes_path = "#{path_proj_pods}/ROADFramework/Framework/ROADGeneratedAttributes"
+                genereted_attributes_path = "#{path_proj_pods}/libObjCAttr/Framework/ROADGeneratedAttributes"
                 generated_attributes_file_path = ROADConfigurator::create_generated_attributes_for_path(genereted_attributes_path)
 
                 run_script_pods = "\"${SRCROOT}/../binaries/ROADAttributesCodeGenerator\""\
-                " -src=\"${SRCROOT}/ROADFramework\""\
-                " -dst=\"${SRCROOT}/ROADFramework/Framework/ROADGeneratedAttributes/\""
-                ROADConfigurator::add_script_to_project_targets(run_script_pods, 'ROAD - generate attributes', installer_representation.project, [pods_target])
+                " -src=\"${SRCROOT}/libObjCAttr\""\
+                " -dst=\"${SRCROOT}/libObjCAttr/Framework/ROADGeneratedAttributes/\""
+                ROADConfigurator::add_script_to_project_targets(run_script_pods, 'libObjCAttr - generate attributes', installer_representation.project, [pods_target])
 
                 attributes_file_reference = installer_representation.project.new_file(generated_attributes_file_path)
                 tempPath = attributes_file_reference.real_path
-                attributes_file_reference.move(installer_representation.project.main_group['Pods/ROADFramework/'])
+                attributes_file_reference.move(installer_representation.project.main_group['Pods/libObjCAttr/'])
                 attributes_file_reference.set_path(tempPath)
                 pods_target.source_build_phase.add_file_reference(attributes_file_reference)
             end
