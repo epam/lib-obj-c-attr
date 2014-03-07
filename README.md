@@ -92,7 +92,7 @@ libObjCAttr was initially designed to use **ARC**.
 
 User documentation available in **Documents** folder or at [the link](./Documents/Attributes.md)
 
-Classes reference available in [cocoadocs.org](http://cocoadocs.org/docsets/ROADFramework/)
+Classes reference available in [cocoadocs.org](http://cocoadocs.org/docsets/libObjCAtt/)
 
 ##License
-libObjCAttr is made available under the terms of the [BSD3](http://opensource.org/licenses/BSD-3-Clause). See the LICENSE file that accompanies this distribution for the full text of the license.
+libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). See the LICENSE file that accompanies this distribution for the full text of the license.
