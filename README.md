@@ -1,5 +1,4 @@
-[![Build Status](https://api.travis-ci.org/epam/lib-obj-c-attr.png)](https://travis-ci.org/epam/road-ios-framework)
-[![License](https://go-shields.herokuapp.com/license-BSD%203-blue.png)](http://opensource.org/licenses/BSD-3-Clause)[![Platform](https://cocoapod-badges.herokuapp.com/p/ROADFramework/badge.png)](https://github.com/epam/road-ios-framework/)
+[![Build Status](https://api.travis-ci.org/epam/lib-obj-c-attr.png)](https://travis-ci.org/epam/lib-obj-c-attr) [![License](https://go-shields.herokuapp.com/license-BSD%203-blue.png)](http://opensource.org/licenses/BSD-3-Clause) [![Platform](https://cocoapod-badges.herokuapp.com/p/ROADFramework/badge.png)](https://github.com/epam/road-ios-framework/)
 
 
 #libObjCAttr
@@ -80,19 +79,10 @@ MyAttribute *classAttributes = [AnnotatedClass RF_attributeForProperty:@"name" w
 ...
 ```
 
-
-
-
-##Requirement
+##Requirements
 libObjCAttr requires **iOS 5.0 and above**. Compatibility with 4.3 and older is not tested.
 
 libObjCAttr was initially designed to use **ARC**.
-
-##Documentation
-
-User documentation available in **Documents** folder or at [the link](./Documents/Attributes.md)
-
-Classes reference available in [cocoadocs.org](http://cocoadocs.org/docsets/libObjCAtt/)
 
 ##License
 libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). See the LICENSE file that accompanies this distribution for the full text of the license.
