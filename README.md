@@ -32,7 +32,7 @@ It super easy to mark your code with attribute. We currently supports **4 types*
 
 Check out this example to get know how to declare them:
 
-```objc
+```objective-c
 RF_ATTRIBUTE(MyAttribute, stringProperty = @"Hello world")
 @interface AnnotatedClass : NSObject {
 
@@ -50,22 +50,23 @@ RF_ATTRIBUTE(MyAttribute, objectProperty = [NSObject new])
 ```
 
 Attribute can be any class inherited from NSObject or its subclasses. It may or may not have properties.
-```objc
+
+```objective-c
 #import <ROAD/ROADAttribute.h>
 
 @interface MyAttribute : NSObject
 
 @property NSString *stringProperty;
 @property NSNumber *numericProperty;
-@property id *blockProperty;
-@property id *objectProperty;
+@property id blockProperty;
+@property id objectProperty;
 
 @end
 ```
 
 Now you can get them in runtime with code like this:
 
-```objc
+```objective-c
 ...
 
 NSArray *classAttributes = [AnnotatedClass RF_attributesForClass];
