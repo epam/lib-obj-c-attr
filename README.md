@@ -35,26 +35,27 @@ It super easy to mark your code with attribute. We currently supports **4 types*
 Check out this example to get know how to declare them:
 
 ```objc
-RF_ATTRIBUTE(TestAttribute, stringProperty = @"Hello world")
+RF_ATTRIBUTE(MyAttribute, stringProperty = @"Hello world")
 @interface AnnotatedClass : NSObject {
 
-    RF_ATTRIBUTE(TestAttribute, numericProperty = @9000)
+    RF_ATTRIBUTE(MyAttribute, numericProperty = @9000)
     NSObject * _someField;
 }
 
-RF_ATTRIBUTE(TestAttribute, blockProperty = ^(int value) { return value; })
+RF_ATTRIBUTE(MyAttribute, blockProperty = ^(int value) { return value; })
 - (void)foo;
 
-RF_ATTRIBUTE(TestAttribute, objectProperty = [NSObject new])
+RF_ATTRIBUTE(MyAttribute, objectProperty = [NSObject new])
 @property NSString *name;
 
 @end
 ```
 
+Attribute can be any class inherited from NSObject or its subclasses. It may or may not have properties.
 ```objc
 #import <ROAD/ROADAttribute.h>
 
-@interface TestAttribute : NSObject
+@interface MyAttribute : NSObject
 
 @property NSString *stringProperty;
 @property NSNumber *numericProperty;
@@ -83,15 +84,15 @@ MyAttribute *classAttributes = [AnnotatedClass RF_attributeForProperty:@"name" w
 
 
 ##Requirement
-libObjC requires **iOS 5.0 and above**. Compatibility with 4.3 and older is not tested.
+libObjCAttr requires **iOS 5.0 and above**. Compatibility with 4.3 and older is not tested.
 
-libObjC initially designed to use **ARC**.
+libObjCAttr was initially designed to use **ARC**.
 
 ##Documentation
 
 User documentation available in **Documents** folder or at [the link](./Documents/Attributes.md)
 
-Classes reference available in [cocoadocs.org](http://cocoadocs.org/docsets/ROADFramework/)
+Classes reference available in [cocoadocs.org](http://cocoadocs.org/docsets/libObjCAtt/)
 
 ##License
 libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). See the LICENSE file that accompanies this distribution for the full text of the license.
