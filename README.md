@@ -1,7 +1,7 @@
 [![Build Status](https://api.travis-ci.org/epam/lib-obj-c-attr.png)](https://travis-ci.org/epam/lib-obj-c-attr) [![License](https://go-shields.herokuapp.com/license-BSD%203-blue.png)](http://opensource.org/licenses/BSD-3-Clause) [![Platform](https://cocoapod-badges.herokuapp.com/p/ROADFramework/badge.png)](https://github.com/epam/road-ios-framework/)
 
 
-#libObjCAttr - attributes for your code
+#libObjCAttr - attributes for your ObjC code
 
 libObjCAttr is attribute-oriented programming for Objective-C language. It is compile-time based with support of Xcode features such as auto-completion and tracing of errors. We nailed every aspect of implementation including performance so attributes will never be a bottleneck.
 
