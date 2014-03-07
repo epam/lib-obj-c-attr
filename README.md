@@ -3,10 +3,9 @@
 
 #libObjCAttr
 
-Many programming languages has support of [attribute-oriented programming](http://en.wikipedia.org/wiki/Attribute-oriented_programming). Such approach helps to reduce complexity of code, makes it compact and self-documented.
+libObjCAtr is attribute-oriented programming for Objective-C language. It is compile-time based with support of Xcode features such as auto-completion and tracing of errors. We nailed every aspect of implementation including performance so attributes will never be a bottleneck.
 
-We bring attribute support into *Objective-C* language. Our solution is compile-time based, so you will enjoy built-in *Xcode* auto-completion and your errors will be easily traceable. We cares about performance of attributes so it won't be a bottleneck for your project or even library.
-
+Our solution helps to reduce complexity of code, makes it compact and self-documented. There are a lot of languages with attributes support, we added Objective C into that list.
 
 ##Installation
 
