@@ -3,7 +3,7 @@
 
 #libObjCAttr
 
-libObjCAtr is attribute-oriented programming for Objective-C language. It is compile-time based with support of Xcode features such as auto-completion and tracing of errors. We nailed every aspect of implementation including performance so attributes will never be a bottleneck.
+libObjCAttr is attribute-oriented programming for Objective-C language. It is compile-time based with support of Xcode features such as auto-completion and tracing of errors. We nailed every aspect of implementation including performance so attributes will never be a bottleneck.
 
 Our solution helps to reduce complexity of code, makes it compact and self-documented. There are a lot of languages with attributes support, we added Objective C into that list.
 
