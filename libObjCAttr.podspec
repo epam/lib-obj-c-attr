@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
                        Library implements [Attribute-Oriented Programming](https://en.wikipedia.org/wiki/Attribute-oriented_programming) paradigm in Objective-C. It allows to add various metadata to the class, each method, property or ivar of the class.
                        DESC
   s.homepage         = "https://github.com/epam/lib-obj-c-attr"
-  s.license          = 'BSD3'
+  s.license          = 'BSD-3'
   s.author           = { 'EPAM Systems, Inc' => 'SupportROAD@epam.com' }
   s.source           = { :git => "https://github.com/epam/lib-obj-c-attr.git", :tag => '1.2.1' }
 
