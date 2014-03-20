@@ -23,14 +23,14 @@ end
 
 ##Samples
 
-It super easy to mark your code with attribute. We currently supports **4 types** of attributes:
+It is super easy to mark your code with an attribute. We currently support **4 types** of attributes:
 
 * *Class attributes*
 * *IVar attributes*
 * *Method attributes*
 * *Property attributes*
 
-Check out this example to get know how to declare them:
+Check out this example to get to know how to declare them:
 
 ```objective-c
 RF_ATTRIBUTE(MyAttribute, stringProperty = @"Hello world")
@@ -49,7 +49,7 @@ RF_ATTRIBUTE(MyAttribute, objectProperty = [NSObject new])
 @end
 ```
 
-Attribute can be any class inherited from NSObject or its subclasses. It may or may not have properties.
+An attribute can be any class inherited from the NSObject or its subclasses. It may or may not have properties.
 
 ```objective-c
 #import <ROAD/ROADAttribute.h>
@@ -80,7 +80,7 @@ MyAttribute *classAttributes = [AnnotatedClass RF_attributeForProperty:@"name" w
 ```
 
 ##Requirements
-libObjCAttr requires **iOS 5.0 and above**. Compatibility with 4.3 and older is not tested.
+libObjCAttr requires **iOS 5.0 and above**. The compatibility with 4.3 and older is not tested.
 
 libObjCAttr was initially designed to use **ARC**.
 
