@@ -3,13 +3,13 @@
 
 #libObjCAttr - attributes for your code
 
-libObjCAttr is attribute-oriented programming for Objective-C language. It is compile-time based with support of Xcode auto-completion and errors tracing features. We nailed every aspect of implementation including performance so attributes will never be a bottleneck.
+libObjCAttr is attribute-oriented programming for Objective-C language. It is compile-time based with the support of Xcode auto-completion and errors tracing features. We nailed every aspect of the implementation including performance, so attributes will never be a bottleneck.
 
-Our solution helps to reduce complexity of code, makes it compact and self-documented. There are a lot of languages with attributes support, we added Objective C into that list.
+Our solution helps reduce the complexity of code, makes it compact and self-documented. There are a lot of languages with attributes support, we added Objective-C into that list.
 
 ##Installation
 
-[CocoaPods](http://cocoapods.org) is the only recommended way of libObjCAttr integration. Besides standard configuration of pod dependencies *pod_install* hook definition required as shown below. Typical **Podfile** will looks like following:
+[CocoaPods](http://cocoapods.org) is the only recommended way of libObjCAttr integration. Besides standard configuration of pod dependencies *pod_install* hook definition required as shown below. A typical **Podfile** will look as follows:
 
 ```ruby
 pod 'libObjCAttr'
