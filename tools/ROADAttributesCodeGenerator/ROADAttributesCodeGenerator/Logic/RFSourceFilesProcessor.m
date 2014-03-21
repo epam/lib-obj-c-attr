@@ -46,11 +46,13 @@
 
 @implementation RFSourceFilesProcessor
 
-+ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePath:(NSString *)sourcesPath {
++ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePaths:(NSArray *)sourcePaths {
     RFClassModelsContainer *classesInfoContainer = [RFClassModelsContainer new];
     RFProtocolModelsContainer* protocolsInfoContainer = [RFProtocolModelsContainer new];
-    
-    [self gatherClassesInfoFromSourceCodePath:sourcesPath intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer];
+
+    for (NSString *sourcePath in sourcePaths) {
+        [self gatherClassesInfoFromSourceCodePath:sourcePath intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer];
+    }
     [self generateAttributeFactoriesIntoPath:targetPath fromClassModels:classesInfoContainer intoProtocol:protocolsInfoContainer];
     [self generateCodeCollectorIntoPath:targetPath fromClassModels:classesInfoContainer];
     

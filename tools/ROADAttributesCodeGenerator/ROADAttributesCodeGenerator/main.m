@@ -55,7 +55,7 @@ int main(int argc, const char * argv[]) {
         }
         
         NotifyAboutStartProcessing(cmdLineArguments);
-        [RFSourceFilesProcessor generateAttributeFactoriesIntoPath:cmdLineArguments.destinationPath fromSourceCodePath:cmdLineArguments.sourcePath];
+        [RFSourceFilesProcessor generateAttributeFactoriesIntoPath:cmdLineArguments.destinationPath fromSourceCodePaths:cmdLineArguments.sourcePaths];
         
         NotifyAboutFinishProcessing(cmdLineArguments);
     }
@@ -63,23 +63,31 @@ int main(int argc, const char * argv[]) {
 }
 
 BOOL isValidParameters(RFArgumentResolver *cmdLineArguments) {
-    if ([NSString isNilOrEmpty:cmdLineArguments.sourcePath]) {
+    if ([cmdLineArguments.sourcePaths count] < 1) {
         [RFConsole writeLine:@"ERROR: Path to source code was not specified"];
         return NO;
+    }
+    for (NSString *sourcePath in cmdLineArguments.sourcePaths) {
+        if ([NSString isNilOrEmpty:sourcePath]) {
+            [RFConsole writeLine:@"ERROR: Path to source code was not specified"];
+            return NO;
+        }
     }
     
     if ([NSString isNilOrEmpty:cmdLineArguments.destinationPath]) {
         [RFConsole writeLine:@"ERROR: Path to destination folder was not specified"];
         return NO;
     }
-    
-    if (![NSFileManager isFolderAtPath:cmdLineArguments.sourcePath]) {
-        [RFConsole writeLine:@"ERROR: Path to source code doesn't point to directory"];
-        return NO;
+
+    for (NSString *sourcePath in cmdLineArguments.sourcePaths) {
+        if (![NSFileManager isFolderAtPath:sourcePath]) {
+            [RFConsole writeLine:[NSString stringWithFormat:@"ERROR: Path to source code doesn't point to directory (%@)", sourcePath]];
+            return NO;
+        }
     }
     
     if (![NSFileManager isFolderAtPath:cmdLineArguments.destinationPath]) {
-        [RFConsole writeLine:@"ERROR: Path to destination folder doesn't point to directory"];
+        [RFConsole writeLine:[NSString stringWithFormat:@"ERROR: Path to destination folder doesn't point to directory (%@)", cmdLineArguments.destinationPath]];
         return NO;
     }
     
@@ -99,7 +107,7 @@ void PrintUsage() {
 
 void NotifyAboutStartProcessing(RFArgumentResolver *cmdLineArguments) {
     [RFConsole writeLine:@"Start source code processing"];
-    [RFConsole writeLine:[NSString stringWithFormat:@"Source code directory:%@", cmdLineArguments.sourcePath]];
+    [RFConsole writeLine:[NSString stringWithFormat:@"Source code directories:%@", cmdLineArguments.sourcePaths]];
     [RFConsole writeLine:[NSString stringWithFormat:@"Directory for generated code:%@", cmdLineArguments.destinationPath]];
     [RFConsole writeLine:@""];
 }
