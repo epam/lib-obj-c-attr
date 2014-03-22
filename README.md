@@ -58,7 +58,7 @@ An attribute can be any class inherited from the NSObject or its subclasses. It 
 
 @property NSString *stringProperty;
 @property NSNumber *numericProperty;
-@property id blockProperty;
+@property (copy) id blockProperty;
 @property id objectProperty;
 
 @end
