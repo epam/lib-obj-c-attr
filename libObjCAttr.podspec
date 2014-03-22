@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/epam/lib-obj-c-attr"
   s.license          = 'BSD-3'
   s.author           = { 'EPAM Systems, Inc' => 'SupportROAD@epam.com' }
-  s.source           = { :git => "https://github.com/epam/lib-obj-c-attr.git", :tag => '1.2.1' }
+  s.source           = { :git => "https://github.com/epam/lib-obj-c-attr.git", :branch => 'master' }
 
   s.platform     = :ios, '5.0'
   s.requires_arc = true
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source_files = 'libObjCAttr/**/*.{h,m}'
   s.public_header_files = 'libObjCAttr/**/*.h'
   s.header_dir = 'ROAD'
-  s.resources = 'libObjCAttr/Resources/*'
+  s.resources = ['libObjCAttr/Resources/*', 'tools/binaries/ROADAttributesCodeGenerator']
 
   s.framework = 'Foundation'
 
