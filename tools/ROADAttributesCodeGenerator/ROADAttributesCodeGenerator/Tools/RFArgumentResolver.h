@@ -33,7 +33,7 @@
 
 @interface RFArgumentResolver : NSObject
 
-@property(nonatomic, readonly) NSString *sourcePath;
+@property(nonatomic, readonly) NSArray *sourcePaths;
 @property(nonatomic, readonly) NSString *destinationPath;
 
 - (id)initWithArgv:(const char **)argv argvCount:(const int)argc;

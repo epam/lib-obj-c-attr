@@ -3,13 +3,8 @@ require 'xcodeproj'
 class ROADConfigurator
     @@road_attributes_code_generator_url = 'https://github.com/epam/lib-obj-c-attr/raw/master/tools/binaries/ROADAttributesCodeGenerator'
 
-    def self.set_github_credentials(username, password)
-        @@github_username = username
-        @@github_password = password
-    end
-
     def self.post_install(installer_representation)
-        config_path = './ROADConfigurator.yaml'
+        config_path = './ROADConfigurator.yml'
         if File.exists?(config_path)
           @@config = YAML::load(File.open(config_path))
         end
@@ -26,9 +21,7 @@ class ROADConfigurator
             Process.exit!(true)
         end
 
-        ROADConfigurator::download_binaries(installer_representation)
         ROADConfigurator::modify_user_project(installer_representation)
-        ROADConfigurator::modify_pods_project(installer_representation)
     end
 
     def self.modify_user_project(installer_representation)
@@ -46,52 +39,41 @@ class ROADConfigurator
                         genereted_attributes_path = "#{user_project_dir}/#{user_target.name}/ROADGeneratedAttributes"
                         generated_attributes_file_path = ROADConfigurator::create_path_for_generated_attributes_file_for_folder_path(genereted_attributes_path)
 
+                        # if 'ROADGeneratedAttribute.m' does not exist
                         if !File.exists?(generated_attributes_file_path)
                             ROADConfigurator::create_generated_attributes_folder_and_file_for_path(genereted_attributes_path, generated_attributes_file_path)
+                        end
+                        gen_attr_absolute_path = Pathname.new(user_project_dir + create_path_for_generated_attributes_file_for_folder_path("/#{user_target.name}/ROADGeneratedAttributes"))
+                        # file have not been added to project
+                        attributes_file_reference = user_project.reference_for_path(gen_attr_absolute_path)
+                        if !attributes_file_reference
                             attributes_file_reference = user_project.new_file(generated_attributes_file_path)
                             user_target.source_build_phase.add_file_reference(attributes_file_reference)
+                        else
+                            # if not added to compile build phase
+                            if !user_target.source_build_phase.include?(attributes_file_reference)
+                                user_target.source_build_phase.add_file_reference(attributes_file_reference)
+                            end
                         end
                     end
                 end
 
-                run_script_user = "\"${SRCROOT}/#{target.xcconfig_relative_path.split('Pods/Pods')[0]}binaries/ROADAttributesCodeGenerator\""\
-                " -src=\"${SRCROOT}/${TARGET_NAME}\""\
-                " -dst=\"${SRCROOT}/${TARGET_NAME}/ROADGeneratedAttributes/\""
+                run_script_user = "\"${SRCROOT}/Pods/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator\""\
+                " -src=\"${SRCROOT}/${TARGET_NAME}\" -src=\"${SRCROOT}/Pods\""
+                if defined? @@config
+                    if @@config['source']
+                        attr_source = @@config['source']
+                        if attr_source.respond_to?("each")
+                            attr_source.each do |attr_source_dir|
+                                run_script_user += " -src=#{attr_source_dir}"
+                            end
+                            else
+                            run_script_user += " -src=#{attr_source}"
+                        end
+                    end
+                end
+                run_script_user += " -dst=\"${SRCROOT}/${TARGET_NAME}/ROADGeneratedAttributes/\""
                 ROADConfigurator::add_script_to_project_targets(run_script_user, 'libObjCAttr - generate attributes', user_project, user_targets)
-            end
-        end
-    end
-
-    def self.modify_pods_project(installer_representation)
-        installer_representation.project.targets.each do |pods_target|
-            if pods_target.name.scan("libObjCAttr").size > 0
-                
-                #======= Code for work around which works only for repeated command of "pod install" =======
-                group_for_genrated_attributes = installer_representation.project.main_group['Pods/libObjCAttr/ROADGeneratedAttributes']
-                if group_for_genrated_attributes
-                    installer_representation.project.main_group['Pods/libObjCAttr/ROADGeneratedAttributes'].files.each do |file|
-                        file.referrers.each do |referrer|
-                            installer_representation.project.objects_by_uuid.delete(referrer.uuid)
-                        end
-                    end
-                    installer_representation.project.objects_by_uuid.delete(installer_representation.project.main_group['Pods/libObjCAttr/ROADGeneratedAttributes'].uuid)
-                end
-                #================================================================================
-                
-                path_proj_pods = installer_representation.config.project_pods_root
-                genereted_attributes_path = "#{path_proj_pods}/libObjCAttr/ROADGeneratedAttributes"
-                generated_attributes_file_path = ROADConfigurator::create_generated_attributes_for_path(genereted_attributes_path)
-                
-                run_script_pods = "\"${SRCROOT}/../binaries/ROADAttributesCodeGenerator\""\
-                " -src=\"${SRCROOT}\""\
-                " -dst=\"${SRCROOT}/libObjCAttr/ROADGeneratedAttributes/\""
-                ROADConfigurator::add_script_to_project_targets(run_script_pods, 'libObjCAttr - generate attributes', installer_representation.project, [pods_target])
-                
-                attributes_file_reference = installer_representation.project.new_file(generated_attributes_file_path)
-                tempPath = attributes_file_reference.real_path
-                attributes_file_reference.move(installer_representation.project.main_group['Pods/libObjCAttr/'])
-                attributes_file_reference.set_path(tempPath)
-                pods_target.source_build_phase.add_file_reference(attributes_file_reference)
             end
         end
     end
@@ -129,40 +111,17 @@ class ROADConfigurator
             phase = project.new(Xcodeproj::Project::PBXShellScriptBuildPhase)
             phase.name = script_name
             phase.shell_script = script
-            
-            script_already_added = false
+
             target.build_phases.each do |build_phase|
-                if build_phase.display_name == script_name
-                    script_already_added = true
+                # Removing old version phase too
+                if build_phase.display_name == script_name || build_phase.display_name == 'ROAD - generate attributes'
+                    build_phase.remove_from_project
                     break
                 end
             end
 
-            next if script_already_added
-
             target.build_phases.insert(0, phase)
         end
         project.save
-    end
-
-    def self.download_binaries(installer_representation)
-        binary_path =  "#{installer_representation.config.project_root}/binaries"
-
-        if !File.directory?(binary_path)
-            FileUtils.mkdir(binary_path)
-        end
-
-        attributes_code_generator_path = "#{binary_path}/ROADAttributesCodeGenerator"
-
-        curl_call = "curl "
-        if (defined? @@config)
-            curl_call += "-u #{@@config['github_username']}:#{@@config['github_password']} "
-        end
-        curl_call += "-L -o \"#{attributes_code_generator_path}\" #{@@road_attributes_code_generator_url}"
-
-        puts curl_call
-
-        system curl_call
-        system "chmod +x \"#{attributes_code_generator_path}\""
     end
 end

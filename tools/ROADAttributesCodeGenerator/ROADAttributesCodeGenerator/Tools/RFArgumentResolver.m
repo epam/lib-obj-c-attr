@@ -36,18 +36,15 @@
 
 @interface RFArgumentResolver() {
     NSMutableArray * _cmdLineArguments;
-    
-    NSString * _sourcePathArgValue;
-    NSString * _destinationPathArgValue;
 }
+
+@property(nonatomic) NSArray *sourcePaths;
+@property(nonatomic) NSString *destinationPath;
 
 @end
 
 
 @implementation RFArgumentResolver
-
-@dynamic sourcePath;
-@dynamic destinationPath;
 
 - (id)initWithArgv:(const char **)argv argvCount:(const int)argc {
     self = [super init];
@@ -56,8 +53,6 @@
     }
     
     _cmdLineArguments = [NSMutableArray array];
-    _sourcePathArgValue = nil;
-    _destinationPathArgValue = nil;
     
     for (int index = 1; index < argc; index++) {
         NSString *cmdLineArgument = [NSString stringWithCString:argv[index] encoding:NSUTF8StringEncoding];
@@ -69,33 +64,37 @@
     return self;
 }
 
-- (NSString *)sourcePath {
-    if (_sourcePathArgValue != nil) {
-        return _sourcePathArgValue;
+- (NSArray *)sourcePaths {
+    if (_sourcePaths) {
+        return _sourcePaths;
     }
     
-    _sourcePathArgValue = [self cmdLineArgumentValueForSwith:@"-src"];
-    return _sourcePathArgValue;
+    _sourcePaths = [self cmdLineArgumentValueForSwith:@"-src"];
+    return _sourcePaths;
 }
 
 - (NSString *)destinationPath {
-    if (_destinationPathArgValue != nil) {
-        return _destinationPathArgValue;
+    if (_destinationPath != nil) {
+        return _destinationPath;
     }
-    
-    _destinationPathArgValue = [self cmdLineArgumentValueForSwith:@"-dst"];
-    return _destinationPathArgValue;
+
+    NSArray *argumentValues = [self cmdLineArgumentValueForSwith:@"-dst"];
+    if ([argumentValues count] > 0) {
+        _destinationPath = [argumentValues lastObject];
+    }
+    return _destinationPath;
 }
 
-- (NSString *)cmdLineArgumentValueForSwith:(NSString *)aSwitch {
+- (NSArray *)cmdLineArgumentValueForSwith:(NSString *)aSwitch {
+    NSMutableArray *cmdLineArguments = [[NSMutableArray alloc] init];
 
     for (NSString *currentCmdLineArgument in _cmdLineArguments) {
         if ([currentCmdLineArgument hasPrefix:aSwitch]) {
-            return [self valueFromArgument:currentCmdLineArgument];
+            [cmdLineArguments addObject:[self valueFromArgument:currentCmdLineArgument]];
         }
     }
     
-    return nil;
+    return cmdLineArguments;
 }
 
 - (NSString *)valueFromArgument:(NSString *)currentCmdLineArgument {

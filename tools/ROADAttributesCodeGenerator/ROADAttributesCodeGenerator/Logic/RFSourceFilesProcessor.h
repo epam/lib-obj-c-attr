@@ -33,6 +33,6 @@
 
 @interface RFSourceFilesProcessor : NSObject
 
-+ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePath:(NSString *)sourcesPath;
++ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePaths:(NSArray *)sourcePaths;
 
 @end
