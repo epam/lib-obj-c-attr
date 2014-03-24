@@ -78,8 +78,8 @@
     unsigned int numberOfProperties = 0;
     objc_property_t *propertiesArray = class_copyPropertyList(aClass, &numberOfProperties);
     
-    for (int index = 0; index < numberOfProperties; index++) {
-        [result addObject:[self property:propertiesArray[index] forClass:aClass]];
+    for (unsigned int idx = 0; idx < numberOfProperties; idx++) {
+        [result addObject:[self property:propertiesArray[idx] forClass:aClass]];
     }
     
     free(propertiesArray);

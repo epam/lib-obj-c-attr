@@ -31,13 +31,13 @@
 // for additional information regarding copyright ownership and licensing
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "RFMethodInfo.h"
 #import "NSObject+RFMethodReflection.h"
 
 
-@interface RFMethodInfoTest : SenTestCase
+@interface RFMethodInfoTest : XCTestCase
 
 @end
 
@@ -52,13 +52,13 @@
 
 - (void)testInstanceMethodDescriptor {
     RFMethodInfo *desc = [self RF_instanceMethodNamed:@"instanceMethod"];
-    STAssertTrue([[desc className] isEqualToString:NSStringFromClass([self class])],@"Assertion: classname is correct for method descriptor.");
-    STAssertTrue([desc isClassMethod] == NO, @"Assertion: method is instance method.");
+    XCTAssertTrue([[desc className] isEqualToString:NSStringFromClass([self class])],@"Assertion: classname is correct for method descriptor.");
+    XCTAssertTrue([desc isClassMethod] == NO, @"Assertion: method is instance method.");
 }
 
 - (void)testClassMethodDescriptor {
     RFMethodInfo *desc = [self RF_classMethodNamed:@"classMethod"];
-    STAssertTrue([desc isClassMethod] == YES, @"Assertion: method is class method");
+    XCTAssertTrue([desc isClassMethod] == YES, @"Assertion: method is class method");
 }
 
 @end
