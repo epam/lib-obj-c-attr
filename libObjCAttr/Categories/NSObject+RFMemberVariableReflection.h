@@ -59,7 +59,7 @@
 - (RFIvarInfo *)RF_ivarNamed:(NSString *)name;
 
 /**
- * Returns all info objects corresponding to the instance variable of the given name. Invoked on an instance of a class.
+ * Returns all info objects corresponding to the instance variables of the class. Invoked on an instance of a class.
  * @result The ivar info objects.
  */
 - (NSArray *)RF_ivars;
