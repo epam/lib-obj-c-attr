@@ -48,7 +48,7 @@
     }
     
     self.currentAttributesList = [[RFAttributeModelsContainer alloc] init];
-    self.currentImportFilesList = [NSMutableArray array];
+    self.currentImportFilesList = [[NSMutableSet alloc] init];
     self.isProtocolMode = NO;
     self.isFieldMode = NO;
     

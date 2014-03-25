@@ -44,7 +44,7 @@
 @property (nonatomic, strong) RFPreprocessedSourceCode *sourceCodeInfo;
 @property (nonatomic, strong) NSMutableString *workCodeBuffer;
 @property (nonatomic, strong) RFAttributeModelsContainer *currentAttributesList;
-@property (nonatomic, strong) NSMutableArray *currentImportFilesList;
+@property (nonatomic, strong) NSMutableSet *currentImportFilesList;
 
 @property (nonatomic, strong) RFClassModel *currentClass;
 @property (nonatomic, strong) RFProtocolModel *currentProtocol;
