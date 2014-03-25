@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "libObjCAttr"
-  s.version          = "1.2.1"
+  s.version          = "1.2.2"
   s.summary          = "Attribute-oriented programming library & tooling for iOS.."
   s.description      = <<-DESC
                        Library implements [Attribute-Oriented Programming](https://en.wikipedia.org/wiki/Attribute-oriented_programming) paradigm in Objective-C. It allows to add various metadata to the class, each method, property or ivar of the class.
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/epam/lib-obj-c-attr"
   s.license          = 'BSD-3'
   s.author           = { 'EPAM Systems, Inc' => 'SupportROAD@epam.com' }
-  s.source           = { :git => "https://github.com/epam/lib-obj-c-attr.git", :branch => 'master' }
+  s.source           = { :git => "https://github.com/epam/lib-obj-c-attr.git", :tag => '1.2.2' }
 
   s.platform     = :ios, '5.0'
   s.requires_arc = true
@@ -17,7 +17,5 @@ Pod::Spec.new do |s|
   s.public_header_files = 'libObjCAttr/**/*.h'
   s.header_dir = 'ROAD'
   s.resources = ['libObjCAttr/Resources/*', 'tools/binaries/ROADAttributesCodeGenerator']
-
-  s.framework = 'Foundation'
 
 end
