@@ -85,7 +85,7 @@ libObjCAttr requires **iOS 5.0 and above**. The compatibility with 4.3 and older
 libObjCAttr was initially designed to use **ARC**.
 
 ##Contact
-Follow LibObjCAttr on Twitter (@LibObjCAttr)
+Follow LibObjCAttr on Twitter ([@LibObjCAttr](http://twitter.com/libobjcattr))
 
 ##License
 libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). See the LICENSE file that accompanies this distribution for the full text of the license.
