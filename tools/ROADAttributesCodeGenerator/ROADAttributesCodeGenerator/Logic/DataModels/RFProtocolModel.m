@@ -42,10 +42,10 @@
         return nil;
     }
     
-    self.propertiesList = [NSMutableArray array];
-    self.filesToImport = [NSMutableArray array];
-    self.protocolList = [NSMutableArray array];
-    self.methodsList = [NSMutableArray array];
+    self.propertiesList = [[NSMutableArray alloc] init];
+    self.filesToImport = [[NSMutableSet alloc] init];
+    self.protocolList = [[NSMutableArray alloc] init];
+    self.methodsList = [[NSMutableArray alloc] init];
     self.hasGeneratedCode = NO;
     
     return self;

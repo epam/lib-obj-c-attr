@@ -99,24 +99,24 @@
 #pragma mark - Attributes Public API
 
 + (NSArray *)RF_attributesForMethod:(NSString *)methodName {
-    NSInvocation *attributeCreatorInvocation = [self RF_attributeCreatorInvocationForElement:methodName cachedCreatorsDictionary:self.RF_attributesFactoriesForMethods creatorSelectorNameFormatter:^NSString *(NSString *methodName) {
-        NSUInteger parametersCount = [NSRegularExpression RF_numberOfMatchesToRegex:@":" inString:methodName];
-        NSString *methodNameWithoutParameters = [NSRegularExpression RF_stringByReplacingRegex:@":.*" withTemplate:@"" inString:methodName];
+    NSInvocation *attributeCreatorInvocation = [self RF_attributeCreatorInvocationForElement:methodName cachedCreatorsDictionary:self.RF_attributesFactoriesForMethods creatorSelectorNameFormatter:^NSString *(NSString *methodNameToFormat) {
+        NSUInteger parametersCount = [NSRegularExpression RF_numberOfMatchesToRegex:@":" inString:methodNameToFormat];
+        NSString *methodNameWithoutParameters = [NSRegularExpression RF_stringByReplacingRegex:@":.*" withTemplate:@"" inString:methodNameToFormat];
         return [NSString stringWithFormat:@"RF_attributes_%@_method_%@_p%tu", NSStringFromClass(self), methodNameWithoutParameters, parametersCount];
     }];
     return [self RF_attributesFromCreatorInvocation:attributeCreatorInvocation];
 }
 
 + (NSArray *)RF_attributesForProperty:(NSString *)propertyName {
-    NSInvocation *attributeCreatorInvocation = [self RF_attributeCreatorInvocationForElement:propertyName cachedCreatorsDictionary:self.RF_attributesFactoriesForProperties creatorSelectorNameFormatter:^NSString *(NSString *propertyName) {
-        return [NSString stringWithFormat:@"RF_attributes_%@_property_%@", NSStringFromClass(self), propertyName];
+    NSInvocation *attributeCreatorInvocation = [self RF_attributeCreatorInvocationForElement:propertyName cachedCreatorsDictionary:self.RF_attributesFactoriesForProperties creatorSelectorNameFormatter:^NSString *(NSString *propertyNameToFormat) {
+        return [NSString stringWithFormat:@"RF_attributes_%@_property_%@", NSStringFromClass(self), propertyNameToFormat];
     }];
     return [self RF_attributesFromCreatorInvocation:attributeCreatorInvocation];
 }
 
 + (NSArray *)RF_attributesForIvar:(NSString *)ivarName {
-    NSInvocation *attributeCreatorInvocation = [self RF_attributeCreatorInvocationForElement:ivarName cachedCreatorsDictionary:self.RF_attributesFactoriesForIvars creatorSelectorNameFormatter:^NSString *(NSString *ivarName) {
-        return [NSString stringWithFormat:@"RF_attributes_%@_ivar_%@", NSStringFromClass(self), ivarName];
+    NSInvocation *attributeCreatorInvocation = [self RF_attributeCreatorInvocationForElement:ivarName cachedCreatorsDictionary:self.RF_attributesFactoriesForIvars creatorSelectorNameFormatter:^NSString *(NSString *ivarNameToFormat) {
+        return [NSString stringWithFormat:@"RF_attributes_%@_ivar_%@", NSStringFromClass(self), ivarNameToFormat];
     }];
     return [self RF_attributesFromCreatorInvocation:attributeCreatorInvocation];
 }

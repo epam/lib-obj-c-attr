@@ -79,7 +79,7 @@
  * @param aClass The class to which the ivar belongs to.
  * @result The info object.
  */
-+ (RFIvarInfo *)RF_ivarNamed:(NSString *)ivarName ofClass:(Class)aClass;
++ (RFIvarInfo *)RF_ivarNamed:(NSString *)ivarName forClass:(Class)aClass;
 
 /**
  * The method performs search for attribute of required class in array of attributes declared for instance variable.

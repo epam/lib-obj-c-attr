@@ -52,6 +52,7 @@ static NSString * const kRFUnionEncoding = @"()";
 static NSString * const kRFAssignmentOperator = @"=";
 static NSString * const kRFPointerToTypeEncoding = @"^";
 static NSString * const kRFDereferenceOperator = @"*";
+static NSString * const kRFClassPrefix = @"@";
 
 
 @interface RFTypeDecoder ()
@@ -183,7 +184,7 @@ static NSMutableCharacterSet * RFObjectTypeEncodingCharacterSet = nil;
 
 
 + (BOOL)RF_isPrimitiveType:(NSString *)typeEncoding {
-    return (![typeEncoding hasPrefix:@"@"]);
+    return (![typeEncoding hasPrefix:kRFClassPrefix]);
 }
 
 + (NSString *)RF_classNameFromTypeName:(NSString *)typeName {

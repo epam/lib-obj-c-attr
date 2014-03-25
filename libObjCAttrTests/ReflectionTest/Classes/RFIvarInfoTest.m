@@ -31,13 +31,13 @@
 // for additional information regarding copyright ownership and licensing
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "RFIvarInfo.h"
 #import "NSObject+RFMemberVariableReflection.h"
 
 
-@interface RFIvarInfoTest : SenTestCase
+@interface RFIvarInfoTest : XCTestCase
 
 @end
 
@@ -64,14 +64,14 @@
 }
 
 - (void)testDescriptorProperties {
-    STAssertTrue([[integerDescriptor name] isEqualToString:@"integer"], @"Assertion: ivar name is correct.");
-    STAssertTrue([[stringDescriptor name] isEqualToString:@"string"], @"Assertion: ivar name is correct.");
-    STAssertTrue([integerDescriptor isPrimitive] == YES, @"Assertion: integer descriptor returns primitive == YES");
-    STAssertTrue([stringDescriptor isPrimitive] == NO, @"Assertion: string descriptor returns primitive == NO");
-    STAssertTrue([[stringDescriptor className] isEqualToString:NSStringFromClass([self class])], @"Assertion: classname is correct.");
+    XCTAssertTrue([[integerDescriptor name] isEqualToString:@"integer"], @"Assertion: ivar name is correct.");
+    XCTAssertTrue([[stringDescriptor name] isEqualToString:@"string"], @"Assertion: ivar name is correct.");
+    XCTAssertTrue([integerDescriptor isPrimitive] == YES, @"Assertion: integer descriptor returns primitive == YES");
+    XCTAssertTrue([stringDescriptor isPrimitive] == NO, @"Assertion: string descriptor returns primitive == NO");
+    XCTAssertTrue([[stringDescriptor className] isEqualToString:NSStringFromClass([self class])], @"Assertion: classname is correct.");
     
-    STAssertTrue([[stringDescriptor typeName] hasPrefix:@"NSString"], @"Assertion: variable type name for string is NSString.");
-    STAssertTrue([[integerDescriptor typeName] isEqualToString:@"int"], @"Assertion: variable type name for omteger is int.");
+    XCTAssertTrue([[stringDescriptor typeName] hasPrefix:@"NSString"], @"Assertion: variable type name for string is NSString.");
+    XCTAssertTrue([[integerDescriptor typeName] isEqualToString:@"int"], @"Assertion: variable type name for omteger is int.");
 }
 
 @end

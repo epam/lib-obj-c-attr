@@ -67,8 +67,12 @@
 
 + (void)decorateCategoryDefinitionFor:(RFClassModel *)classModel in:(NSMutableString *)result {
     NSMutableString *categoryDefinitionHeader = [NSMutableString new];
-    
-    for (NSString *fileToImport in classModel.filesToImport) {
+
+    // Sort imports
+    NSArray *sortingDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES]];
+    NSArray *sortedFilesToImport = [classModel.filesToImport sortedArrayUsingDescriptors:sortingDescriptors];
+
+    for (NSString *fileToImport in sortedFilesToImport) {
         [categoryDefinitionHeader appendFormat:@"#import %@\n", fileToImport];
     }
     

@@ -29,7 +29,6 @@
 		119C1A6F18BE698800FE3414 /* RFIvarInfoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 119C1A5E18BE698800FE3414 /* RFIvarInfoTest.m */; };
 		119C1A7018BE698800FE3414 /* RFMethodInfoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 119C1A6018BE698800FE3414 /* RFMethodInfoTest.m */; };
 		119C1A7118BE698800FE3414 /* RFPropertyInfoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 119C1A6218BE698800FE3414 /* RFPropertyInfoTest.m */; };
-		119C1A7518BE69C800FE3414 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119C1A7418BE69C800FE3414 /* SenTestingKit.framework */; };
 		119C1A8018BF33CA00FE3414 /* ROADGeneratedAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 119C1A7F18BF33CA00FE3414 /* ROADGeneratedAttribute.m */; };
 		119C1A8118BF343B00FE3414 /* NSObject+RFAttributesInternal.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119C1A1918BE4BD500FE3414 /* NSObject+RFAttributesInternal.h */; };
 		119C1A8218BF345F00FE3414 /* NSObject+RFAttributes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119C1A1718BE4BD500FE3414 /* NSObject+RFAttributes.h */; };
@@ -92,7 +91,7 @@
 		119C19ED18BE499800FE3414 /* libObjCAttr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjCAttr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		119C19F018BE499800FE3414 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		119C19F418BE499800FE3414 /* libObjCAttr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libObjCAttr-Prefix.pch"; sourceTree = "<group>"; };
-		119C19FD18BE499800FE3414 /* libObjCAttrTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libObjCAttrTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		119C19FD18BE499800FE3414 /* libObjCAttrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libObjCAttrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		119C1A1718BE4BD500FE3414 /* NSObject+RFAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RFAttributes.h"; sourceTree = "<group>"; };
 		119C1A1818BE4BD500FE3414 /* NSObject+RFAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RFAttributes.m"; sourceTree = "<group>"; };
 		119C1A1918BE4BD500FE3414 /* NSObject+RFAttributesInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RFAttributesInternal.h"; sourceTree = "<group>"; };
@@ -131,7 +130,6 @@
 		119C1A5E18BE698800FE3414 /* RFIvarInfoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFIvarInfoTest.m; path = Classes/RFIvarInfoTest.m; sourceTree = "<group>"; };
 		119C1A6018BE698800FE3414 /* RFMethodInfoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFMethodInfoTest.m; path = Classes/RFMethodInfoTest.m; sourceTree = "<group>"; };
 		119C1A6218BE698800FE3414 /* RFPropertyInfoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFPropertyInfoTest.m; path = Classes/RFPropertyInfoTest.m; sourceTree = "<group>"; };
-		119C1A7418BE69C800FE3414 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		119C1A7F18BF33CA00FE3414 /* ROADGeneratedAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ROADGeneratedAttribute.m; sourceTree = "<group>"; };
 		119C1AAA18BF6BDC00FE3414 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		833F290F18C0B85200020123 /* RFEncoding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RFEncoding.plist; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				119C1AAC18BF976800FE3414 /* libObjCAttr.a in Frameworks */,
-				119C1A7518BE69C800FE3414 /* SenTestingKit.framework in Frameworks */,
 				119C1AAB18BF6BDC00FE3414 /* UIKit.framework in Frameworks */,
 				119C1A0018BE499800FE3414 /* Foundation.framework in Frameworks */,
 			);
@@ -174,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				119C19ED18BE499800FE3414 /* libObjCAttr.a */,
-				119C19FD18BE499800FE3414 /* libObjCAttrTests.octest */,
+				119C19FD18BE499800FE3414 /* libObjCAttrTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				119C1AAA18BF6BDC00FE3414 /* UIKit.framework */,
-				119C1A7418BE69C800FE3414 /* SenTestingKit.framework */,
 				119C19F018BE499800FE3414 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -353,7 +349,7 @@
 			);
 			name = libObjCAttrTests;
 			productName = libObjCAttrTests;
-			productReference = 119C19FD18BE499800FE3414 /* libObjCAttrTests.octest */;
+			productReference = 119C19FD18BE499800FE3414 /* libObjCAttrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -362,7 +358,8 @@
 		119C19E518BE499800FE3414 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Epam Systems";
 			};
 			buildConfigurationList = 119C19E818BE499800FE3414 /* Build configuration list for PBXProject "libObjCAttr" */;
@@ -462,7 +459,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -470,6 +466,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -500,7 +497,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -508,6 +504,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -531,11 +528,33 @@
 		119C1A1118BE499800FE3414 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_STATIC_ANALYZER_MODE = shallow;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				DSTROOT = /tmp/libObjCAttr.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "libObjCAttr/libObjCAttr-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = ObjCAttr;
@@ -546,11 +565,33 @@
 		119C1A1218BE499800FE3414 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_STATIC_ANALYZER_MODE = shallow;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				DSTROOT = /tmp/libObjCAttr.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "libObjCAttr/libObjCAttr-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = ObjCAttr;
@@ -561,7 +602,6 @@
 		119C1A1418BE499800FE3414 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -579,14 +619,12 @@
 				INFOPLIST_FILE = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		119C1A1518BE499800FE3414 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -600,7 +638,6 @@
 				INFOPLIST_FILE = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

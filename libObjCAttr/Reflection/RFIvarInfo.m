@@ -78,7 +78,7 @@
     return array;
 }
 
-+ (RFIvarInfo *)RF_ivarNamed:(NSString *const)ivarName ofClass:(Class)aClass {
++ (RFIvarInfo *)RF_ivarNamed:(NSString *const)ivarName forClass:(Class)aClass {
     Ivar anIvar = class_getInstanceVariable(aClass, [ivarName cStringUsingEncoding:NSUTF8StringEncoding]);
     RFIvarInfo *descriptor = [self RF_infoFromIvar:anIvar];
     descriptor.className = NSStringFromClass(aClass);

@@ -166,8 +166,8 @@ NSRegularExpression *keyWordRegex = nil;
     parsedClass.attributeModels = parseState.currentAttributesList;
     parseState.currentAttributesList = [[RFAttributeModelsContainer alloc] init];
     
-    [parsedClass.filesToImport addObjectsFromArray:parseState.currentImportFilesList];
-    parseState.currentImportFilesList = [NSMutableArray array];
+    [parsedClass.filesToImport unionSet:parseState.currentImportFilesList];
+    parseState.currentImportFilesList = [[NSMutableSet alloc] init];
     
     parseState.currentClass = parsedClass;    
 }
@@ -180,7 +180,7 @@ NSRegularExpression *keyWordRegex = nil;
     parsedProtocol.attributeModels = parseState.currentAttributesList;
     parseState.currentAttributesList = [[RFAttributeModelsContainer alloc] init];
     
-    [parsedProtocol.filesToImport addObjectsFromArray:parseState.currentImportFilesList];
+    [parsedProtocol.filesToImport unionSet:parseState.currentImportFilesList];
 
     parseState.currentProtocol = parsedProtocol;
 }
@@ -188,8 +188,8 @@ NSRegularExpression *keyWordRegex = nil;
 + (void)processClassImplementationBeginWithCodeParseState:(RFCodeParseState *)parseState {
     RFClassModel *parsedClass = [RFClassParser parseFrom:parseState];
        
-    [parsedClass.filesToImport addObjectsFromArray:parseState.currentImportFilesList];
-    parseState.currentImportFilesList = [NSMutableArray array];
+    [parsedClass.filesToImport unionSet:parseState.currentImportFilesList];
+    parseState.currentImportFilesList = [[NSMutableSet alloc] init];
     
     [parseState.foundClassesList addClassModel:parsedClass];
 }
@@ -310,8 +310,10 @@ NSRegularExpression *importFileRegex = nil;
     
     NSString *importFileMarker = [RFSourceCodeHelper extractElement:importFileRegex fromBuffer:parseState.workCodeBuffer];
     NSString *importFileName = [importFileMarker hasPrefix:@"<"] ? importFileMarker : [parseState.sourceCodeInfo.metaMarkers dataForMetaMarker:importFileMarker];
-    
-    [parseState.currentImportFilesList addObject:importFileName];
+
+    if (![parseState.currentImportFilesList containsObject:importFileName]) {
+        [parseState.currentImportFilesList addObject:importFileName];
+    }
 }
 
 @end

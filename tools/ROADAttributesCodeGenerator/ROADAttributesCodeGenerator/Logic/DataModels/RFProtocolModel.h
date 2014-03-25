@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSMutableString *modelDeclarationForParser;
 
 @property (nonatomic, strong) NSMutableArray *propertiesList;
-@property (nonatomic, strong) NSMutableArray *filesToImport;
+@property (nonatomic, strong) NSMutableSet *filesToImport;
 @property (nonatomic, strong) NSMutableArray *protocolList;
 @property (nonatomic, strong) NSMutableArray *methodsList;
 @property (nonatomic, assign) BOOL hasGeneratedCode;

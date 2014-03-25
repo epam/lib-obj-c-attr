@@ -31,13 +31,13 @@
 // for additional information regarding copyright ownership and licensing
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "RFPropertyInfo.h"
 #import "NSObject+RFPropertyReflection.h"
 
 
-@interface RFPropertyInfoTest : SenTestCase
+@interface RFPropertyInfoTest : XCTestCase
 
 @property (strong, nonatomic) NSString *strong;
 @property (weak, nonatomic) NSString *weak;
@@ -62,29 +62,29 @@
 
 - (void)testStrong {
     desc = [self RF_propertyNamed:@"strong"];
-    STAssertTrue([desc isWeak] == NO && [desc isCopied] == NO && [desc isDynamic] == NO, @"Assertion: property is strong.");
+    XCTAssertTrue([desc isWeak] == NO && [desc isCopied] == NO && [desc isDynamic] == NO, @"Assertion: property is strong.");
 }
 
 - (void)testWeak {
     desc = [self RF_propertyNamed:@"weak"];
-    STAssertTrue([desc isWeak] && [desc isCopied] == NO && [desc isDynamic] == NO, @"Assertion: property is weak");
+    XCTAssertTrue([desc isWeak] && [desc isCopied] == NO && [desc isDynamic] == NO, @"Assertion: property is weak");
 }
 
 - (void)testCopyDynamic {
     desc = [self RF_propertyNamed:@"copy"];
-    STAssertTrue([desc isCopied] && [desc isDynamic] && [desc isWeak] == NO, @"Assertion: property is declared copy, and is dynamically implemented.");
+    XCTAssertTrue([desc isCopied] && [desc isDynamic] && [desc isWeak] == NO, @"Assertion: property is declared copy, and is dynamically implemented.");
 }
 
 - (void)testBoolAssign {
     desc = [self RF_propertyNamed:@"valid"];
-    STAssertTrue([desc isCopied] == NO && [desc isDynamic] == NO && [desc isWeak] == NO && [desc isNonatomic], @"Assertion: property is assigned and nonatomic");
-    STAssertTrue([[desc getterName] isEqualToString:@"isValid"], @"Assertion: custom getter name (isValid) is correct (%@)", [desc getterName]);
-    STAssertTrue([[desc setterName] isEqualToString:@"setToValid:"], @"Assertion: custom setter name (setToValid:) is correct (%@)", [desc setterName]);
+    XCTAssertTrue([desc isCopied] == NO && [desc isDynamic] == NO && [desc isWeak] == NO && [desc isNonatomic], @"Assertion: property is assigned and nonatomic");
+    XCTAssertTrue([[desc getterName] isEqualToString:@"isValid"], @"Assertion: custom getter name (isValid) is correct (%@)", [desc getterName]);
+    XCTAssertTrue([[desc setterName] isEqualToString:@"setToValid:"], @"Assertion: custom setter name (setToValid:) is correct (%@)", [desc setterName]);
 }
 
 - (void)testReadonlyAssignAtomic {
     desc = [self RF_propertyNamed:@"readonly"];
-    STAssertTrue([desc isNonatomic] == NO && [desc isReadonly], @"Assertion: property is atomic and readonly.");
+    XCTAssertTrue([desc isNonatomic] == NO && [desc isReadonly], @"Assertion: property is atomic and readonly.");
 }
 
 @end

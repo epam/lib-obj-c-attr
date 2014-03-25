@@ -64,7 +64,7 @@
     }
     
     [currentProtocolModel1.attributeModels addAttributeModelsFromContainer:protocolModelToMerge.attributeModels];
-    [currentProtocolModel1.filesToImport addObjectsFromArray:protocolModelToMerge.filesToImport];
+    [currentProtocolModel1.filesToImport unionSet:protocolModelToMerge.filesToImport];
     
     [self mergePropertiesToProtocolModel:currentProtocolModel1 fromProtocolModel:protocolModelToMerge];
     [self mergeMethodsToProtocolModel:currentProtocolModel1 fromProtocolModel:protocolModelToMerge];

@@ -71,7 +71,7 @@
 - (NSMutableDictionary *)sharedCache {
     __block id cache;
     dispatch_sync(_queue, ^{
-        cache = _sharedCache;
+        cache = self->_sharedCache;
     });
     
     return cache;
@@ -79,7 +79,7 @@
 
 - (void)didRecieveMemoryWarning {
     dispatch_sync(_queue, ^{
-        [_sharedCache removeAllObjects];
+        [self->_sharedCache removeAllObjects];
     });
 }
 

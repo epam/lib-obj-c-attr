@@ -37,7 +37,7 @@
 @implementation NSObject (RFMemberVariableReflection)
 
 + (RFIvarInfo *)RF_ivarNamed:(NSString *)name {
-    return [RFIvarInfo RF_ivarNamed:name ofClass:self];
+    return [RFIvarInfo RF_ivarNamed:name forClass:self];
 }
 
 + (NSArray *)RF_ivars {
@@ -45,7 +45,7 @@
 }
 
 - (RFIvarInfo *)RF_ivarNamed:(NSString *)name {
-    return [RFIvarInfo RF_ivarNamed:name ofClass:[self class]];
+    return [RFIvarInfo RF_ivarNamed:name forClass:[self class]];
 }
 
 - (NSArray *)RF_ivars {

@@ -78,8 +78,8 @@
     unsigned int numberOfProperties = 0;
     objc_property_t *propertiesArray = class_copyPropertyList(aClass, &numberOfProperties);
     
-    for (int index = 0; index < numberOfProperties; index++) {
-        [result addObject:[self property:propertiesArray[index] forClass:aClass]];
+    for (unsigned int idx = 0; idx < numberOfProperties; idx++) {
+        [result addObject:[self property:propertiesArray[idx] forClass:aClass]];
     }
     
     free(propertiesArray);
@@ -261,13 +261,22 @@
 
 #pragma mark - Utility methods
 
+
+static const char * kPropertyInfoDynamicSpecifier = "D";
+static const char * kPropertyInfoWeakSpecifier = "W";
+static const char * kPropertyInfoNonatomicSpecifier = "N";
+static const char * kPropertyInfoReadonlySpecifier = "R";
+static const char * kPropertyInfoStrongSpecifier = "&";
+static const char * kPropertyInfoCopiedSpecifier = "C";
+
+
 - (void)fillSpecifiers {
-    _dynamic = [[self class] property:_property containsSpecifier:"D"];
-    _weak = [[self class] property:_property containsSpecifier:"W"];
-    _nonatomic = [[self class] property:_property containsSpecifier:"N"];
-    _readonly = [[self class] property:_property containsSpecifier:"R"];
-    _strong = [[self class] property:_property containsSpecifier:"&"];
-    _copied = [[self class] property:_property containsSpecifier:"C"];
+    _dynamic = [[self class] property:_property containsSpecifier:kPropertyInfoDynamicSpecifier];
+    _weak = [[self class] property:_property containsSpecifier:kPropertyInfoWeakSpecifier];
+    _nonatomic = [[self class] property:_property containsSpecifier:kPropertyInfoNonatomicSpecifier];
+    _readonly = [[self class] property:_property containsSpecifier:kPropertyInfoReadonlySpecifier];
+    _strong = [[self class] property:_property containsSpecifier:kPropertyInfoStrongSpecifier];
+    _copied = [[self class] property:_property containsSpecifier:kPropertyInfoCopiedSpecifier];
     
     _isSpecifiersFilled = YES;
 }
