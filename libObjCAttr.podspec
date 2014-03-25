@@ -17,5 +17,7 @@ Pod::Spec.new do |s|
   s.public_header_files = 'libObjCAttr/**/*.h'
   s.header_dir = 'ROAD'
   s.resources = ['libObjCAttr/Resources/*', 'tools/binaries/ROADAttributesCodeGenerator']
+  
+  s.social_media_url = 'https://twitter.com/libobjcattr'
 
 end
