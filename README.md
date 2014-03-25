@@ -84,8 +84,8 @@ libObjCAttr requires **iOS 5.0 and above**. The compatibility with 4.3 and older
 
 libObjCAttr was initially designed to use **ARC**.
 
-##Solutions powerd by LibObjCAttr:
-* ROAD Framework — [](https://github.com/epam/road-ios-framework)
+##Solutions powerd by LibObjCAttr
+* ROAD Framework — [https://github.com/epam/road-ios-framework](https://github.com/epam/road-ios-framework)
 * Add your project here ;)
 
 ##Contact
