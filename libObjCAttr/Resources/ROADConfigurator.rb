@@ -59,7 +59,7 @@ class ROADConfigurator
                 end
 
                 run_script_user = "\"${PODS_ROOT}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator\""\
-                " -src=\"${SRCROOT}/${TARGET_NAME}\" -src=\"${SRCROOT}/Pods\""
+                " -src=\"${SRCROOT}/${TARGET_NAME}\" -src=\"${PODS_ROOT}\""
                 if defined? @@config
                     if @@config['source']
                         attr_source = @@config['source']
