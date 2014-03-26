@@ -58,7 +58,7 @@ class ROADConfigurator
                     end
                 end
 
-                run_script_user = "\"${SRCROOT}/Pods/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator\""\
+                run_script_user = "\"${PODS_ROOT}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator\""\
                 " -src=\"${SRCROOT}/${TARGET_NAME}\" -src=\"${SRCROOT}/Pods\""
                 if defined? @@config
                     if @@config['source']
