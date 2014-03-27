@@ -9,7 +9,7 @@ Our solution helps reduce the complexity of code, makes it compact and self-docu
 
 ##Installation
 
-[CocoaPods](http://cocoapods.org) is the only recommended way of libObjCAttr integration. Besides standard configuration of pod dependencies *pod_install* hook definition required as shown below. A typical **Podfile** will look as follows:
+[CocoaPods](http://cocoapods.org) is the only recommended way of libObjCAttr integration. Besides standard configuration of pod dependencies, *pod_install* hook is required as shown below. A typical **Podfile** will look as follows:
 
 ```ruby
 pod 'libObjCAttr'
@@ -49,7 +49,7 @@ RF_ATTRIBUTE(MyAttribute, objectProperty = [NSObject new])
 @end
 ```
 
-An attribute can be any class inherited from the NSObject or its subclasses. It may or may not have properties.
+An attribute can be any class inherited from NSObject or its subclasses. It may or may not have properties.
 
 ```objective-c
 #import <ROAD/ROADAttribute.h>
@@ -92,4 +92,4 @@ libObjCAttr was initially designed to use **ARC**.
 Follow LibObjCAttr on Twitter ([@LibObjCAttr](http://twitter.com/libobjcattr))
 
 ##License
-libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). See the LICENSE file that accompanies this distribution for the full text of the license.
+libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). Open the LICENSE file that accompanies this distribution to see the full text of the license.
