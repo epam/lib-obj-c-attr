@@ -93,3 +93,11 @@ Follow LibObjCAttr on Twitter ([@LibObjCAttr](http://twitter.com/libobjcattr))
 
 ##License
 libObjCAttr is made available under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause). Open the LICENSE file that accompanies this distribution to see the full text of the license.
+
+##Contribution
+
+There are three ways you can help us:
+
+* **Raise an issue.** You found something that does not work as expected? Let us know about it.
+* **Suggest a feature.** It's even better if you come up with a new feature and write us about it.
+* **Write some code.** We would love to see more pull requests to our framework, just make sure you have the latest sources.
