@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1176414318E5EC0A00B1688B /* GcovTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1176414218E5EC0A00B1688B /* GcovTestObserver.m */; };
 		119C19F118BE499800FE3414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119C19F018BE499800FE3414 /* Foundation.framework */; };
 		119C1A0018BE499800FE3414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119C19F018BE499800FE3414 /* Foundation.framework */; };
 		119C1A2918BE4BD500FE3414 /* NSObject+RFAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 119C1A1818BE4BD500FE3414 /* NSObject+RFAttributes.m */; };
@@ -88,6 +89,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1176414118E5EC0A00B1688B /* GcovTestObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcovTestObserver.h; sourceTree = "<group>"; };
+		1176414218E5EC0A00B1688B /* GcovTestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcovTestObserver.m; sourceTree = "<group>"; };
 		119C19ED18BE499800FE3414 /* libObjCAttr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjCAttr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		119C19F018BE499800FE3414 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		119C19F418BE499800FE3414 /* libObjCAttr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libObjCAttr-Prefix.pch"; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 		119C1A0618BE499800FE3414 /* libObjCAttrTests */ = {
 			isa = PBXGroup;
 			children = (
+				1176414118E5EC0A00B1688B /* GcovTestObserver.h */,
+				1176414218E5EC0A00B1688B /* GcovTestObserver.m */,
 				119C1A7E18BF338700FE3414 /* ROADGeneratedAttributes */,
 				119C1A4B18BE698800FE3414 /* AttributeTest */,
 				119C1A5B18BE698800FE3414 /* ReflectionTest */,
@@ -438,6 +443,7 @@
 				119C1A6A18BE698800FE3414 /* RFTestAttribute.m in Sources */,
 				119C1A6918BE698800FE3414 /* CustomRFTestAttribute.m in Sources */,
 				119C1A8018BF33CA00FE3414 /* ROADGeneratedAttribute.m in Sources */,
+				1176414318E5EC0A00B1688B /* GcovTestObserver.m in Sources */,
 				119C1A7018BE698800FE3414 /* RFMethodInfoTest.m in Sources */,
 				119C1A6718BE698800FE3414 /* AttributesAPITest.m in Sources */,
 				119C1A6F18BE698800FE3414 /* RFIvarInfoTest.m in Sources */,

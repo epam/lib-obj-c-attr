@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "119C19FC18BE499800FE3414"
-               BuildableName = "libObjCAttrTests.octest"
+               BuildableName = "libObjCAttrTests.xctest"
                BlueprintName = "libObjCAttrTests"
                ReferencedContainer = "container:libObjCAttr.xcodeproj">
             </BuildableReference>
