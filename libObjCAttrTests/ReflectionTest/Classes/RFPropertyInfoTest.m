@@ -32,59 +32,123 @@
 
 
 #import <XCTest/XCTest.h>
+#import <objc/runtime.h>
 
 #import "RFPropertyInfo.h"
+#import "AnnotatedClass.h"
 #import "NSObject+RFPropertyReflection.h"
 
 
-@interface RFPropertyInfoTest : XCTestCase
-
-@property (strong, nonatomic) NSString *strong;
-@property (weak, nonatomic) NSString *weak;
-@property (assign, nonatomic) NSString *assign;
-@property (copy, nonatomic) NSString *copy;
-@property (assign, nonatomic, getter = isValid, setter = setToValid:, readwrite) BOOL valid;
-@property (readonly) int readonly;
+@interface RFPropertyInfoTest : XCTestCase {
+    Class _testClass;
+}
 
 @end
 
+@implementation RFPropertyInfoTest
 
-@implementation RFPropertyInfoTest {
-    RFPropertyInfo *desc;
+const static NSUInteger numberOfProperties = 76;
+const static char *testClassName = "testClassName";
+
+- (void)setUp {
+    [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
+    _testClass = objc_allocateClassPair([NSObject class], testClassName, 0);
 }
 
-@dynamic copy;
+- (void)testPropertyCount {
+    
+    NSUInteger inc = 0;
+    
+    objc_property_attribute_t type = { "T", [@"NSString" UTF8String] };
+    objc_property_attribute_t ownership = { "R", "" }; // R = readonly
+    
+    for (int i = inc; i <= numberOfProperties; i++) {
+        
+        objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_Property%d", i] UTF8String] };
+        objc_property_attribute_t attrs[] = { type, ownership, backingivar };
+        
+        SEL methodSelector = NSSelectorFromString([NSString stringWithFormat:@"Property%d", i]);
+        
+        class_addProperty(_testClass, [[NSString stringWithFormat:@"Property%d", i] UTF8String], attrs, 3);
+        class_addMethod(_testClass, methodSelector, nil, "@@:");
+        
+        inc++;
+    }
+    XCTAssertTrue(inc == [[RFPropertyInfo propertiesForClass:_testClass] count], @"It's not equal a sum of properties");
+}
+
+- (void)testPropertyByPredicated {
+    objc_property_attribute_t attrs[] = {
+        { "T", [@"NSString" UTF8String] },
+        { "V", "_Property" },
+        { "R", "" },
+    };
+    
+    NSString *propertyName = @"nameForTestPredicate";
+    SEL methodSelector = NSSelectorFromString(propertyName);
+    
+    class_addProperty(_testClass, "nameForTestPredicate", attrs, 3);
+    class_addMethod(_testClass, methodSelector, nil, "@@:");
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"propertyName == %@", propertyName];
+    
+    RFPropertyInfo *propertyInfo = [[RFPropertyInfo propertiesForClass:_testClass withPredicate:predicate] lastObject];
+    XCTAssertNotNil(propertyInfo, @"Can't find metadata of property by name");
+}
+
+- (void)testPropertyFunctionality {
+    objc_property_attribute_t attrs[] = {
+        { "T", [@"NSString" UTF8String] },
+        { "G", "getter" },
+        { "S", "setter" },
+        { "V", "_Property" },
+        { "D", "" },
+        { "C", "" },
+        { "R", "" },
+        { "&", "" },
+        { "N", "" },
+        { "W", "" },
+    };
+    
+    NSString *propertyName = @"name";
+    SEL methodSelector = NSSelectorFromString(propertyName);
+    
+    class_addProperty(_testClass, "name", attrs, 10);
+    class_addMethod(_testClass, methodSelector, nil, "@@:");
+    
+    RFPropertyInfo *propertyInfo = [RFPropertyInfo RF_propertyNamed:propertyName forClass:_testClass];
+    XCTAssertNotNil(propertyInfo, @"Can't find metadata of property by name");
+    
+    XCTAssertTrue([propertyInfo.typeName isEqualToString:@"NSString"], @"It's not equals a type name of property");
+    XCTAssertTrue([NSStringFromClass(propertyInfo.typeClass) isEqualToString:@"NSString"], @"It's not equals a type name of property");
+    XCTAssertTrue([propertyInfo.className isEqualToString:@"testClassName"], @"It's not equals a name of class of property");
+    XCTAssertTrue([propertyInfo.setterName isEqualToString:@"setter"], @"It's not equals a setter name of property");
+    XCTAssertTrue([propertyInfo.getterName isEqualToString:@"getter"], @"It's not equals a getter name of property");
+    
+    XCTAssertTrue(propertyInfo.isReadonly, @"It's not equal attribute 'readonly' of property");
+    XCTAssertTrue(propertyInfo.isCopied, @"It's not equal attribute 'copy' of property");
+    XCTAssertTrue(propertyInfo.isDynamic, @"It's not equal attribute 'dynamic' of property");
+    XCTAssertTrue(propertyInfo.isWeak, @"It's not equal attribute 'weak' of property");
+    XCTAssertTrue(propertyInfo.isNonatomic, @"It's not equal attribute 'nonatomic' of property");
+    XCTAssertTrue(propertyInfo.isStrong, @"It's not equal attribute 'strong' of property");
+}
+
+- (void)test_RF_propertiesForObjectInstance {
+    AnnotatedClass* annotatedClass = [[AnnotatedClass alloc] init];
+    NSArray *properties = [annotatedClass RF_properties];
+    XCTAssertTrue([properties count] == 2, @"properties must contain values");
+    
+    RFPropertyInfo *property = [annotatedClass RF_propertyNamed:@"prop"];
+    XCTAssertTrue([property.propertyName isEqualToString:@"prop"], @"please check properties");
+    XCTAssertTrue([property.attributes count] == 2, @"It's not equals a sum of attributes for property");
+    XCTAssertFalse(property.isPrimitive, @"It's not primitive property");
+}
 
 - (void)tearDown {
-    desc = nil;
+    _testClass = nil;
+
     [super tearDown];
-}
-
-- (void)testStrong {
-    desc = [self RF_propertyNamed:@"strong"];
-    XCTAssertTrue([desc isWeak] == NO && [desc isCopied] == NO && [desc isDynamic] == NO, @"Assertion: property is strong.");
-}
-
-- (void)testWeak {
-    desc = [self RF_propertyNamed:@"weak"];
-    XCTAssertTrue([desc isWeak] && [desc isCopied] == NO && [desc isDynamic] == NO, @"Assertion: property is weak");
-}
-
-- (void)testCopyDynamic {
-    desc = [self RF_propertyNamed:@"copy"];
-    XCTAssertTrue([desc isCopied] && [desc isDynamic] && [desc isWeak] == NO, @"Assertion: property is declared copy, and is dynamically implemented.");
-}
-
-- (void)testBoolAssign {
-    desc = [self RF_propertyNamed:@"valid"];
-    XCTAssertTrue([desc isCopied] == NO && [desc isDynamic] == NO && [desc isWeak] == NO && [desc isNonatomic], @"Assertion: property is assigned and nonatomic");
-    XCTAssertTrue([[desc getterName] isEqualToString:@"isValid"], @"Assertion: custom getter name (isValid) is correct (%@)", [desc getterName]);
-    XCTAssertTrue([[desc setterName] isEqualToString:@"setToValid:"], @"Assertion: custom setter name (setToValid:) is correct (%@)", [desc setterName]);
-}
-
-- (void)testReadonlyAssignAtomic {
-    desc = [self RF_propertyNamed:@"readonly"];
-    XCTAssertTrue([desc isNonatomic] == NO && [desc isReadonly], @"Assertion: property is atomic and readonly.");
 }
 
 @end
