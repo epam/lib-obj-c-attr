@@ -32,46 +32,109 @@
 
 
 #import <XCTest/XCTest.h>
+#import <objc/runtime.h>
 
 #import "RFIvarInfo.h"
+#import "AnnotatedClass.h"
 #import "NSObject+RFMemberVariableReflection.h"
 
 
-@interface RFIvarInfoTest : XCTestCase
-
+@interface RFIvarInfoTest : XCTestCase {
+    Class _testClass;
+}
 @end
 
+@implementation RFIvarInfoTest
 
-@implementation RFIvarInfoTest {
-    int integer;
-    NSString *string;
-
-    RFIvarInfo *integerDescriptor;
-    RFIvarInfo *stringDescriptor;
-}
+const static NSUInteger numberOfIVars = 352;
+const static char *testClassName = "testClassName";
 
 - (void)setUp {
-    integer = 3;
-    string = @"value";
-    integerDescriptor = [self RF_ivarNamed:@"integer"];
-    stringDescriptor = [self RF_ivarNamed:@"string"];
+    [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
+    _testClass = objc_allocateClassPair([NSObject class], testClassName, 0);
 }
 
-- (void)tearDown {
-    string = nil;
-    integerDescriptor = nil;
-    stringDescriptor = nil;
+- (void)testIVarCount {
+    NSUInteger inc = 0;
+    for (int i = inc; i <= numberOfIVars; i++) {
+        const char *cstring = [[NSString stringWithFormat:@"var%d", i] UTF8String];
+        class_addIvar(_testClass, cstring, sizeof(id), rint(log2(sizeof(id))), @encode(id));
+        inc++;
+    }
+    XCTAssertTrue(inc == [[RFIvarInfo ivarsOfClass:_testClass] count], @"It's not equals a sum of ivars");
 }
 
-- (void)testDescriptorProperties {
-    XCTAssertTrue([[integerDescriptor name] isEqualToString:@"integer"], @"Assertion: ivar name is correct.");
-    XCTAssertTrue([[stringDescriptor name] isEqualToString:@"string"], @"Assertion: ivar name is correct.");
-    XCTAssertTrue([integerDescriptor isPrimitive] == YES, @"Assertion: integer descriptor returns primitive == YES");
-    XCTAssertTrue([stringDescriptor isPrimitive] == NO, @"Assertion: string descriptor returns primitive == NO");
-    XCTAssertTrue([[stringDescriptor className] isEqualToString:NSStringFromClass([self class])], @"Assertion: classname is correct.");
+- (void)testIVarByName {
+    const char* ivarName = "ivarNameTest";
+    char *type = @encode(NSObject);
+    class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
     
-    XCTAssertTrue([[stringDescriptor typeName] hasPrefix:@"NSString"], @"Assertion: variable type name for string is NSString.");
-    XCTAssertTrue([[integerDescriptor typeName] isEqualToString:@"int"], @"Assertion: variable type name for omteger is int.");
+    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
+    XCTAssertNotNil(result, @"Can't find data by ivar name");
+}
+
+- (void)testIVarTypeName {
+    const char* ivarName = "ivarNameTestTypeName";
+    char *type = @encode(NSString);
+    class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
+    
+    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
+    
+    XCTAssertTrue([result.typeName isEqualToString:@"struct NSString=#"], @"It's not equal a type name of ivars");
+}
+
+- (void)testIVarByPrimitiveType {
+    const char* ivarName = "ivarNameTestPrimitiveType";
+    char *type = @encode(NSInteger);
+    class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
+    
+    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
+    
+    XCTAssertTrue(result.isPrimitive, @"Ivar isn't primitive");
+}
+
+- (void)testIVarByNotPrimitiveType {
+    const char* ivarName = "ivarNameTestNotPrimitiveType";
+    char *type = @encode(NSString*);
+    class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
+    
+    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
+    
+    XCTAssertFalse(result.isPrimitive, @"Ivar is primitive");
+}
+
+- (void)test_RF_ivarsByObjectInstance {
+    AnnotatedClass* annotatedClass = [[AnnotatedClass alloc] init];
+    NSArray *ivars = [annotatedClass RF_ivars];
+    XCTAssertTrue([ivars count] == 5, @"ivars must not contain values");
+    
+    RFIvarInfo *ivar = [annotatedClass RF_ivarNamed:@"_someField"];
+    XCTAssertTrue([ivar.name isEqualToString:@"_someField"], @"please check ivar");
+}
+
+- (void)test_RF_ivarsByStaticMethods {
+    NSArray *ivars = [AnnotatedClass RF_ivars];
+    XCTAssertTrue([ivars count] == 5, @"ivars must not contain values");
+    
+    RFIvarInfo *ivar = [AnnotatedClass RF_ivarNamed:@"_someField"];
+    XCTAssertTrue([ivar.name isEqualToString:@"_someField"], @"please check ivar");
+}
+
+- (void)test_RF_ivarsWithTypeDetection {
+    RFIvarInfo *ivar = [AnnotatedClass RF_ivarNamed:@"_testName"];
+    XCTAssertTrue([ivar.typeName isEqualToString:@"7c[]"], @"please check ivar");
+}
+
+- (void)tearDown
+{
+    _testClass = nil;
+
+    [super tearDown];
 }
 
 @end
