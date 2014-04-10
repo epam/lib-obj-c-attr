@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117641DC18F5B05E00B1688B /* RFDefineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 117641DB18F5B05E00B1688B /* RFDefineParser.m */; };
+		117641DF18F5CB7000B1688B /* RFDefineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 117641DE18F5CB7000B1688B /* RFDefineModel.m */; };
 		1A8A2E96181908B700877EE0 /* RFProtocolModelsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A2E95181908B700877EE0 /* RFProtocolModelsContainer.m */; };
 		1A8A2E9918190FD300877EE0 /* RFProtocolsModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A2E9818190FD300877EE0 /* RFProtocolsModelHelper.m */; };
 		1AAB2404181687D7007CC865 /* RFProtocolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB2403181687D7007CC865 /* RFProtocolModel.m */; };
@@ -67,6 +69,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		117641DA18F5B05E00B1688B /* RFDefineParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFDefineParser.h; sourceTree = "<group>"; };
+		117641DB18F5B05E00B1688B /* RFDefineParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFDefineParser.m; sourceTree = "<group>"; };
+		117641DD18F5CB7000B1688B /* RFDefineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFDefineModel.h; sourceTree = "<group>"; };
+		117641DE18F5CB7000B1688B /* RFDefineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFDefineModel.m; sourceTree = "<group>"; };
 		1A8A2E94181908B700877EE0 /* RFProtocolModelsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFProtocolModelsContainer.h; sourceTree = "<group>"; };
 		1A8A2E95181908B700877EE0 /* RFProtocolModelsContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFProtocolModelsContainer.m; sourceTree = "<group>"; };
 		1A8A2E9718190FD300877EE0 /* RFProtocolsModelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFProtocolsModelHelper.h; sourceTree = "<group>"; };
@@ -282,6 +288,8 @@
 				8DD9C1AC17B1C3C000B00CAA /* RFPropertyParser.m */,
 				1AAB240518168829007CC865 /* RFProtocolParser.h */,
 				1AAB240618168829007CC865 /* RFProtocolParser.m */,
+				117641DA18F5B05E00B1688B /* RFDefineParser.h */,
+				117641DB18F5B05E00B1688B /* RFDefineParser.m */,
 			);
 			path = CodeParsers;
 			sourceTree = "<group>";
@@ -335,6 +343,8 @@
 				8DD9C1C917B1C3C000B00CAA /* RFPropertyModel.m */,
 				1AAB2402181687D7007CC865 /* RFProtocolModel.h */,
 				1AAB2403181687D7007CC865 /* RFProtocolModel.m */,
+				117641DD18F5CB7000B1688B /* RFDefineModel.h */,
+				117641DE18F5CB7000B1688B /* RFDefineModel.m */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -420,6 +430,7 @@
 				8DD9C17A17B1C2BC00B00CAA /* main.m in Sources */,
 				8DD9C1D317B1C3C000B00CAA /* NSMutableString+RFExtendedAPI.m in Sources */,
 				8DD9C1D417B1C3C000B00CAA /* NSRegularExpression+RFExtendedAPI.m in Sources */,
+				117641DC18F5B05E00B1688B /* RFDefineParser.m in Sources */,
 				8DD9C1D517B1C3C000B00CAA /* NSString+RFExtendedAPI.m in Sources */,
 				8DD9C1D617B1C3C000B00CAA /* RFTextFile.m in Sources */,
 				8DD9C1D917B1C3C000B00CAA /* RFAttributesCodeGeneratorBase.m in Sources */,
@@ -430,6 +441,7 @@
 				8DD9C1DE17B1C3C000B00CAA /* RFPropertiesAttributesCodeGenerator.m in Sources */,
 				8DD9C1DF17B1C3C000B00CAA /* RFAttributeDataParser.m in Sources */,
 				8DD9C1E017B1C3C000B00CAA /* RFClassParser.m in Sources */,
+				117641DF18F5CB7000B1688B /* RFDefineModel.m in Sources */,
 				8DD9C1E117B1C3C000B00CAA /* RFFieldParser.m in Sources */,
 				8DD9C1E217B1C3C000B00CAA /* RFHeaderSectionParser.m in Sources */,
 				8DD9C1E317B1C3C000B00CAA /* RFMethodParser.m in Sources */,

@@ -56,12 +56,12 @@
 
 @implementation RFHeaderSectionParser
 
-+ (void)parseSourceCode:(NSString *)sourceCode intoClass:(RFClassModelsContainer *)classModelsContainer intoProtocol:(RFProtocolModelsContainer *)protocolModelsContainer skipImports:(BOOL)skipImports {
++ (void)parseSourceCode:(NSString *)sourceCode intoClass:(RFClassModelsContainer *)classModelsContainer intoProtocol:(RFProtocolModelsContainer *)protocolModelsContainer skipImports:(BOOL)skipImports useDefines:(NSArray *)defines {
     if ([NSString isNilOrEmpty:sourceCode] || classModelsContainer == nil || protocolModelsContainer == nil) {
         return;
     }
     
-    RFPreprocessedSourceCode *sourceCodeInfo = (skipImports) ? [RFSourceCodePreprocessor prepareCodeForParsingWithoutImports:sourceCode] : [RFSourceCodePreprocessor prepareCodeForParsingWithImports:sourceCode];
+    RFPreprocessedSourceCode *sourceCodeInfo = (skipImports) ? [RFSourceCodePreprocessor prepareCodeForParsingWithoutImports:sourceCode useDefines:defines] : [RFSourceCodePreprocessor prepareCodeForParsingWithImports:sourceCode useDefines:defines];
     RFCodeParseState *parseState = [RFCodeParseState new];
     parseState.foundClassesList = classModelsContainer;
     parseState.foundProtocolsList = protocolModelsContainer;

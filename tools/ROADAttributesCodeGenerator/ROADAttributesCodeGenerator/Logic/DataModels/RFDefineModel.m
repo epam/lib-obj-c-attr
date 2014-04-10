@@ -1,5 +1,5 @@
 //
-//  RFArgumentResolver.h
+//  RFDefineModel.m
 //  ROADAttributesCodeGenerator
 //
 //  Copyright (c) 2014 Epam Systems. All rights reserved.
@@ -31,12 +31,9 @@
 // for additional information regarding copyright ownership and licensing
 
 
-@interface RFArgumentResolver : NSObject
+#import "RFDefineModel.h"
 
-@property (nonatomic, readonly) NSArray *sourcePaths;
-@property (nonatomic, readonly) NSString *destinationPath;
-@property (nonatomic, readonly) NSArray *definePaths;
 
-- (id)initWithArgv:(const char **)argv argvCount:(const int)argc;
+@implementation RFDefineModel
 
 @end

@@ -36,8 +36,8 @@
 
 @interface RFSourceCodePreprocessor : NSObject
 
-+ (RFPreprocessedSourceCode *)prepareCodeForParsingWithoutImports:(NSString *)sourceCode;
-+ (RFPreprocessedSourceCode *)prepareCodeForParsingWithImports:(NSString *)sourceCode;
++ (RFPreprocessedSourceCode *)prepareCodeForParsingWithoutImports:(NSString *)sourceCode useDefines:(NSArray *)defines;
++ (RFPreprocessedSourceCode *)prepareCodeForParsingWithImports:(NSString *)sourceCode useDefines:(NSArray *)defines;
 + (RFPreprocessedSourceCode *)prepareCodeForInjecting:(NSString *)sourceCode;
 
 + (void)processStringParamsInCode:(RFPreprocessedSourceCode *)sourceCodeInfo;
@@ -48,5 +48,7 @@
 + (void)normalizeText:(RFPreprocessedSourceCode *)sourceCodeInfo;
 
 + (void)expandMetaMarkers:(RFPreprocessedSourceCode *)sourceCodeInfo singlePass:(BOOL)singlePass;
+
++ (void)removeComments:(RFPreprocessedSourceCode *)sourceCodeInfo;
 
 @end

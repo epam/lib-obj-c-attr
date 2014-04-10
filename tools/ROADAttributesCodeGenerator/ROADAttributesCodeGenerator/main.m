@@ -36,6 +36,7 @@
 #import "RFConsole.h"
 #import "NSString+RFExtendedAPI.h"
 #import "NSFileManager+RFExtendedAPI.h"
+#import "RFDefineParser.h"
 
 
 void PrintUsage();
@@ -55,7 +56,8 @@ int main(int argc, const char * argv[]) {
         }
         
         NotifyAboutStartProcessing(cmdLineArguments);
-        [RFSourceFilesProcessor generateAttributeFactoriesIntoPath:cmdLineArguments.destinationPath fromSourceCodePaths:cmdLineArguments.sourcePaths];
+        NSArray *defineModels = [RFDefineParser parseDefines:cmdLineArguments.definePaths];
+        [RFSourceFilesProcessor generateAttributeFactoriesIntoPath:cmdLineArguments.destinationPath fromSourceCodePaths:cmdLineArguments.sourcePaths useDefines:defineModels];
         
         NotifyAboutFinishProcessing(cmdLineArguments);
     }
