@@ -57,12 +57,6 @@
             ReferencedContainer = "container:ROADAttributesCodeGenerator.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-src=&quot;/Users/ossir/Desktop/MyProject/Pods&quot; -dst=&quot;/Users/ossir/Desktop/TestFolder/1&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

@@ -96,8 +96,24 @@
     return result;
 }
 
+static NSRegularExpression *stringRegex = nil;
+
 + (void)processStringParamsInCode:(RFPreprocessedSourceCode *)sourceCodeInfo {
-    [self processBlockMatchedRegex:@"(?<!')\"((\\\\\")*[^\"\\r\\n]*(\\\\\")*)*\"'{0}" withDataType:MetaMarkerDataTypeString inCodeInfo:sourceCodeInfo];
+    NSError *error;
+    if (!stringRegex) {
+        stringRegex = [[NSRegularExpression alloc] initWithPattern:@"(^|[^'])(@?\"([^\"\\\\]|(\\\\.)|(\\\\\\n)|(\"\\s*@?\"))*\")" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    }
+
+    for (;;) {
+        NSTextCheckingResult *result = [stringRegex firstMatchInString:sourceCodeInfo.sourceCode options:0 range:NSMakeRange(0, [sourceCodeInfo.sourceCode length])];
+
+        if (!result) {
+            break;
+        }
+
+        NSString *metaMarker = [sourceCodeInfo.metaMarkers addData:[sourceCodeInfo.sourceCode substringWithRange:[result rangeAtIndex:2]] withType:MetaMarkerDataTypeString];
+        [sourceCodeInfo.sourceCode replaceCharactersInRange:[result rangeAtIndex:2] withString:metaMarker];
+    }
 }
 
 + (void)processBlockMatchedRegex:(NSString *)blockRegex withDataType:(MetaMarkerDataType)dataType inCodeInfo:(RFPreprocessedSourceCode *)sourceCodeInfo {
