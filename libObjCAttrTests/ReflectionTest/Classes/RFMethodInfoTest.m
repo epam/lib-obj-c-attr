@@ -115,7 +115,7 @@ const static char *testClassName = "testClassName";
 - (void)test_RF_methodsByObjectInstance {
     AnnotatedClass* annotatedClass = [[AnnotatedClass alloc] init];
     NSArray *methods = [annotatedClass RF_methods];
-    XCTAssertTrue([methods count] == 17, @"methods must contain values");
+    XCTAssertTrue([methods count] == 18, @"methods must contain values");
     
     RFMethodInfo *method = [annotatedClass RF_instanceMethodNamed:@"viewDidLoad"];
     XCTAssertTrue([method.name isEqualToString:@"viewDidLoad"], @"please check function");

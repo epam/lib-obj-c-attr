@@ -40,6 +40,13 @@
 #import "RFPropertyInfo.h"
 
 
+@interface SecondAnnotatedClass (PrivateAPI)
+
+- (void)method1;
+
+@end
+
+
 @interface AttributesAPITest : XCTestCase
 
 @end
@@ -305,5 +312,14 @@
 }
 
 #pragma mark -
+
+
+- (void)testPrivateIvarAttributes {
+    XCTAssertNotNil([AnnotatedClass RF_attributeForIvar:@"_privateIvar" withAttributeType:[NSObject class]], @"Private ivar is not attributed properly");
+}
+
+- (void)testPrivateMethodAttributes {
+    XCTAssertNotNil([SecondAnnotatedClass RF_attributeForMethod:NSStringFromSelector(@selector(method1)) withAttributeType:[NSString class]], @"Private method is not attributed properly");
+}
 
 @end

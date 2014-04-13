@@ -111,7 +111,7 @@ const static char *testClassName = "testClassName";
 - (void)test_RF_ivarsByObjectInstance {
     AnnotatedClass* annotatedClass = [[AnnotatedClass alloc] init];
     NSArray *ivars = [annotatedClass RF_ivars];
-    XCTAssertTrue([ivars count] == 5, @"ivars must not contain values");
+    XCTAssertTrue([ivars count] == 6, @"ivars must not contain values");
     
     RFIvarInfo *ivar = [annotatedClass RF_ivarNamed:@"_someField"];
     XCTAssertTrue([ivar.name isEqualToString:@"_someField"], @"please check ivar");
@@ -119,7 +119,7 @@ const static char *testClassName = "testClassName";
 
 - (void)test_RF_ivarsByStaticMethods {
     NSArray *ivars = [AnnotatedClass RF_ivars];
-    XCTAssertTrue([ivars count] == 5, @"ivars must not contain values");
+    XCTAssertTrue([ivars count] == 6, @"ivars must not contain values");
     
     RFIvarInfo *ivar = [AnnotatedClass RF_ivarNamed:@"_someField"];
     XCTAssertTrue([ivar.name isEqualToString:@"_someField"], @"please check ivar");

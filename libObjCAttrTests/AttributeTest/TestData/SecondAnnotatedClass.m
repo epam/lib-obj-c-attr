@@ -42,4 +42,9 @@
 - (void)viewDidLoad:(BOOL)param1 {
 }
 
+RF_ATTRIBUTE(NSString)
+- (void)method1 {
+
+}
+
 @end
