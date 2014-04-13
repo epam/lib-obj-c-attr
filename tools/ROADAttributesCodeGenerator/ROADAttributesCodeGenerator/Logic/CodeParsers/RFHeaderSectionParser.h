@@ -37,6 +37,6 @@
 
 @interface RFHeaderSectionParser : NSObject
 
-+ (void)parseSourceCode:(NSString *)sourceCode intoClass:(RFClassModelsContainer *)classModelsContainer intoProtocol:(RFProtocolModelsContainer *)protocolModelsContainer skipImports:(BOOL)skipImports;
++ (void)parseSourceCode:(NSString *)sourceCode intoClass:(RFClassModelsContainer *)classModelsContainer intoProtocol:(RFProtocolModelsContainer *)protocolModelsContainer skipImports:(BOOL)skipImports useDefines:(NSArray *)defines;
 
 @end

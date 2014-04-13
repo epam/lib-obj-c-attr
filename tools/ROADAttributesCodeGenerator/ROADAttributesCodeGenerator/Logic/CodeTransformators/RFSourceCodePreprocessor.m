@@ -39,11 +39,12 @@
 #import "RFPreprocessedSourceCode.h"
 #import "RFMetaMarkersContainer.h"
 #import "RFPreprocessedSourceCode.h"
+#import "RFDefineModel.h"
 
 
 @implementation RFSourceCodePreprocessor
 
-+ (RFPreprocessedSourceCode *)prepareCodeForParsingWithoutImports:(NSString *)sourceCode {
++ (RFPreprocessedSourceCode *)prepareCodeForParsingWithoutImports:(NSString *)sourceCode useDefines:(NSArray *)defines {
     if ([NSString isNilOrEmpty:sourceCode]) {
         return nil;
     }
@@ -52,6 +53,7 @@
     result.sourceCode = [NSMutableString stringWithString:sourceCode];
     
     [self removeComments:result];
+    [self substititeDefines:defines inSourceCode:result];
     [self processStringParamsInCode:result];
     [self removeImports:result];
     [self removeIncludes:result];
@@ -63,7 +65,7 @@
     return result;
 }
 
-+ (RFPreprocessedSourceCode *)prepareCodeForParsingWithImports:(NSString *)sourceCode {
++ (RFPreprocessedSourceCode *)prepareCodeForParsingWithImports:(NSString *)sourceCode useDefines:(NSArray *)defines {
     if ([NSString isNilOrEmpty:sourceCode]) {
         return nil;
     }
@@ -72,6 +74,7 @@
     result.sourceCode = [NSMutableString stringWithString:sourceCode];
     
     [self removeComments:result];
+    [self substititeDefines:defines inSourceCode:result];
     [self processStringParamsInCode:result];
     [self removeIncludes:result];
     [self processArrayBlocksInCode:result];
@@ -94,6 +97,51 @@
     [self processCommentsInCode:result];
     
     return result;
+}
+
++ (void)substititeDefines:(NSArray *)defines inSourceCode:(RFPreprocessedSourceCode *)sourceCode {
+    for (RFDefineModel *defineModel in defines) {
+        if (!defineModel.isFunction) {
+            [sourceCode.sourceCode replaceOccurrencesOfString:defineModel.define withString:defineModel.substitution options:NSLiteralSearch range:NSMakeRange(0, [sourceCode.sourceCode length])];
+        }
+        else {
+            [self substituteDefineFunction:defineModel inSourceCode:sourceCode];
+        }
+    }
+}
+
+const NSUInteger kRFSCDefineParams = 1;
+const NSUInteger kRFSCDefineDefinition = 0;
+
++ (void)substituteDefineFunction:(RFDefineModel *)defineModel inSourceCode:(RFPreprocessedSourceCode *)sourceCode {
+    NSString *regexStr = [NSString stringWithFormat:@"%@\\(([^\\n\\)]*)\\)", defineModel.define];
+    NSRegularExpression *regex = [NSRegularExpression regexFromString:regexStr];
+    NSUInteger location = 0;
+    do {
+        NSTextCheckingResult *result = [regex firstMatchInString:sourceCode.sourceCode options:0 range:NSMakeRange(location, [sourceCode.sourceCode length] - location)];
+        if (!result) {
+            break;
+        }
+        NSString * paramsString = [sourceCode.sourceCode substringWithRange:[result rangeAtIndex:kRFSCDefineParams]];
+        NSArray *untrimmedParams = [paramsString componentsSeparatedByString:@","];
+        NSMutableArray *params = [[NSMutableArray alloc] init];
+        for (NSString *str in untrimmedParams) {
+            [params addObject:[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ];
+        }
+        if ([params count] != [defineModel.parameters count]) {
+            NSLog(@"Macros definition(%@) does not match with macros invocation.", defineModel.define);
+            return;
+        }
+
+        NSMutableString *defineSubstitution = [defineModel.substitution mutableCopy];
+        for (int idx = 0; idx < [params count]; idx++) {
+            [defineSubstitution replaceOccurrencesOfString:defineModel.parameters[idx] withString:params[idx] options:NSLiteralSearch range:NSMakeRange(0, [defineSubstitution length])];
+        }
+        NSString *replacementString = [[NSString alloc] initWithFormat:@"%@", [sourceCode.sourceCode substringWithRange:[result rangeAtIndex:kRFSCDefineDefinition]]];
+        NSUInteger replacementLocation = [result rangeAtIndex:kRFSCDefineParams].location - [defineModel.define length] - 1;
+        [sourceCode.sourceCode replaceOccurrencesOfString:replacementString withString:defineSubstitution options:NSLiteralSearch range:NSMakeRange(replacementLocation, [sourceCode.sourceCode length] - replacementLocation)];
+        location = replacementLocation + 1;
+    } while (1);
 }
 
 + (void)processStringParamsInCode:(RFPreprocessedSourceCode *)sourceCodeInfo {

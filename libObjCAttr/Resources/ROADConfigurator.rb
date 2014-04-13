@@ -67,8 +67,18 @@ class ROADConfigurator
                             attr_source.each do |attr_source_dir|
                                 run_script_user += " -src=#{attr_source_dir}"
                             end
-                            else
+                        else
                             run_script_user += " -src=#{attr_source}"
+                        end
+                    end
+                    if @@config['define_file']
+                        attr_def_file = @@config['define_file']
+                        if attr_def_file.respond_to?("each")
+                            attr_def_file.each do |attr_def_file_path|
+                                run_script_user += " -def_file=#{attr_def_file_path}"
+                            end
+                        else
+                            run_script_user += " -def_file=#{attr_def_file}"
                         end
                     end
                 end

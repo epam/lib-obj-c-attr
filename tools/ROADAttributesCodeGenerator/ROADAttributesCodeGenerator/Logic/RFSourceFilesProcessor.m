@@ -46,12 +46,12 @@
 
 @implementation RFSourceFilesProcessor
 
-+ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePaths:(NSArray *)sourcePaths {
++ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePaths:(NSArray *)sourcePaths useDefines:(NSArray *)defines {
     RFClassModelsContainer *classesInfoContainer = [RFClassModelsContainer new];
     RFProtocolModelsContainer* protocolsInfoContainer = [RFProtocolModelsContainer new];
 
     for (NSString *sourcePath in sourcePaths) {
-        [self gatherClassesInfoFromSourceCodePath:sourcePath intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer];
+        [self gatherClassesInfoFromSourceCodePath:sourcePath intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer useDefines:defines];
     }
     [self generateAttributeFactoriesIntoPath:targetPath fromClassModels:classesInfoContainer intoProtocol:protocolsInfoContainer];
     [self generateCodeCollectorIntoPath:targetPath fromClassModels:classesInfoContainer];
@@ -59,11 +59,11 @@
     [self removeAbsoletedFactoriesFromPath:(NSString *)targetPath accordingToClassModels:classesInfoContainer];
 }
 
-+ (void)gatherClassesInfoFromSourceCodePath:(NSString *)sourcesPath intoClass:(RFClassModelsContainer *)classesInfoContainer intoProtocol:(RFProtocolModelsContainer *)protocolsInfoContainer {
++ (void)gatherClassesInfoFromSourceCodePath:(NSString *)sourcesPath intoClass:(RFClassModelsContainer *)classesInfoContainer intoProtocol:(RFProtocolModelsContainer *)protocolsInfoContainer useDefines:(NSArray *)defines {
     NSArray *filesToProcess = [RFSourceFileHelper sourceCodeFilesFromPath:sourcesPath];
 
     for (NSString *fileToProcess in filesToProcess) {
-        [self gatherClassInfoFromFile:fileToProcess intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer  skipImports:NO];
+        [self gatherClassInfoFromFile:fileToProcess intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer  skipImports:NO useDefines:defines];
     }
 }
 
@@ -71,14 +71,14 @@
     [RFMainAttributesCodeGenerator generateFilesForClasses:classesInfoContainer.classModels forProtocols:protocolsInfoContainer.protocolModels inDirectory:targetPath];
 }
 
-+ (void)gatherClassInfoFromFile:(NSString *)sourcesPath intoClass:(RFClassModelsContainer *)classesInfoContainer intoProtocol:(RFProtocolModelsContainer *)protocolsInfoContainer skipImports:(BOOL)skipImports {
++ (void)gatherClassInfoFromFile:(NSString *)sourcesPath intoClass:(RFClassModelsContainer *)classesInfoContainer intoProtocol:(RFProtocolModelsContainer *)protocolsInfoContainer skipImports:(BOOL)skipImports useDefines:(NSArray *)defines {
     NSString *sourceCode = [RFTextFile loadTextFile:sourcesPath];
 
     if ([NSString isNilOrEmpty:sourceCode]) {
         return;
     }
 
-    [RFHeaderSectionParser parseSourceCode:sourceCode intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:skipImports];
+    [RFHeaderSectionParser parseSourceCode:sourceCode intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:skipImports useDefines:defines];
 }
 
 + (void)generateCodeCollectorIntoPath:(NSString *)targetPath fromClassModels:(RFClassModelsContainer *)classesInfoContainer {

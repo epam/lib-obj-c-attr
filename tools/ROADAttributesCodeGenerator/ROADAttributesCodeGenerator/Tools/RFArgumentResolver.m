@@ -38,8 +38,9 @@
     NSMutableArray * _cmdLineArguments;
 }
 
-@property(nonatomic) NSArray *sourcePaths;
-@property(nonatomic) NSString *destinationPath;
+@property (nonatomic) NSArray *sourcePaths;
+@property (nonatomic) NSString *destinationPath;
+@property (nonatomic) NSArray *definePaths;
 
 @end
 
@@ -74,7 +75,7 @@
 }
 
 - (NSString *)destinationPath {
-    if (_destinationPath != nil) {
+    if (_destinationPath) {
         return _destinationPath;
     }
 
@@ -83,6 +84,16 @@
         _destinationPath = [argumentValues lastObject];
     }
     return _destinationPath;
+}
+
+- (NSArray *)definePaths {
+    if (_definePaths) {
+        return _definePaths;
+    }
+
+    _definePaths = [self cmdLineArgumentValueForSwith:@"-def_file"];
+
+    return _definePaths;
 }
 
 - (NSArray *)cmdLineArgumentValueForSwith:(NSString *)aSwitch {
