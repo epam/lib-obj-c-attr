@@ -33,7 +33,9 @@
 
 #import "RFAttributeCacheManager.h"
 
-#import <UIKit/UIKit.h>
+#ifndef TARGET_OS_MAC
+  #import <UIKit/UIKit.h>
+#endif
 
 
 @implementation RFAttributeCacheManager {
@@ -63,7 +65,9 @@
     if (self) {
         _queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
         _sharedCache = [[NSMutableDictionary alloc] init];
+#ifndef TARGET_OS_MAC
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRecieveMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+#endif
     }
     return self;
 }
@@ -77,10 +81,12 @@
     return cache;
 }
 
+#ifndef TARGET_OS_MAC
 - (void)didRecieveMemoryWarning {
     dispatch_sync(_queue, ^{
         [self->_sharedCache removeAllObjects];
     });
 }
+#endif
 
 @end

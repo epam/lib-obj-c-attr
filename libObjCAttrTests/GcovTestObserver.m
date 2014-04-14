@@ -34,6 +34,8 @@
 
 @implementation GcovTestObserver
 
+#ifndef TARGET_OS_MAC
+
 + (void)load {
     [[NSUserDefaults standardUserDefaults] setValue:@"XCTestLog,GcovTestObserver" forKey:@"XCTestObserverClass"];
 }
@@ -44,5 +46,7 @@
     extern void __gcov_flush(void);
     __gcov_flush();
 }
+
+#endif
 
 @end

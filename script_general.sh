@@ -12,7 +12,8 @@ sudo easy_install cpp-coveralls > /dev/null
 
 # =================     Run build, test and oclint check     ===========
 xctool $PATCH_FOR_PROJECT_OR_WORKSPACE -scheme $PROJECT_SCHEME -reporter pretty -reporter json-compilation-database:compile_commands.json build || EXIT_STATUS=$?
-if [[ $PROJECT_SCHEME != ROADAttributesCodeGenerator ]]; then xctool $PATCH_FOR_PROJECT_OR_WORKSPACE -scheme $PROJECT_SCHEME test -sdk iphonesimulator7.0 || EXIT_STATUS=$?; fi
+if [[ $PROJECT_SCHEME == libObjCAttr ]]; then xctool $PATCH_FOR_PROJECT_OR_WORKSPACE -scheme $PROJECT_SCHEME test -sdk iphonesimulator7.0 || EXIT_STATUS=$?; fi
+if [[ $PROJECT_SCHEME == libObjCAttrMac ]]; then xctool $PATCH_FOR_PROJECT_OR_WORKSPACE -scheme $PROJECT_SCHEME test || EXIT_STATUS=$?; fi
 
 # =================     Download oclint, unzip    ===========
 

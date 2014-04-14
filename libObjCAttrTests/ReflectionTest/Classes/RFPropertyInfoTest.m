@@ -57,23 +57,19 @@ const static char *testClassName = "testClassName";
 }
 
 - (void)testPropertyCount {
-    
-    NSUInteger inc = 0;
-    
     objc_property_attribute_t type = { "T", [@"NSString" UTF8String] };
     objc_property_attribute_t ownership = { "R", "" }; // R = readonly
-    
-    for (int i = inc; i <= numberOfProperties; i++) {
+
+    NSUInteger inc;
+    for (inc = 0; inc <= numberOfProperties; inc++) {
         
-        objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_Property%d", i] UTF8String] };
+        objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_Property%lud", (long unsigned)inc] UTF8String] };
         objc_property_attribute_t attrs[] = { type, ownership, backingivar };
         
-        SEL methodSelector = NSSelectorFromString([NSString stringWithFormat:@"Property%d", i]);
+        SEL methodSelector = NSSelectorFromString([NSString stringWithFormat:@"Property%lud", (long unsigned)inc]);
         
-        class_addProperty(_testClass, [[NSString stringWithFormat:@"Property%d", i] UTF8String], attrs, 3);
+        class_addProperty(_testClass, [[NSString stringWithFormat:@"Property%lud", (long unsigned)inc] UTF8String], attrs, 3);
         class_addMethod(_testClass, methodSelector, nil, "@@:");
-        
-        inc++;
     }
     XCTAssertTrue(inc == [[RFPropertyInfo propertiesForClass:_testClass] count], @"It's not equal a sum of properties");
 }

@@ -2,8 +2,9 @@ language: objective-c
 
 env:
     - PROJECT_SCHEME=Simian
-    - PROJECT_SCHEME=libObjCAttr
     - PROJECT_SCHEME=ROADAttributesCodeGenerator
+    - PROJECT_SCHEME=libObjCAttr
+    - PROJECT_SCHEME=libObjCAttrMac
 
 before_script:
     - sudo easy_install cpp-coveralls
