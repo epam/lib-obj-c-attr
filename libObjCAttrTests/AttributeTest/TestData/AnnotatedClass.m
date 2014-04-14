@@ -35,7 +35,10 @@
 
 
 @implementation AnnotatedClass {
-    NSString *_testPropStore;
+    NSString * _testPropStore;
+
+    RF_ATTRIBUTE(NSObject)
+    NSString * _privateIvar;
 }
 
 @synthesize prop;

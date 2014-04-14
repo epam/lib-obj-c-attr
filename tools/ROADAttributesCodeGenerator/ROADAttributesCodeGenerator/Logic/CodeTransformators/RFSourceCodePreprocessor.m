@@ -144,8 +144,24 @@ const NSUInteger kRFSCDefineDefinition = 0;
     } while (1);
 }
 
+static NSRegularExpression *stringRegex = nil;
+
 + (void)processStringParamsInCode:(RFPreprocessedSourceCode *)sourceCodeInfo {
-    [self processBlockMatchedRegex:@"(?<!')\"((\\\\\")*[^\"\\r\\n]*(\\\\\")*)*\"'{0}" withDataType:MetaMarkerDataTypeString inCodeInfo:sourceCodeInfo];
+    NSError *error;
+    if (!stringRegex) {
+        stringRegex = [[NSRegularExpression alloc] initWithPattern:@"(^|[^'])(@?\"([^\"\\\\]|(\\\\.)|(\\\\\\n)|(\"\\s*@?\"))*\")" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    }
+
+    for (;;) {
+        NSTextCheckingResult *result = [stringRegex firstMatchInString:sourceCodeInfo.sourceCode options:0 range:NSMakeRange(0, [sourceCodeInfo.sourceCode length])];
+
+        if (!result) {
+            break;
+        }
+
+        NSString *metaMarker = [sourceCodeInfo.metaMarkers addData:[sourceCodeInfo.sourceCode substringWithRange:[result rangeAtIndex:2]] withType:MetaMarkerDataTypeString];
+        [sourceCodeInfo.sourceCode replaceCharactersInRange:[result rangeAtIndex:2] withString:metaMarker];
+    }
 }
 
 + (void)processBlockMatchedRegex:(NSString *)blockRegex withDataType:(MetaMarkerDataType)dataType inCodeInfo:(RFPreprocessedSourceCode *)sourceCodeInfo {
@@ -175,10 +191,30 @@ const NSUInteger kRFSCDefineDefinition = 0;
     [self removeImplementation:sourceCodeInfo];
 }
 
+static NSRegularExpression *implementationRegex = nil;
+static NSRegularExpression *parenthesisRegex = nil;
+
 + (void)removeImplementation:(RFPreprocessedSourceCode *)sourceCodeInfo {
     NSError *error = NULL;
-    NSRegularExpression *result = [NSRegularExpression regularExpressionWithPattern:@"(?:@implementation)(\\s+[^\n]+\n).+(?:@end)" options:NSRegularExpressionDotMatchesLineSeparators error:&error];
-    [result replaceMatchesInString:sourceCodeInfo.sourceCode options:0 range:NSMakeRange(0, [sourceCodeInfo.sourceCode length]) withTemplate:@"@implementation$1\n@end"];
+    if (!implementationRegex) {
+        implementationRegex = [NSRegularExpression regularExpressionWithPattern:@"@implementation((?:\\s*?\\w+\\s*?\\{[^\\}]*\\})|(?:[^\n]+\n))(.+?)@end" options:NSRegularExpressionDotMatchesLineSeparators error:&error];
+    }
+    if (!parenthesisRegex) {
+        parenthesisRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{[^\\{\\}]*\\}" options:NSRegularExpressionDotMatchesLineSeparators error:&error];
+    }
+
+    NSUInteger startLocation = 0;
+    NSTextCheckingResult *implResult;
+    while ((implResult = [implementationRegex firstMatchInString:sourceCodeInfo.sourceCode options:0 range:NSMakeRange(startLocation, [sourceCodeInfo.sourceCode length] - startLocation)])) {
+        NSMutableString *implBody = [[sourceCodeInfo.sourceCode substringWithRange:[implResult rangeAtIndex:2]] mutableCopy];
+
+        while ([parenthesisRegex replaceMatchesInString:implBody options:0 range:NSMakeRange(0, [implBody length]) withTemplate:@";"]) { // replaceMatchesInString::: returns number of matches
+        }
+
+        [sourceCodeInfo.sourceCode replaceCharactersInRange:[implResult rangeAtIndex:2] withString:implBody];
+
+        startLocation = [implResult rangeAtIndex:1].location + [implResult rangeAtIndex:1].length + [implBody length];
+    }
 }
 
 + (void)removeMultiLineComments:(RFPreprocessedSourceCode *)sourceCodeInfo {

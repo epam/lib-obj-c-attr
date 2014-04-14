@@ -78,9 +78,17 @@ NSRegularExpression *methodParametersRegex = nil;
 }
 
 + (NSString *)onlyParameterNamesFrom:(NSString *)methodParameters {
+    // cut part of string after last method parameter name
     NSMutableString *result = [NSMutableString stringWithString:methodParameters];
-    
-    while ([NSRegularExpression numberOfMatchesToRegex:@"\\(" inString:result] > 0) {
+    NSRange lastParamterRange = [result rangeOfString:@":" options:NSBackwardsSearch];
+    if (lastParamterRange.location == NSNotFound) {
+        return @"";
+    }
+    lastParamterRange.location += 1;
+    lastParamterRange.length = [result length] - lastParamterRange.location;
+    [result replaceCharactersInRange:lastParamterRange withString:@""];
+
+    while ([result rangeOfString:@"("].location != NSNotFound) {
         [NSRegularExpression replaceRegex:@"\\([^()]+\\)" withTemplate:@"" inString:result];
         [NSRegularExpression replaceRegex:@"\\(+\\)" withTemplate:@"" inString:result];
     }

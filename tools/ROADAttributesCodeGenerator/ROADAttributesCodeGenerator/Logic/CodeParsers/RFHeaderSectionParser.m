@@ -109,7 +109,7 @@ NSRegularExpression *keyWordRegex = nil;
 
     if ([keyWord isEqualToString:@"@implementation"]) {
         [self setupEndOfProtocol:parseState];
-        [self processClassImplementationBeginWithCodeParseState:parseState];
+        [self processClassDefinitionBeginWithCodeParseState:parseState];
         return;
     }
     
@@ -183,15 +183,6 @@ NSRegularExpression *keyWordRegex = nil;
     [parsedProtocol.filesToImport unionSet:parseState.currentImportFilesList];
 
     parseState.currentProtocol = parsedProtocol;
-}
-
-+ (void)processClassImplementationBeginWithCodeParseState:(RFCodeParseState *)parseState {
-    RFClassModel *parsedClass = [RFClassParser parseFrom:parseState];
-       
-    [parsedClass.filesToImport unionSet:parseState.currentImportFilesList];
-    parseState.currentImportFilesList = [[NSMutableSet alloc] init];
-    
-    [parseState.foundClassesList addClassModel:parsedClass];
 }
 
 + (void)processProtocolDefinitionEndWithCodeParseState:(RFCodeParseState *)parseState {
