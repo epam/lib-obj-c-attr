@@ -56,11 +56,10 @@ const static char *testClassName = "testClassName";
 }
 
 - (void)testIVarCount {
-    NSUInteger inc = 0;
-    for (int i = inc; i <= numberOfIVars; i++) {
-        const char *cstring = [[NSString stringWithFormat:@"var%d", i] UTF8String];
+    NSUInteger inc;
+    for (inc = 0; inc <= numberOfIVars; inc++) {
+        const char *cstring = [[NSString stringWithFormat:@"var%lud", (long unsigned)inc] UTF8String];
         class_addIvar(_testClass, cstring, sizeof(id), rint(log2(sizeof(id))), @encode(id));
-        inc++;
     }
     XCTAssertTrue(inc == [[RFIvarInfo ivarsOfClass:_testClass] count], @"It's not equals a sum of ivars");
 }
