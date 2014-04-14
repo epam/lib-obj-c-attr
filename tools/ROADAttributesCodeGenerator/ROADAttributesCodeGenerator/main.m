@@ -111,7 +111,7 @@ void PrintUsage() {
     [RFConsole writeLine:@"Usage:"];
     [RFConsole writeLine:@""];
     [RFConsole writeLine:@"ROADAttributesCodeGenerator –src=path to folder with source code –dst=path to destination folder where need to create attributes code"];
-    [RFConsole writeLine:@"Optional parameters: -def_file=path to file with defines -e=pattern to exclude files or folders from processing based on relative path"];
+    [RFConsole writeLine:@"Optional parameters: -def_file=path to file with defines -e=pattern to exclude files or folders from processing based on absolute path"];
     [RFConsole writeLine:@""];
 }
 

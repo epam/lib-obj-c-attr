@@ -84,7 +84,7 @@
     NSArray *filesToProcess = [RFSourceFileHelper sourceCodeFilesFromPath:sourcesPath excludeRegexes:excludeRegexes];
 
     for (NSString *fileToProcess in filesToProcess) {
-        [self gatherClassInfoFromFile:fileToProcess intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer  skipImports:NO useDefines:defines];
+        [self gatherClassInfoFromFile:fileToProcess intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:NO useDefines:defines];
     }
 }
 
@@ -99,7 +99,7 @@
         return;
     }
 
-    [RFHeaderSectionParser parseSourceCode:sourceCode intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:skipImports useDefines:defines];
+    [RFHeaderSectionParser parseSourceCode:sourceCode forFileName:[sourcesPath lastPathComponent] intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:skipImports useDefines:defines];
 }
 
 + (void)generateCodeCollectorIntoPath:(NSString *)targetPath fromClassModels:(RFClassModelsContainer *)classesInfoContainer {

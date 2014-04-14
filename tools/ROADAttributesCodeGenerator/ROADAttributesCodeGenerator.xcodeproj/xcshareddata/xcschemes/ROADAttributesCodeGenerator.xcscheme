@@ -57,12 +57,6 @@
             ReferencedContainer = "container:ROADAttributesCodeGenerator.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-src=/Users/ossir/Desktop/MyProject -dst=/Users/ossir/Desktop/TestFolder/1 -e=App*.m"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
