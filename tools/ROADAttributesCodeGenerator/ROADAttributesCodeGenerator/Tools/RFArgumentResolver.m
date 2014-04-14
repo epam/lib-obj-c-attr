@@ -41,6 +41,7 @@
 @property (nonatomic) NSArray *sourcePaths;
 @property (nonatomic) NSString *destinationPath;
 @property (nonatomic) NSArray *definePaths;
+@property (nonatomic) NSArray *excludePaths;
 
 @end
 
@@ -94,6 +95,16 @@
     _definePaths = [self cmdLineArgumentValueForSwith:@"-def_file"];
 
     return _definePaths;
+}
+
+- (NSArray *)excludePaths {
+    if (_excludePaths) {
+        return _excludePaths;
+    }
+
+    _excludePaths = [self cmdLineArgumentValueForSwith:@"-e"];
+
+    return _excludePaths;
 }
 
 - (NSArray *)cmdLineArgumentValueForSwith:(NSString *)aSwitch {

@@ -34,5 +34,6 @@
 @interface NSFileManager (RFExtendedAPI)
 
 + (BOOL)isFolderAtPath:(NSString *)path;
++ (BOOL)isFileAtPath:(NSString *)path;
 
 @end

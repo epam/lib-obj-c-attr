@@ -36,6 +36,7 @@
 @property (nonatomic, readonly) NSArray *sourcePaths;
 @property (nonatomic, readonly) NSString *destinationPath;
 @property (nonatomic, readonly) NSArray *definePaths;
+@property (nonatomic, readonly) NSArray *excludePaths;
 
 - (id)initWithArgv:(const char **)argv argvCount:(const int)argc;
 

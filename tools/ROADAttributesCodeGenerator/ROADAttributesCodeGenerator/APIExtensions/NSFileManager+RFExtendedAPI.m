@@ -41,4 +41,9 @@
     return ([[self defaultManager] fileExistsAtPath:path isDirectory:&isDirectory] && isDirectory);
 }
 
++ (BOOL)isFileAtPath:(NSString *)path {
+    BOOL isDirectory = NO;
+    return ([[self defaultManager] fileExistsAtPath:path isDirectory:&isDirectory] && !isDirectory);
+}
+
 @end
