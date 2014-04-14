@@ -1,10 +1,7 @@
 require 'xcodeproj'
 
 class ROADConfigurator
-    @@road_attributes_code_generator_url = 'https://github.com/epam/lib-obj-c-attr/raw/master/tools/binaries/ROADAttributesCodeGenerator'
-
-    def self.post_install(installer_representation)
-        config_path = './ROADConfigurator.yml'
+    def self.post_install(installer_representation, config_path = './ROADConfigurator.yml')
         if File.exists?(config_path)
           @@config = YAML::load(File.open(config_path))
         end
