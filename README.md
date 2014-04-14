@@ -81,6 +81,8 @@ MyAttribute *classAttributes = [AnnotatedClass RF_attributeForProperty:@"name" w
 ...
 ```
 
+Also check out an info about [an attribute generator](./Documents/AttributeGenerator.md), that makes all behind the scene magic.
+
 ##Requirements
 libObjCAttr requires **iOS 5.0 and above**. The compatibility with 4.3 and older is not tested.
 
