@@ -36,7 +36,7 @@
 + (NSString *)headerFileNameForSourceFile:(NSString *)filePath;
 + (NSString *)directoryOfSourceFile:(NSString *)filePath;
 
-+ (NSArray *)sourceCodeFilesFromPath:(NSString *)sourcesPath;
++ (NSArray *)sourceCodeFilesFromPath:(NSString *)sourcesPath excludeRegexes:(NSSet *)excludeRegexes;
 + (BOOL)isGeneratedFile:(NSString *)fileName;
 
 @end

@@ -81,6 +81,16 @@ class ROADConfigurator
                             run_script_user += " -def_file=#{attr_def_file}"
                         end
                     end
+                    if @@config['exclude']
+                        exclude_arg = @@config['exclude']
+                        if exclude_arg.respond_to?("each")
+                            exclude_arg.each do |exclude_pattern|
+                                run_script_user += " -e=#{exclude_pattern}"
+                            end
+                        else
+                            run_script_user += " -e=#{exclude_arg}"
+                        end
+                    end
                 end
                 run_script_user += " -dst=\"${SRCROOT}/${TARGET_NAME}/ROADGeneratedAttributes/\""
                 ROADConfigurator::add_script_to_project_targets(run_script_user, 'libObjCAttr - generate attributes', user_project, user_targets)

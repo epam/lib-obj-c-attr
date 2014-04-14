@@ -48,14 +48,14 @@
     return result;
 }
 
-+ (NSArray *)sourceCodeFilesFromPath:(NSString *)sourcesPath {
++ (NSArray *)sourceCodeFilesFromPath:(NSString *)sourcesPath excludeRegexes:(NSSet *)excludeRegexes {
     NSMutableArray *result = [NSMutableArray array];
-    [self enumerateFilesFromSourceCodePath:sourcesPath into:result];
+    [self enumerateFilesFromSourceCodePath:sourcesPath into:result excludeRegexes:excludeRegexes];
     
     return result;
 }
 
-+ (void)enumerateFilesFromSourceCodePath:(NSString *)sourcesPath into:(NSMutableArray *)filesList {
++ (void)enumerateFilesFromSourceCodePath:(NSString *)sourcesPath into:(NSMutableArray *)filesList excludeRegexes:(NSSet *)excludeRegexes {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *subItems = [fileManager contentsOfDirectoryAtPath:sourcesPath error:nil];
     BOOL isDirectory = NO;
@@ -72,16 +72,33 @@
         NSString *subItemPath = [sourcesPath stringByAppendingPathComponent:subItem];
         
         if ([fileManager fileExistsAtPath:subItemPath isDirectory:&isDirectory] && isDirectory) {
-            [self enumerateFilesFromSourceCodePath:subItemPath into:filesList];
+            [self enumerateFilesFromSourceCodePath:subItemPath into:filesList excludeRegexes:excludeRegexes];
             continue;
         }
         
         if (![subItemPath hasSuffix:@".m"] && ![subItemPath hasSuffix:@".h"]) {
             continue;
         }
+
+        if ([self isItem:subItemPath excludedByRegexes:excludeRegexes]) {
+            continue;
+        }
         
         [filesList addObject:subItemPath];
     }
+}
+
++ (BOOL)isItem:(NSString *)item excludedByRegexes:(NSSet *)excludeRegexes {
+    BOOL isExcluded = NO;
+
+    for (NSRegularExpression *regex in excludeRegexes) {
+        if ([regex firstMatchInString:item options:0 range:NSMakeRange(0, [item length])]) {
+            isExcluded = YES;
+            break;
+        }
+    }
+
+    return isExcluded;
 }
 
 + (BOOL)isGeneratedFile:(NSString *)fileName {

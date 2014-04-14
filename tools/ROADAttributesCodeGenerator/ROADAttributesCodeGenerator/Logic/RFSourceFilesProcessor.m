@@ -42,16 +42,17 @@
 #import "RFUserSourceCodeConfigurator.h"
 #import "RFProtocolModelsContainer.h"
 #import "RFClassModelsContainer.h"
+#import "RFConsole.h"
 
 
 @implementation RFSourceFilesProcessor
 
-+ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePaths:(NSArray *)sourcePaths useDefines:(NSArray *)defines {
++ (void)generateAttributeFactoriesIntoPath:(NSString *)targetPath fromSourceCodePaths:(NSArray *)sourcePaths useDefines:(NSArray *)defines excludePaths:(NSArray *)exculdePaths {
     RFClassModelsContainer *classesInfoContainer = [RFClassModelsContainer new];
     RFProtocolModelsContainer* protocolsInfoContainer = [RFProtocolModelsContainer new];
 
     for (NSString *sourcePath in sourcePaths) {
-        [self gatherClassesInfoFromSourceCodePath:sourcePath intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer useDefines:defines];
+        [self gatherClassesInfoFromSourceCodePath:sourcePath intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer useDefines:defines excludePaths:exculdePaths];
     }
     [self generateAttributeFactoriesIntoPath:targetPath fromClassModels:classesInfoContainer intoProtocol:protocolsInfoContainer];
     [self generateCodeCollectorIntoPath:targetPath fromClassModels:classesInfoContainer];
@@ -59,11 +60,31 @@
     [self removeAbsoletedFactoriesFromPath:(NSString *)targetPath accordingToClassModels:classesInfoContainer];
 }
 
-+ (void)gatherClassesInfoFromSourceCodePath:(NSString *)sourcesPath intoClass:(RFClassModelsContainer *)classesInfoContainer intoProtocol:(RFProtocolModelsContainer *)protocolsInfoContainer useDefines:(NSArray *)defines {
-    NSArray *filesToProcess = [RFSourceFileHelper sourceCodeFilesFromPath:sourcesPath];
++ (void)gatherClassesInfoFromSourceCodePath:(NSString *)sourcesPath intoClass:(RFClassModelsContainer *)classesInfoContainer intoProtocol:(RFProtocolModelsContainer *)protocolsInfoContainer useDefines:(NSArray *)defines excludePaths:(NSArray*)excludePaths {
+
+    // Preparing regexes
+    NSMutableSet *excludeRegexes = [[NSMutableSet alloc] initWithCapacity:[excludePaths count]];
+    NSRegularExpression *escapingRegex = [[NSRegularExpression alloc] initWithPattern:@"[\\?\\+\\^\\$\\|\\.]" options:0 error:nil];
+    for (NSString *pattern in excludePaths) {
+        NSError *error;
+        NSMutableString *regexPattern = [pattern mutableCopy];
+        // Escape unsupported chars
+        [escapingRegex replaceMatchesInString:regexPattern options:0 range:NSMakeRange(0, [regexPattern length]) withTemplate:@"\\\\$0"];
+        // Modify to regex syntax
+        [regexPattern replaceOccurrencesOfString:@"*" withString:@".*" options:0 range:NSMakeRange(0, [regexPattern length])];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:&error];
+        if (error) {
+            [RFConsole writeLine:[NSString stringWithFormat:@"Error while creating regex for exclude pattern string: %@.", regexPattern]];
+        }
+        else {
+            [excludeRegexes addObject:regex];
+        }
+    }
+
+    NSArray *filesToProcess = [RFSourceFileHelper sourceCodeFilesFromPath:sourcesPath excludeRegexes:excludeRegexes];
 
     for (NSString *fileToProcess in filesToProcess) {
-        [self gatherClassInfoFromFile:fileToProcess intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer  skipImports:NO useDefines:defines];
+        [self gatherClassInfoFromFile:fileToProcess intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:NO useDefines:defines];
     }
 }
 
@@ -78,7 +99,7 @@
         return;
     }
 
-    [RFHeaderSectionParser parseSourceCode:sourceCode intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:skipImports useDefines:defines];
+    [RFHeaderSectionParser parseSourceCode:sourceCode forFileName:[sourcesPath lastPathComponent] intoClass:classesInfoContainer intoProtocol:protocolsInfoContainer skipImports:skipImports useDefines:defines];
 }
 
 + (void)generateCodeCollectorIntoPath:(NSString *)targetPath fromClassModels:(RFClassModelsContainer *)classesInfoContainer {

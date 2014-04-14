@@ -56,16 +56,17 @@
 
 @implementation RFHeaderSectionParser
 
-+ (void)parseSourceCode:(NSString *)sourceCode intoClass:(RFClassModelsContainer *)classModelsContainer intoProtocol:(RFProtocolModelsContainer *)protocolModelsContainer skipImports:(BOOL)skipImports useDefines:(NSArray *)defines {
++ (void)parseSourceCode:(NSString *)sourceCode forFileName:(NSString *)fileName intoClass:(RFClassModelsContainer *)classModelsContainer intoProtocol:(RFProtocolModelsContainer *)protocolModelsContainer skipImports:(BOOL)skipImports useDefines:(NSArray *)defines {
     if ([NSString isNilOrEmpty:sourceCode] || classModelsContainer == nil || protocolModelsContainer == nil) {
         return;
     }
-    
+
     RFPreprocessedSourceCode *sourceCodeInfo = (skipImports) ? [RFSourceCodePreprocessor prepareCodeForParsingWithoutImports:sourceCode useDefines:defines] : [RFSourceCodePreprocessor prepareCodeForParsingWithImports:sourceCode useDefines:defines];
     RFCodeParseState *parseState = [RFCodeParseState new];
     parseState.foundClassesList = classModelsContainer;
     parseState.foundProtocolsList = protocolModelsContainer;
     parseState.sourceCodeInfo = sourceCodeInfo;
+    [self addSelfImportToParseState:parseState fileName:fileName];
     parseState.workCodeBuffer = [NSMutableString stringWithString:sourceCodeInfo.sourceCode];
     
     for (;;) {
@@ -76,6 +77,15 @@
         }
         
         [self processKeyWord:keyWord withCodeParseState:parseState];
+    }
+}
+
++ (void)addSelfImportToParseState:(RFCodeParseState *)parseState fileName:(NSString *)fileName {
+    if ([fileName hasSuffix:@".h"]) { // If header file
+        NSString *quotedFileName = [[NSString alloc] initWithFormat:@"\"%@\"", fileName];
+        if (![parseState.currentImportFilesList containsObject:quotedFileName]) {
+            [parseState.currentImportFilesList addObject:quotedFileName];
+        }
     }
 }
 

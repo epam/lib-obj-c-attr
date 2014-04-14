@@ -57,7 +57,7 @@ int main(int argc, const char * argv[]) {
         
         NotifyAboutStartProcessing(cmdLineArguments);
         NSArray *defineModels = [RFDefineParser parseDefines:cmdLineArguments.definePaths];
-        [RFSourceFilesProcessor generateAttributeFactoriesIntoPath:cmdLineArguments.destinationPath fromSourceCodePaths:cmdLineArguments.sourcePaths useDefines:defineModels];
+        [RFSourceFilesProcessor generateAttributeFactoriesIntoPath:cmdLineArguments.destinationPath fromSourceCodePaths:cmdLineArguments.sourcePaths useDefines:defineModels excludePaths:cmdLineArguments.excludePaths];
         
         NotifyAboutFinishProcessing(cmdLineArguments);
     }
@@ -92,7 +92,14 @@ BOOL isValidParameters(RFArgumentResolver *cmdLineArguments) {
         [RFConsole writeLine:[NSString stringWithFormat:@"ERROR: Path to destination folder doesn't point to directory (%@)", cmdLineArguments.destinationPath]];
         return NO;
     }
-    
+
+    for (NSString *definePath in cmdLineArguments.definePaths) {
+        if (![NSFileManager isFileAtPath:definePath]) {
+            [RFConsole writeLine:[NSString stringWithFormat:@"ERROR: Path to define file doesn't point to file (%@)", definePath]];
+            return NO;
+        }
+    }
+
     return YES;
 }
 
@@ -104,6 +111,7 @@ void PrintUsage() {
     [RFConsole writeLine:@"Usage:"];
     [RFConsole writeLine:@""];
     [RFConsole writeLine:@"ROADAttributesCodeGenerator –src=path to folder with source code –dst=path to destination folder where need to create attributes code"];
+    [RFConsole writeLine:@"Optional parameters: -def_file=path to file with defines -e=pattern to exclude files or folders from processing based on absolute path"];
     [RFConsole writeLine:@""];
 }
 
@@ -111,6 +119,12 @@ void NotifyAboutStartProcessing(RFArgumentResolver *cmdLineArguments) {
     [RFConsole writeLine:@"Start source code processing"];
     [RFConsole writeLine:[NSString stringWithFormat:@"Source code directories:%@", cmdLineArguments.sourcePaths]];
     [RFConsole writeLine:[NSString stringWithFormat:@"Directory for generated code:%@", cmdLineArguments.destinationPath]];
+    if ([cmdLineArguments.definePaths count]) {
+        [RFConsole writeLine:[NSString stringWithFormat:@"Define files:%@", cmdLineArguments.definePaths]];
+    }
+    if ([cmdLineArguments.excludePaths count]) {
+        [RFConsole writeLine:[NSString stringWithFormat:@"Exclude pathes with:%@", cmdLineArguments.excludePaths]];
+    }
     [RFConsole writeLine:@""];
 }
 
