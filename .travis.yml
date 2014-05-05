@@ -6,6 +6,11 @@ env:
     - PROJECT_SCHEME=libObjCAttr
     - PROJECT_SCHEME=libObjCAttrMac
 
+before_install:
+    - brew update
+    - brew install ant
+    - brew upgrade xctool
+
 before_script:
     - sudo easy_install cpp-coveralls
     - chmod +x ./script_simian.sh
