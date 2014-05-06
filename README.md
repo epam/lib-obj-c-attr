@@ -1,6 +1,8 @@
+[![License](https://go-shields.herokuapp.com/license-BSD%203-blue.png)](http://opensource.org/licenses/BSD-3-Clause) 
+[![Platform](https://cocoapod-badges.herokuapp.com/p/libObjCAttr/badge.png)](https://github.com/epam/road-ios-framework/) 
+[![Version](https://cocoapod-badges.herokuapp.com/v/libObjCAttr/badge.png)](https://github.com/epam/lib-obj-c-attr/) 
+[![Coverage Status](https://coveralls.io/repos/epam/lib-obj-c-attr/badge.png?branch=master)](https://coveralls.io/r/epam/lib-obj-c-attr?branch=master) 
 [![Build Status](https://travis-ci.org/epam/lib-obj-c-attr.svg?branch=master)](https://travis-ci.org/epam/lib-obj-c-attr) 
-[![Coverage Status](https://coveralls.io/repos/epam/lib-obj-c-attr/badge.png?branch=master)](https://coveralls.io/r/epam/lib-obj-c-attr?branch=master)
-[![License](https://go-shields.herokuapp.com/license-BSD%203-blue.png)](http://opensource.org/licenses/BSD-3-Clause) [![Platform](https://cocoapod-badges.herokuapp.com/p/ROADFramework/badge.png)](https://github.com/epam/road-ios-framework/)
 
 
 #libObjCAttr - attributes for your code
