@@ -32,10 +32,28 @@
 
 
 #import "NSMutableString+RFExtendedAPI.h"
+#import <objc/runtime.h>
 #import "NSString+RFExtendedAPI.h"
 
 
+
 @implementation NSMutableString (RFExtendedAPI)
+
++ (void)load {
+    SEL originalSelector = @selector(stringWithString:);
+    SEL overrideSelector = @selector(rf_stringWithString:);
+    Method originalMethod = class_getClassMethod([NSMutableString class], originalSelector);
+    Method overrideMethod = class_getClassMethod([NSMutableString class], overrideSelector);
+    method_exchangeImplementations(originalMethod, overrideMethod);
+}
+
++ (instancetype)rf_stringWithString:(NSString *)string {
+    if (!string) {
+        return [[NSMutableString alloc] init];
+    }
+
+    return [self rf_stringWithString:string];
+}
 
 - (void)appendLine:(NSString *)aLineString {
     if ([NSString isNilOrEmpty:aLineString]) {
