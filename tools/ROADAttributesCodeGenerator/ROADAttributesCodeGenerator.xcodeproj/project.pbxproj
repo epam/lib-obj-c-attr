@@ -9,6 +9,52 @@
 /* Begin PBXBuildFile section */
 		117641DC18F5B05E00B1688B /* RFDefineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 117641DB18F5B05E00B1688B /* RFDefineParser.m */; };
 		117641DF18F5CB7000B1688B /* RFDefineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 117641DE18F5CB7000B1688B /* RFDefineModel.m */; };
+		119CF5761971C98500A70999 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119CF5751971C98500A70999 /* XCTest.framework */; };
+		119CF57C1971C98500A70999 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 119CF57A1971C98500A70999 /* InfoPlist.strings */; };
+		119CF57E1971C98500A70999 /* ROADAttributesCodeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 119CF57D1971C98500A70999 /* ROADAttributesCodeGeneratorTests.m */; };
+		119CF5871971CBFF00A70999 /* RFConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1F817B1C60100B00CAA /* RFConsole.m */; };
+		119CF5881971CBFF00A70999 /* RFArgumentResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1FA17B1C60100B00CAA /* RFArgumentResolver.m */; };
+		119CF5891971CBFF00A70999 /* NSMutableString+RFExtendedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C18717B1C3C000B00CAA /* NSMutableString+RFExtendedAPI.m */; };
+		119CF58A1971CBFF00A70999 /* NSRegularExpression+RFExtendedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C18917B1C3C000B00CAA /* NSRegularExpression+RFExtendedAPI.m */; };
+		119CF58B1971CBFF00A70999 /* NSString+RFExtendedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C18B17B1C3C000B00CAA /* NSString+RFExtendedAPI.m */; };
+		119CF58C1971CBFF00A70999 /* RFTextFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C18D17B1C3C000B00CAA /* RFTextFile.m */; };
+		119CF58D1971CBFF00A70999 /* NSFileManager+RFExtendedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB3AACC17B1DABB006421E0 /* NSFileManager+RFExtendedAPI.m */; };
+		119CF58E1971CBFF00A70999 /* RFAttributesCodeGeneratorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C19517B1C3C000B00CAA /* RFAttributesCodeGeneratorBase.m */; };
+		119CF58F1971CBFF00A70999 /* RFClassAttributesCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C19717B1C3C000B00CAA /* RFClassAttributesCodeGenerator.m */; };
+		119CF5901971CBFF00A70999 /* RFFieldsAttributesCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C19917B1C3C000B00CAA /* RFFieldsAttributesCodeGenerator.m */; };
+		119CF5911971CBFF00A70999 /* RFMainAttributesCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C19B17B1C3C000B00CAA /* RFMainAttributesCodeGenerator.m */; };
+		119CF5921971CBFF00A70999 /* RFMethodsAttributesCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C19D17B1C3C000B00CAA /* RFMethodsAttributesCodeGenerator.m */; };
+		119CF5931971CBFF00A70999 /* RFPropertiesAttributesCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C19F17B1C3C000B00CAA /* RFPropertiesAttributesCodeGenerator.m */; };
+		119CF5941971CBFF00A70999 /* RFAttributeDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1A217B1C3C000B00CAA /* RFAttributeDataParser.m */; };
+		119CF5951971CBFF00A70999 /* RFClassParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1A417B1C3C000B00CAA /* RFClassParser.m */; };
+		119CF5961971CBFF00A70999 /* RFFieldParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1A617B1C3C000B00CAA /* RFFieldParser.m */; };
+		119CF5971971CBFF00A70999 /* RFHeaderSectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1A817B1C3C000B00CAA /* RFHeaderSectionParser.m */; };
+		119CF5981971CBFF00A70999 /* RFMethodParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1AA17B1C3C000B00CAA /* RFMethodParser.m */; };
+		119CF5991971CBFF00A70999 /* RFPropertyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1AC17B1C3C000B00CAA /* RFPropertyParser.m */; };
+		119CF59A1971CBFF00A70999 /* RFProtocolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB240618168829007CC865 /* RFProtocolParser.m */; };
+		119CF59B1971CBFF00A70999 /* RFDefineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 117641DB18F5B05E00B1688B /* RFDefineParser.m */; };
+		119CF59C1971CBFF00A70999 /* RFSourceCodePreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1AF17B1C3C000B00CAA /* RFSourceCodePreprocessor.m */; };
+		119CF59D1971CBFF00A70999 /* RFUserSourceCodeConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1B117B1C3C000B00CAA /* RFUserSourceCodeConfigurator.m */; };
+		119CF59E1971CBFF00A70999 /* RFAttributeModelsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAE16F17D6085F002687B8 /* RFAttributeModelsContainer.m */; };
+		119CF59F1971CBFF00A70999 /* RFClassModelsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1B417B1C3C000B00CAA /* RFClassModelsContainer.m */; };
+		119CF5A01971CBFF00A70999 /* RFMetaMarkersContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1B617B1C3C000B00CAA /* RFMetaMarkersContainer.m */; };
+		119CF5A11971CBFF00A70999 /* RFMetaMarkersStorageAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1B817B1C3C000B00CAA /* RFMetaMarkersStorageAdapter.m */; };
+		119CF5A21971CBFF00A70999 /* RFProtocolModelsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A2E95181908B700877EE0 /* RFProtocolModelsContainer.m */; };
+		119CF5A31971CBFF00A70999 /* RFAnnotatedElementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1BB17B1C3C000B00CAA /* RFAnnotatedElementModel.m */; };
+		119CF5A41971CBFF00A70999 /* RFAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1BD17B1C3C000B00CAA /* RFAttributeModel.m */; };
+		119CF5A51971CBFF00A70999 /* RFClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1BF17B1C3C000B00CAA /* RFClassModel.m */; };
+		119CF5A61971CBFF00A70999 /* RFCodeParseState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1C117B1C3C000B00CAA /* RFCodeParseState.m */; };
+		119CF5A71971CBFF00A70999 /* RFFieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1C317B1C3C000B00CAA /* RFFieldModel.m */; };
+		119CF5A81971CBFF00A70999 /* RFMethodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1C517B1C3C000B00CAA /* RFMethodModel.m */; };
+		119CF5A91971CBFF00A70999 /* RFPreprocessedSourceCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1C717B1C3C000B00CAA /* RFPreprocessedSourceCode.m */; };
+		119CF5AA1971CBFF00A70999 /* RFPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1C917B1C3C000B00CAA /* RFPropertyModel.m */; };
+		119CF5AB1971CBFF00A70999 /* RFProtocolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB2403181687D7007CC865 /* RFProtocolModel.m */; };
+		119CF5AC1971CBFF00A70999 /* RFDefineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 117641DE18F5CB7000B1688B /* RFDefineModel.m */; };
+		119CF5AD1971CBFF00A70999 /* RFProtocolsModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A2E9818190FD300877EE0 /* RFProtocolsModelHelper.m */; };
+		119CF5AE1971CBFF00A70999 /* RFClassesModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1CC17B1C3C000B00CAA /* RFClassesModelHelper.m */; };
+		119CF5AF1971CBFF00A70999 /* RFSourceCodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1CE17B1C3C000B00CAA /* RFSourceCodeHelper.m */; };
+		119CF5B01971CBFF00A70999 /* RFSourceFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1D017B1C3C000B00CAA /* RFSourceFileHelper.m */; };
+		119CF5B11971CBFF00A70999 /* RFSourceFilesProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9C1D217B1C3C000B00CAA /* RFSourceFilesProcessor.m */; };
 		1A8A2E96181908B700877EE0 /* RFProtocolModelsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A2E95181908B700877EE0 /* RFProtocolModelsContainer.m */; };
 		1A8A2E9918190FD300877EE0 /* RFProtocolsModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A2E9818190FD300877EE0 /* RFProtocolsModelHelper.m */; };
 		1AAB2404181687D7007CC865 /* RFProtocolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB2403181687D7007CC865 /* RFProtocolModel.m */; };
@@ -55,6 +101,16 @@
 		8DFAE17017D6085F002687B8 /* RFAttributeModelsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAE16F17D6085F002687B8 /* RFAttributeModelsContainer.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		119CF5801971C98500A70999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DD9C16B17B1C2BC00B00CAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DD9C17217B1C2BC00B00CAA;
+			remoteInfo = ROADAttributesCodeGenerator;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8DD9C17117B1C2BC00B00CAA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -73,6 +129,12 @@
 		117641DB18F5B05E00B1688B /* RFDefineParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFDefineParser.m; sourceTree = "<group>"; };
 		117641DD18F5CB7000B1688B /* RFDefineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFDefineModel.h; sourceTree = "<group>"; };
 		117641DE18F5CB7000B1688B /* RFDefineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFDefineModel.m; sourceTree = "<group>"; };
+		119CF5741971C98500A70999 /* ROADAttributesCodeGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ROADAttributesCodeGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		119CF5751971C98500A70999 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		119CF5791971C98500A70999 /* ROADAttributesCodeGeneratorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ROADAttributesCodeGeneratorTests-Info.plist"; sourceTree = "<group>"; };
+		119CF57B1971C98500A70999 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		119CF57D1971C98500A70999 /* ROADAttributesCodeGeneratorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ROADAttributesCodeGeneratorTests.m; sourceTree = "<group>"; };
+		119CF57F1971C98500A70999 /* ROADAttributesCodeGeneratorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ROADAttributesCodeGeneratorTests-Prefix.pch"; sourceTree = "<group>"; };
 		1A8A2E94181908B700877EE0 /* RFProtocolModelsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFProtocolModelsContainer.h; sourceTree = "<group>"; };
 		1A8A2E95181908B700877EE0 /* RFProtocolModelsContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFProtocolModelsContainer.m; sourceTree = "<group>"; };
 		1A8A2E9718190FD300877EE0 /* RFProtocolsModelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFProtocolsModelHelper.h; sourceTree = "<group>"; };
@@ -163,6 +225,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		119CF5711971C98500A70999 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119CF5761971C98500A70999 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DD9C17017B1C2BC00B00CAA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,10 +244,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		119CF5771971C98500A70999 /* ROADAttributesCodeGeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				119CF57D1971C98500A70999 /* ROADAttributesCodeGeneratorTests.m */,
+				119CF5781971C98500A70999 /* Supporting Files */,
+			);
+			path = ROADAttributesCodeGeneratorTests;
+			sourceTree = "<group>";
+		};
+		119CF5781971C98500A70999 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				119CF5791971C98500A70999 /* ROADAttributesCodeGeneratorTests-Info.plist */,
+				119CF57A1971C98500A70999 /* InfoPlist.strings */,
+				119CF57F1971C98500A70999 /* ROADAttributesCodeGeneratorTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		8DD9C16A17B1C2BC00B00CAA = {
 			isa = PBXGroup;
 			children = (
 				8DD9C17817B1C2BC00B00CAA /* ROADAttributesCodeGenerator */,
+				119CF5771971C98500A70999 /* ROADAttributesCodeGeneratorTests */,
 				8DD9C17517B1C2BC00B00CAA /* Frameworks */,
 				8DD9C17417B1C2BC00B00CAA /* Products */,
 			);
@@ -187,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD9C17317B1C2BC00B00CAA /* ROADAttributesCodeGenerator */,
+				119CF5741971C98500A70999 /* ROADAttributesCodeGeneratorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD9C17617B1C2BC00B00CAA /* Foundation.framework */,
+				119CF5751971C98500A70999 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -378,6 +470,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		119CF5731971C98500A70999 /* ROADAttributesCodeGeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119CF5841971C98500A70999 /* Build configuration list for PBXNativeTarget "ROADAttributesCodeGeneratorTests" */;
+			buildPhases = (
+				119CF5701971C98500A70999 /* Sources */,
+				119CF5711971C98500A70999 /* Frameworks */,
+				119CF5721971C98500A70999 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				119CF5811971C98500A70999 /* PBXTargetDependency */,
+			);
+			name = ROADAttributesCodeGeneratorTests;
+			productName = ROADAttributesCodeGeneratorTests;
+			productReference = 119CF5741971C98500A70999 /* ROADAttributesCodeGeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8DD9C17217B1C2BC00B00CAA /* ROADAttributesCodeGenerator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DD9C18117B1C2BC00B00CAA /* Build configuration list for PBXNativeTarget "ROADAttributesCodeGenerator" */;
@@ -404,6 +514,11 @@
 				CLASSPREFIX = RF;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = EPAM;
+				TargetAttributes = {
+					119CF5731971C98500A70999 = {
+						TestTargetID = 8DD9C17217B1C2BC00B00CAA;
+					};
+				};
 			};
 			buildConfigurationList = 8DD9C16E17B1C2BC00B00CAA /* Build configuration list for PBXProject "ROADAttributesCodeGenerator" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -418,11 +533,74 @@
 			projectRoot = "";
 			targets = (
 				8DD9C17217B1C2BC00B00CAA /* ROADAttributesCodeGenerator */,
+				119CF5731971C98500A70999 /* ROADAttributesCodeGeneratorTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		119CF5721971C98500A70999 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119CF57C1971C98500A70999 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		119CF5701971C98500A70999 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119CF5871971CBFF00A70999 /* RFConsole.m in Sources */,
+				119CF5881971CBFF00A70999 /* RFArgumentResolver.m in Sources */,
+				119CF5891971CBFF00A70999 /* NSMutableString+RFExtendedAPI.m in Sources */,
+				119CF58A1971CBFF00A70999 /* NSRegularExpression+RFExtendedAPI.m in Sources */,
+				119CF58B1971CBFF00A70999 /* NSString+RFExtendedAPI.m in Sources */,
+				119CF58C1971CBFF00A70999 /* RFTextFile.m in Sources */,
+				119CF58D1971CBFF00A70999 /* NSFileManager+RFExtendedAPI.m in Sources */,
+				119CF58E1971CBFF00A70999 /* RFAttributesCodeGeneratorBase.m in Sources */,
+				119CF58F1971CBFF00A70999 /* RFClassAttributesCodeGenerator.m in Sources */,
+				119CF5901971CBFF00A70999 /* RFFieldsAttributesCodeGenerator.m in Sources */,
+				119CF5911971CBFF00A70999 /* RFMainAttributesCodeGenerator.m in Sources */,
+				119CF5921971CBFF00A70999 /* RFMethodsAttributesCodeGenerator.m in Sources */,
+				119CF5931971CBFF00A70999 /* RFPropertiesAttributesCodeGenerator.m in Sources */,
+				119CF5941971CBFF00A70999 /* RFAttributeDataParser.m in Sources */,
+				119CF5951971CBFF00A70999 /* RFClassParser.m in Sources */,
+				119CF5961971CBFF00A70999 /* RFFieldParser.m in Sources */,
+				119CF5971971CBFF00A70999 /* RFHeaderSectionParser.m in Sources */,
+				119CF5981971CBFF00A70999 /* RFMethodParser.m in Sources */,
+				119CF5991971CBFF00A70999 /* RFPropertyParser.m in Sources */,
+				119CF59A1971CBFF00A70999 /* RFProtocolParser.m in Sources */,
+				119CF59B1971CBFF00A70999 /* RFDefineParser.m in Sources */,
+				119CF59C1971CBFF00A70999 /* RFSourceCodePreprocessor.m in Sources */,
+				119CF59D1971CBFF00A70999 /* RFUserSourceCodeConfigurator.m in Sources */,
+				119CF59E1971CBFF00A70999 /* RFAttributeModelsContainer.m in Sources */,
+				119CF59F1971CBFF00A70999 /* RFClassModelsContainer.m in Sources */,
+				119CF5A01971CBFF00A70999 /* RFMetaMarkersContainer.m in Sources */,
+				119CF5A11971CBFF00A70999 /* RFMetaMarkersStorageAdapter.m in Sources */,
+				119CF5A21971CBFF00A70999 /* RFProtocolModelsContainer.m in Sources */,
+				119CF5A31971CBFF00A70999 /* RFAnnotatedElementModel.m in Sources */,
+				119CF5A41971CBFF00A70999 /* RFAttributeModel.m in Sources */,
+				119CF5A51971CBFF00A70999 /* RFClassModel.m in Sources */,
+				119CF5A61971CBFF00A70999 /* RFCodeParseState.m in Sources */,
+				119CF5A71971CBFF00A70999 /* RFFieldModel.m in Sources */,
+				119CF5A81971CBFF00A70999 /* RFMethodModel.m in Sources */,
+				119CF5A91971CBFF00A70999 /* RFPreprocessedSourceCode.m in Sources */,
+				119CF5AA1971CBFF00A70999 /* RFPropertyModel.m in Sources */,
+				119CF5AB1971CBFF00A70999 /* RFProtocolModel.m in Sources */,
+				119CF5AC1971CBFF00A70999 /* RFDefineModel.m in Sources */,
+				119CF5AD1971CBFF00A70999 /* RFProtocolsModelHelper.m in Sources */,
+				119CF5AE1971CBFF00A70999 /* RFClassesModelHelper.m in Sources */,
+				119CF5AF1971CBFF00A70999 /* RFSourceCodeHelper.m in Sources */,
+				119CF5B01971CBFF00A70999 /* RFSourceFileHelper.m in Sources */,
+				119CF5B11971CBFF00A70999 /* RFSourceFilesProcessor.m in Sources */,
+				119CF57E1971C98500A70999 /* ROADAttributesCodeGeneratorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DD9C16F17B1C2BC00B00CAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -476,7 +654,79 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		119CF5811971C98500A70999 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DD9C17217B1C2BC00B00CAA /* ROADAttributesCodeGenerator */;
+			targetProxy = 119CF5801971C98500A70999 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		119CF57A1971C98500A70999 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119CF57B1971C98500A70999 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		119CF5821971C98500A70999 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ROADAttributesCodeGeneratorTests/ROADAttributesCodeGeneratorTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "ROADAttributesCodeGeneratorTests/ROADAttributesCodeGeneratorTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		119CF5831971C98500A70999 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ROADAttributesCodeGeneratorTests/ROADAttributesCodeGeneratorTests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "ROADAttributesCodeGeneratorTests/ROADAttributesCodeGeneratorTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		8DD9C17F17B1C2BC00B00CAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -557,6 +807,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		119CF5841971C98500A70999 /* Build configuration list for PBXNativeTarget "ROADAttributesCodeGeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119CF5821971C98500A70999 /* Debug */,
+				119CF5831971C98500A70999 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8DD9C16E17B1C2BC00B00CAA /* Build configuration list for PBXProject "ROADAttributesCodeGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

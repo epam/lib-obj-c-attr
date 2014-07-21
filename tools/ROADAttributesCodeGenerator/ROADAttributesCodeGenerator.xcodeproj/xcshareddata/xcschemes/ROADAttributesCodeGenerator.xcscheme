@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "119CF5731971C98500A70999"
+               BuildableName = "ROADAttributesCodeGeneratorTests.xctest"
+               BlueprintName = "ROADAttributesCodeGeneratorTests"
+               ReferencedContainer = "container:ROADAttributesCodeGenerator.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
