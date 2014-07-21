@@ -9,7 +9,6 @@ env:
 before_install:
     - brew update
     - brew install ant
-    - brew upgrade xctool
 
 before_script:
     - sudo easy_install cpp-coveralls
