@@ -1,7 +1,7 @@
 [![License](https://cocoapod-badges.herokuapp.com/l/libObjCAttr/badge.svg)](http://opensource.org/licenses/BSD-3-Clause) 
 [![Platform](https://cocoapod-badges.herokuapp.com/p/libObjCAttr/badge.png)](https://github.com/epam/road-ios-framework/) 
 [![Version](https://cocoapod-badges.herokuapp.com/v/libObjCAttr/badge.png)](https://github.com/epam/lib-obj-c-attr/) 
-[![Coverage Status](https://coveralls.io/repos/epam/lib-obj-c-attr/badge.png?branch=master)](https://coveralls.io/r/epam/lib-obj-c-attr?branch=master) 
+[![Coverage Status](http://img.shields.io/coveralls/epam/lib-obj-c-attr/master.svg)](https://coveralls.io/r/epam/lib-obj-c-attr?branch=master) 
 [![Build Status](https://travis-ci.org/epam/lib-obj-c-attr.svg?branch=master)](https://travis-ci.org/epam/lib-obj-c-attr) 
 
 
