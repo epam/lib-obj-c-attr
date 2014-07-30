@@ -60,7 +60,7 @@
 - (void)test_RF_attributesForInstanceOfClassImplementsProtocol {
     NSArray *attributesList = [AnnotatedClass RF_attributesForClass];
     XCTAssertTrue(attributesList != nil, @"attributesList must contain values");
-    XCTAssertTrue([attributesList count] == 3, @"attributesList must contain 2 items");
+    XCTAssertTrue([attributesList count] == 3, @"attributesList must contain 3 items"); // 2 from Protocol and 1 from Class definition
     
     CustomRFTestAttribute *testAttribute = [attributesList lastObject];
     XCTAssertTrue(testAttribute != nil, @"testAttribute must not be nil");
