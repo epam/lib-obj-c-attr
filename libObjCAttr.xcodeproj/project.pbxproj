@@ -90,6 +90,7 @@
 		119C1AAC18BF976800FE3414 /* libObjCAttr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 119C19ED18BE499800FE3414 /* libObjCAttr.a */; };
 		833F291018C0B86F00020123 /* RFEncoding.plist in Resources */ = {isa = PBXBuildFile; fileRef = 833F290F18C0B85200020123 /* RFEncoding.plist */; };
 		833F291118C0B87A00020123 /* RFEncoding.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833F290F18C0B85200020123 /* RFEncoding.plist */; };
+		C458B6F41988E09E00E87CAE /* Multi-lineStringPropertyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F31988E09E00E87CAE /* Multi-lineStringPropertyTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +215,7 @@
 		119C1A7F18BF33CA00FE3414 /* ROADGeneratedAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ROADGeneratedAttribute.m; sourceTree = "<group>"; };
 		119C1AAA18BF6BDC00FE3414 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		833F290F18C0B85200020123 /* RFEncoding.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RFEncoding.plist; sourceTree = "<group>"; };
+		C458B6F31988E09E00E87CAE /* Multi-lineStringPropertyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Multi-lineStringPropertyTest.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				119C1A4D18BE698800FE3414 /* AttributesAPITest.m */,
+				C458B6F31988E09E00E87CAE /* Multi-lineStringPropertyTest.m */,
 				119C1A4E18BE698800FE3414 /* Classes */,
 			);
 			path = AttributeTest;
@@ -651,6 +654,7 @@
 				119C1A7118BE698800FE3414 /* RFPropertyInfoTest.m in Sources */,
 				119C1A6818BE698800FE3414 /* AnnotatedClass.m in Sources */,
 				119C1A6A18BE698800FE3414 /* RFTestAttribute.m in Sources */,
+				C458B6F41988E09E00E87CAE /* Multi-lineStringPropertyTest.m in Sources */,
 				119C1A6918BE698800FE3414 /* CustomRFTestAttribute.m in Sources */,
 				119C1A8018BF33CA00FE3414 /* ROADGeneratedAttribute.m in Sources */,
 				1176414318E5EC0A00B1688B /* GcovTestObserver.m in Sources */,
@@ -1025,6 +1029,7 @@
 				11146D4D18FC38F100DD4C3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		119C19E818BE499800FE3414 /* Build configuration list for PBXProject "libObjCAttr" */ = {
 			isa = XCConfigurationList;

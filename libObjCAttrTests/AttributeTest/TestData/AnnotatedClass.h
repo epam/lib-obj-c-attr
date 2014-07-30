@@ -38,17 +38,23 @@
 
 ///Testing of protocol with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForProtocol", property1 = @"TestStringForProp1ForProtocol") //Some other comment
+RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForProtocol", property1 = @"TestStringForProp1ForProtocol", longStringProperty = @"very \
+long \
+string") //Some other comment
 @protocol TestProtocol <NSObject>
 
 ///Testing of method with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForMethod", property1 = @"TestStringForProp1ForMethod") //Some other comment
+RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForMethod", property1 = @"TestStringForProp1ForMethod", longStringProperty = @"very \
+long \
+string") //Some other comment
 -(void)doSmth;
 
 ///Testing of property with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForProperty", intProperty = (2 + 2) * 2) //Some other comment
+RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForProperty", intProperty = (2 + 2) * 2, longStringProperty = @"very \
+long \
+string") //Some other comment
 @property (strong, nonatomic) NSObject *prop;
 
 @end
@@ -60,18 +66,27 @@ RF_ATTRIBUTE(NSObject)
     RF_ATTRIBUTE(RFTestAttribute)
     NSObject* _someField;
     char _testName[7];
+    RF_ATTRIBUTE(RFTestAttribute)
+    RF_ATTRIBUTE(CustomRFTestAttribute, longStringProperty = @"very \
+long \
+string")
+    NSObject* _someOtherField;
 }
 
 ///Testing of method with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property1 = @"Text1", property2 = @"Text2")
+RF_ATTRIBUTE(CustomRFTestAttribute, property1 = @"Text1", property2 = @"Text2", longStringProperty = @"very \
+long \
+string")
 - (void)viewDidLoad;
 
 - (void)viewDidLoad:(BOOL)param1;
 
 ///Testing of property with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp", property1 = @"TestStringForProp") //Some other comment
+RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp", property1 = @"TestStringForProp", longStringProperty = @"very \
+long \
+string") //Some other comment
 @property (strong, nonatomic) NSString *window;
 
 @end

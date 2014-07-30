@@ -49,4 +49,6 @@ typedef void (^AttributesSomeBlock)(NSString* sInfo, int *result);
 
 @property (strong, nonatomic) AttributesSomeBlock blockProperty;
 
+@property (strong, nonatomic) NSString *longStringProperty;
+
 @end
