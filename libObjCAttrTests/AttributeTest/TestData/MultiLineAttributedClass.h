@@ -1,5 +1,5 @@
 //
-//  AnnotatedClass.h
+//  MultiLineAttributedClass.h
 //  libObjCAttr
 //
 //  Copyright (c) 2014 EPAM Systems, Inc. All rights reserved.
@@ -33,45 +33,96 @@
 
 #import "ROADAttribute.h"
 #import "RFTestAttribute.h"
-#import "CustomRFTestAttribute.h"
-
+#import "MultiLineTestAttribute.h"
 
 ///Testing of protocol with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForProtocol", property1 = @"TestStringForProp1ForProtocol") //Some other comment
-@protocol TestProtocol <NSObject>
+RF_ATTRIBUTE(MultiLineTestAttribute,
+             property1 = @"very \
+long \
+string",
+             property2 = @"very "
+             "long "
+             "string",
+             property3 = @"very "
+             @"long "
+             @"string") //Some other comment
+@protocol MultiLineTestProtocol <NSObject>
 
 ///Testing of method with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForMethod", property1 = @"TestStringForProp1ForMethod") //Some other comment
--(void)doSmth;
+RF_ATTRIBUTE(MultiLineTestAttribute,
+             property1 = @"very \
+long \
+string",
+             property2 = @"very "
+             "long "
+             "string",
+             property3 = @"very "
+             @"long "
+             @"string") //Some other comment
+-(void)protocolMethod;
 
 ///Testing of property with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp2ForProperty", intProperty = (2 + 2) * 2) //Some other comment
-@property (strong, nonatomic) NSObject *prop;
+RF_ATTRIBUTE(MultiLineTestAttribute,
+             property1 = @"very \
+long \
+string",
+             property2 = @"very "
+             "long "
+             "string",
+             property3 = @"very "
+             @"long "
+             @"string") //Some other comment
+@property (strong, nonatomic) NSObject *protocolProperty;
 
 @end
 
 
 ///Testing of class with attributes
 RF_ATTRIBUTE(NSObject)
-@interface AnnotatedClass : NSObject <TestProtocol> {
+@interface MultiLineAttributedClass : NSObject <MultiLineTestProtocol> {
     RF_ATTRIBUTE(RFTestAttribute)
+    RF_ATTRIBUTE(MultiLineTestAttribute,
+                 property1 = @"very \
+long \
+string",
+                 property2 = @"very "
+                 "long "
+                 "string",
+                 property3 = @"very "
+                 @"long "
+                 @"string") //Some other comment
     NSObject* _someField;
-    char _testName[7];
 }
 
 ///Testing of method with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property1 = @"Text1", property2 = @"Text2")
-- (void)viewDidLoad;
-
-- (void)viewDidLoad:(BOOL)param1;
+RF_ATTRIBUTE(MultiLineTestAttribute,
+             property1 = @"very \
+long \
+string",
+             property2 = @"very "
+             "long "
+             "string",
+             property3 = @"very "
+             @"long "
+             @"string") //Some other comment
+- (void)someMethod;
 
 ///Testing of property with attributes
 RF_ATTRIBUTE(RFTestAttribute)
-RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp", property1 = @"TestStringForProp") //Some other comment
-@property (strong, nonatomic) NSString *window;
+RF_ATTRIBUTE(MultiLineTestAttribute,
+             property1 = @"very \
+long \
+string",
+             property2 = @"very "
+             "long "
+             "string",
+             property3 = @"very "
+             @"long "
+             @"string") //Some other comment
+@property (strong, nonatomic) NSString *someProperty;
 
 @end
