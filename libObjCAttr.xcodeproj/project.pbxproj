@@ -93,6 +93,9 @@
 		C458B6F41988E09E00E87CAE /* MultiLineStringPropertyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F31988E09E00E87CAE /* MultiLineStringPropertyTest.m */; };
 		C458B6F71988F00200E87CAE /* MultiLineAttributedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F61988F00200E87CAE /* MultiLineAttributedClass.m */; };
 		C458B6FA1988F72000E87CAE /* MultiLineTestAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F91988F72000E87CAE /* MultiLineTestAttribute.m */; };
+		C458B6FB198909CF00E87CAE /* MultiLineStringPropertyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F31988E09E00E87CAE /* MultiLineStringPropertyTest.m */; };
+		C458B6FC198909CF00E87CAE /* MultiLineAttributedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F61988F00200E87CAE /* MultiLineAttributedClass.m */; };
+		C458B6FD198909CF00E87CAE /* MultiLineTestAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = C458B6F91988F72000E87CAE /* MultiLineTestAttribute.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -625,6 +628,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C458B6FB198909CF00E87CAE /* MultiLineStringPropertyTest.m in Sources */,
+				C458B6FC198909CF00E87CAE /* MultiLineAttributedClass.m in Sources */,
+				C458B6FD198909CF00E87CAE /* MultiLineTestAttribute.m in Sources */,
 				11146D4F18FC393700DD4C3D /* ROADGeneratedAttribute.m in Sources */,
 				11146D5018FC393700DD4C3D /* AttributesAPITest.m in Sources */,
 				11146D5118FC393700DD4C3D /* AnnotatedClass.m in Sources */,
