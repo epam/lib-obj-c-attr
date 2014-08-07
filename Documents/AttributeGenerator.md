@@ -57,4 +57,4 @@ exclude:
   - Pods
 define_file: "\"My Project/Defines.h\""
 ```
-**Important:** In order to have whitespaces in paths in `ROADConfigurator` file, you need to escape them or guard path with quotes. Check exmaple above to see how to guard path with quotes.
+**Important:** In order to have whitespaces in paths in `ROADConfigurator` file, you need to escape them or guard path with quotes. Check example above to see how to guard path with quotes.
