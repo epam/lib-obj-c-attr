@@ -80,6 +80,7 @@ NSRegularExpression *methodParametersRegex = nil;
 + (NSString *)onlyParameterNamesFrom:(NSString *)methodParameters {
     // cut part of string after last method parameter name
     NSMutableString *result = [NSMutableString stringWithString:methodParameters];
+    [result replaceOccurrencesOfString:@"::" withString:@"" options:0 range:NSMakeRange(0, [methodParameters length])];
     NSRange lastParamterRange = [result rangeOfString:@":" options:NSBackwardsSearch];
     if (lastParamterRange.location == NSNotFound) {
         return @"";
