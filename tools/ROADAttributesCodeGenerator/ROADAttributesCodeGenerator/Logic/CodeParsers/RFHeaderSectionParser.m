@@ -312,6 +312,10 @@ NSRegularExpression *importFileRegex = nil;
     NSString *importFileMarker = [RFSourceCodeHelper extractElement:importFileRegex fromBuffer:parseState.workCodeBuffer];
     NSString *importFileName = [importFileMarker hasPrefix:@"<"] ? importFileMarker : [parseState.sourceCodeInfo.metaMarkers dataForMetaMarker:importFileMarker];
 
+    if ([importFileName length] <= 0) {
+        return;
+    }
+
     if (![parseState.currentImportFilesList containsObject:importFileName]) {
         [parseState.currentImportFilesList addObject:importFileName];
     }

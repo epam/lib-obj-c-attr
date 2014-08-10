@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "11146D1518FC37BE00DD4C3D"
-               BuildableName = "liblibObjCAttr copy.a"
+               BuildableName = "liblibObjCAttrMac.a"
                BlueprintName = "libObjCAttrMac"
                ReferencedContainer = "container:libObjCAttr.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "11146D3C18FC38F100DD4C3D"
-               BuildableName = "libObjCAttMac Tests.xctest"
+               BuildableName = "libObjCAttMacTests.xctest"
                BlueprintName = "libObjCAttMacTests"
                ReferencedContainer = "container:libObjCAttr.xcodeproj">
             </BuildableReference>
