@@ -85,7 +85,7 @@
 }
 
 + (NSInvocation *)RF_attributeCreatorInvocationForElement:(NSString *)elementName cachedCreatorsDictionary:(NSMutableDictionary *)cachedCreatorsDictionary creatorSelectorNameFormatter:(NSString *(^)(NSString *))creatorSelectorNameFormatter {    
-    NSInvocation *result = [cachedCreatorsDictionary objectForKey:elementName];
+    NSInvocation *result = cachedCreatorsDictionary[elementName];
     if (result) {
         return result;
     }

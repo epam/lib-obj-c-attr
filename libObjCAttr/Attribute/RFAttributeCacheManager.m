@@ -63,7 +63,7 @@
     RFAttributeCacheManager *cacheManager = [self attributeCacheManager];
     __block id object;
     dispatch_sync(cacheManager->_queue, ^{
-        object = [cacheManager->_sharedCache objectForKey:key];
+        object = cacheManager->_sharedCache[key];
     });
 
     return object;
@@ -72,7 +72,7 @@
 + (void)setObject:(id)object forKey:(id<NSCopying>)key {
     RFAttributeCacheManager *cacheManager = [self attributeCacheManager];
     dispatch_sync(cacheManager->_queue, ^{
-        [cacheManager->_sharedCache setObject:object forKey:key];
+        cacheManager->_sharedCache[key] = object;
     });
 }
 

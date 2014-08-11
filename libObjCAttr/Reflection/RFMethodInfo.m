@@ -129,7 +129,7 @@ static NSUInteger const kRFMethodArgumentOffset = 2;
 
     for (unsigned int index = kRFMethodArgumentOffset; index < numberOfArguments + kRFMethodArgumentOffset; index++) {
         char *argEncoding = method_copyArgumentType(method, index);
-        [array addObject:[RFTypeDecoder nameFromTypeEncoding:[NSString stringWithCString:argEncoding encoding:NSUTF8StringEncoding]]];
+        [array addObject:[RFTypeDecoder nameFromTypeEncoding:@(argEncoding)]];
         free(argEncoding);
     }
 
@@ -138,7 +138,7 @@ static NSUInteger const kRFMethodArgumentOffset = 2;
 
 + (NSString *)returnTypeNameOfMethod:(Method)method {
     char *returnTypeEncoding = method_copyReturnType(method);
-    NSString * const result = [NSString stringWithCString:returnTypeEncoding encoding:NSUTF8StringEncoding];
+    NSString * const result = @(returnTypeEncoding);
     free(returnTypeEncoding);
     return [RFTypeDecoder nameFromTypeEncoding:result];
 }

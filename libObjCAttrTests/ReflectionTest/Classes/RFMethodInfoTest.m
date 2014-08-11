@@ -78,7 +78,7 @@ const static char *testClassName = "testClassName";
 
 - (void)testClassNameProperty {
     RFMethodInfo *info = [RFMethodInfo classMethodNamed:NSStringFromSelector(@selector(description)) forClass:_testClass];
-    XCTAssertTrue([info.className isEqualToString:[NSString stringWithUTF8String:testClassName]], @"Class name isn't equal");
+    XCTAssertTrue([info.className isEqualToString:@(testClassName)], @"Class name isn't equal");
 }
 
 - (void)testClassMethod {
