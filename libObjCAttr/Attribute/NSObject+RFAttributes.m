@@ -52,6 +52,16 @@
 
 #pragma mark - Attributes Private API
 
++ (dispatch_queue_t)RF_sharedQueue {
+    static dispatch_once_t onceToken;
+    static dispatch_queue_t sharedQueue = nil;
+    dispatch_once(&onceToken, ^{
+        sharedQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+    });
+
+    return sharedQueue;
+}
+
 + (NSArray *)RF_attributesFromCreatorInvocation:(NSInvocation *)attributeCreatorValueInvocation {
     [attributeCreatorValueInvocation invoke];
     
@@ -91,7 +101,10 @@
         return nil;
     }
     
-    cachedCreatorsDictionary[elementName] = result;
+    dispatch_sync([self RF_sharedQueue], ^{
+        cachedCreatorsDictionary[elementName] = result;
+    });
+
     return result;
 }
 
