@@ -40,8 +40,6 @@
 
 @interface RFAttributeCacheManager ()
 
-+ (instancetype)attributeCache;
-
 @end
 
 
@@ -62,7 +60,7 @@
 #pragma mark - Public interface
 
 + (id)objectForKey:(id<NSCopying> )key {
-    RFAttributeCacheManager *cacheManager = [self attributeCache];
+    RFAttributeCacheManager *cacheManager = [self attributeCacheManager];
     __block id object;
     dispatch_sync(cacheManager->_queue, ^{
         object = [cacheManager->_sharedCache objectForKey:key];
@@ -72,7 +70,7 @@
 }
 
 + (void)setObject:(id)object forKey:(id<NSCopying>)key {
-    RFAttributeCacheManager *cacheManager = [self attributeCache];
+    RFAttributeCacheManager *cacheManager = [self attributeCacheManager];
     dispatch_sync(cacheManager->_queue, ^{
         [cacheManager->_sharedCache setObject:object forKey:key];
     });
@@ -81,7 +79,7 @@
 
 #pragma mark - Private Lifecycle
 
-+ (instancetype)attributeCache {
++ (instancetype)attributeCacheManager {
     static dispatch_once_t onceToken;
     static id sharedCacheManager = nil;
     dispatch_once(&onceToken, ^{
