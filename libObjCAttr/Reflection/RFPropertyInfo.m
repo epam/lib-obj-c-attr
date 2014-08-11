@@ -116,7 +116,7 @@
     char *name = property_copyAttributeValue(property, fieldName);
     
     if (name != NULL) {
-        result = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+        result = @(name);
         free(name);
     }
     
@@ -153,7 +153,7 @@
 
 - (NSString *)propertyName {
     if (!_propertyName) {
-        _propertyName = [NSString stringWithCString:property_getName(_property) encoding:NSUTF8StringEncoding];
+        _propertyName = @(property_getName(_property));
     }
     
     return _propertyName;

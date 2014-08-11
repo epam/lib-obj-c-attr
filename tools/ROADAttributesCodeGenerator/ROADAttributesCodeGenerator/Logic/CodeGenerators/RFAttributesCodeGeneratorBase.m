@@ -71,7 +71,7 @@
     NSString *factoryDictionaryHolderName = [NSString stringWithFormat:@"attributes%@%@Dict", [self modelHolderName:[modelsList lastObject]], [self factoryName]];
     
     [result appendFormat:@"+ (NSMutableDictionary *)RF_attributes%@ {\n", factoryName];
-    [result appendFormat:@"    NSMutableDictionary *%@ = [[RFAttributeCacheManager attributeCache] objectForKey:@\"RF%@%@\"];\n", factoryDictionaryHolderName, [self modelHolderName:[modelsList lastObject]], factoryName];
+    [result appendFormat:@"    NSMutableDictionary *%@ = [RFAttributeCacheManager objectForKey:@\"RF%@%@\"];\n", factoryDictionaryHolderName, [self modelHolderName:[modelsList lastObject]], factoryName];
     [result appendFormat:@"    if (%@ != nil) {\n", factoryDictionaryHolderName];
     [result appendFormat:@"        return %@;\n", factoryDictionaryHolderName];
     [result appendLine:@"    }"];
@@ -80,7 +80,7 @@
     [result appendLine:@"    "];
     [result appendLine:@"    if (!dictionaryHolder) {"];
     [result appendLine:@"        dictionaryHolder = [NSMutableDictionary dictionary];"];
-    [result appendFormat:@"        [[RFAttributeCacheManager attributeCache] setObject:dictionaryHolder forKey:@\"RF%@%@\"];\n", [self modelHolderName:[modelsList lastObject]], factoryName];
+    [result appendFormat:@"        [RFAttributeCacheManager setObject:dictionaryHolder forKey:@\"RF%@%@\"];\n", [self modelHolderName:[modelsList lastObject]], factoryName];
     [result appendLine:@"    }"];
     [result appendLine:@"    "];
     
@@ -120,7 +120,7 @@
     NSString *cacheKey = [listHolderName stringByReplacingOccurrencesOfString:@"RF_attributes_list" withString:@"RFAL"];
     
     [result appendFormat:@"+ (NSArray *)%@ {\n", listCreatorName];
-    [result appendFormat:@"    NSMutableArray *%@ = [[RFAttributeCacheManager attributeCache] objectForKey:@\"%@\"];\n", listHolderName, cacheKey];
+    [result appendFormat:@"    NSMutableArray *%@ = [RFAttributeCacheManager objectForKey:@\"%@\"];\n", listHolderName, cacheKey];
     [result appendFormat:@"    if (%@ != nil) {\n", listHolderName];
     [result appendFormat:@"        return %@;\n", listHolderName];
     [result appendLine:@"    }"];
@@ -129,7 +129,7 @@
     [result appendLine:@"    "];
     [result appendString:[self generateAttributesCreatingBodyForModels:model.attributeModels]];
     [result appendFormat:@"    %@ = attributesArray;\n", listHolderName];
-    [result appendFormat:@"    [[RFAttributeCacheManager attributeCache] setObject:attributesArray forKey:@\"%@\"];\n", cacheKey];
+    [result appendFormat:@"    [RFAttributeCacheManager setObject:attributesArray forKey:@\"%@\"];\n", cacheKey];
     [result appendLine:@"    "];
     [result appendFormat:@"    return %@;\n", listHolderName];
     [result appendLine:@"}"];

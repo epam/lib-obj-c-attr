@@ -69,7 +69,7 @@ const static char *testClassName = "testClassName";
     char *type = @encode(NSObject);
     class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
     
-    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    NSString *tempIvar = @(ivarName);
     RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
     XCTAssertNotNil(result, @"Can't find data by ivar name");
 }
@@ -79,7 +79,7 @@ const static char *testClassName = "testClassName";
     char *type = @encode(NSString);
     class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
     
-    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    NSString *tempIvar = @(ivarName);
     RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
     
     XCTAssertTrue([result.typeName isEqualToString:@"struct NSString=#"], @"It's not equal a type name of ivars");
@@ -90,7 +90,7 @@ const static char *testClassName = "testClassName";
     char *type = @encode(NSInteger);
     class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
     
-    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    NSString *tempIvar = @(ivarName);
     RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
     
     XCTAssertTrue(result.isPrimitive, @"Ivar isn't primitive");
@@ -101,7 +101,7 @@ const static char *testClassName = "testClassName";
     char *type = @encode(NSString*);
     class_addIvar(_testClass, ivarName, sizeof(type), log2(sizeof(type)), type);
     
-    NSString *tempIvar = [NSString stringWithCString:ivarName encoding:NSUTF8StringEncoding];
+    NSString *tempIvar = @(ivarName);
     RFIvarInfo *result = [RFIvarInfo RF_ivarNamed:tempIvar forClass:_testClass];
     
     XCTAssertFalse(result.isPrimitive, @"Ivar is primitive");

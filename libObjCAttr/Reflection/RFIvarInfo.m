@@ -88,7 +88,7 @@
 
 + (RFIvarInfo *)RF_infoFromIvar:(Ivar)anIvar {
     RFIvarInfo * const info = [[RFIvarInfo alloc] initWithIvar:anIvar];
-    info.name = [NSString stringWithCString:ivar_getName(anIvar) encoding:NSUTF8StringEncoding];
+    info.name = @(ivar_getName(anIvar));
     
     return info;
 }
@@ -112,7 +112,7 @@
 
 - (BOOL)isPrimitive {
     if (!_isPrimitiveFilled) {
-        NSString *typeEncoding = [NSString stringWithCString:ivar_getTypeEncoding(_ivar) encoding:NSUTF8StringEncoding];
+        NSString *typeEncoding = @(ivar_getTypeEncoding(_ivar));
         _primitive = [RFTypeDecoder RF_isPrimitiveType:typeEncoding];
         _isPrimitiveFilled = YES;
     }
@@ -122,7 +122,7 @@
 
 - (NSString *)typeName {
     if (!_typeName) {
-        NSString *typeEncoding = [NSString stringWithCString:ivar_getTypeEncoding(_ivar) encoding:NSUTF8StringEncoding];
+        NSString *typeEncoding = @(ivar_getTypeEncoding(_ivar));
         _typeName = [RFTypeDecoder nameFromTypeEncoding:typeEncoding];
     }
     
