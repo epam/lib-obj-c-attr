@@ -133,7 +133,9 @@ const static char *testClassName = "testClassName";
 - (void)test_RF_propertiesForObjectInstance {
     AnnotatedClass* annotatedClass = [[AnnotatedClass alloc] init];
     NSArray *properties = [annotatedClass RF_properties];
-    XCTAssertTrue([properties count] == 2, @"properties must contain values");
+    unsigned int numberOfProperties = 0;
+    class_copyPropertyList([annotatedClass class], &numberOfProperties);
+    XCTAssertTrue([properties count] == numberOfProperties, @"properties must contain values");
     
     RFPropertyInfo *property = [annotatedClass RF_propertyNamed:@"prop"];
     XCTAssertTrue([property.propertyName isEqualToString:@"prop"], @"please check properties");
