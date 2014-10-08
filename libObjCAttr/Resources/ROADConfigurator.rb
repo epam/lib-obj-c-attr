@@ -6,23 +6,23 @@ class ROADConfigurator
           @@config = YAML::load(File.open(config_path))
         end
 
-        lib_obj_c_attr_path = nil
-        installer_representation.pods.each do |pod_representation|
-            if pod_representation.name == 'libObjCAttr'
-                lib_obj_c_attr_path = pod_representation.root
-            end
-        end
-
-        if lib_obj_c_attr_path.nil?
-            puts 'ROADConfigurator.rb called without libObjCAttr being defined in Podfile.'
-            Process.exit!(true)
-        end
-
         ROADConfigurator::modify_user_project(installer_representation)
     end
 
     def self.modify_user_project(installer_representation)
         installer_representation.installer.analysis_result.targets.each do |target|
+
+            libObjCAttrPod = false
+            target.pod_targets.each do |pod_target|
+                if pod_target.pod_name == 'libObjCAttr'
+                    libObjCAttrPod = true
+                end
+            end
+
+            if !libObjCAttrPod
+                next
+            end
+
             if target.user_project_path.exist? && target.user_target_uuids.any?
                 user_project = Xcodeproj::Project.open(target.user_project_path)
 
