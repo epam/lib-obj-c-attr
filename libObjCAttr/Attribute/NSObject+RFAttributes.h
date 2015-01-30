@@ -31,6 +31,9 @@
 //  for additional information regarding copyright ownership and licensing
 
 
+#import <Foundation/Foundation.h>
+
+
 /**
  * This category constains a set of methods which provides access to attributes declared by macros RF_ATTRIBUTE
  */

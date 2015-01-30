@@ -31,6 +31,9 @@
 //  for additional information regarding copyright ownership and licensing
 
 
+#import <Foundation/Foundation.h>
+
+
 /**
  * A simple mapper class to return the type encoding name from an encoding.
  */

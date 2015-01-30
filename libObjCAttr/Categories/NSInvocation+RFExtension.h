@@ -31,6 +31,9 @@
 //  for additional information regarding copyright ownership and licensing
 
 
+#import <Foundation/Foundation.h>
+
+
 @interface NSInvocation (RFExtension)
 
 + (NSInvocation *)RF_invocationForSelector:(SEL)selector target:(id)target;

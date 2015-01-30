@@ -31,6 +31,9 @@
 //  for additional information regarding copyright ownership and licensing
 
 
+#import <Foundation/Foundation.h>
+
+
 @interface NSRegularExpression (RFExtension)
 
 + (NSRegularExpression *)RF_regexFromString:(NSString *)regexString;
