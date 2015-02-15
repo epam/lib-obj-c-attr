@@ -10,6 +10,9 @@ class ROADConfigurator
     end
 
     def self.modify_user_project(installer_representation)
+        remove_configurator_from_project(installer_representation.installer.pods_project)
+        remove_generator_from_project(installer_representation.installer.pods_project)
+
         installer_representation.installer.analysis_result.targets.each do |target|
 
             libObjCAttrPod = false
@@ -26,9 +29,6 @@ class ROADConfigurator
             if target.user_project_path.exist? && target.user_target_uuids.any?
                 user_project = Xcodeproj::Project.open(target.user_project_path)
                 user_project_dir = File.dirname(user_project.path)
-
-                remove_configurator_from_project(user_project, user_project_dir)
-                remove_generator_from_project(user_project, user_project_dir)
 
                 user_targets = Array.new
                 target.user_target_uuids.each do |user_target_uuid|
@@ -145,16 +145,28 @@ class ROADConfigurator
         project.save
     end
 
-    def self.remove_configurator_from_project(project, path)
-        configurator_path = "#{path}/Pods/libObjCAttr/libObjCAttr/Resources/ROADConfigurator.rb"
+    def self.remove_configurator_from_project(project)
+        path = project.path
+        puts "#{path}"
+        pod_path = File.dirname(path)
+        puts "#{pod_path}"
+        configurator_path = "#{pod_path}/libObjCAttr/libObjCAttr/Resources/ROADConfigurator.rb"
         puts "#{configurator_path}"
-        project.reference_for_path(configurator_path).remove_from_project()
+        reference_for_path = project.reference_for_path(configurator_path)
+        if reference_for_path?
+            reference_for_path.remove_from_project()
+        end
     end
 
     def self.remove_generator_from_project(project, path)
-        generator_path = "#{path}/Pods/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
+        path = project.path
+        pod_path = File.dirname(path)
+        generator_path = "#{pod_path}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
         puts "#{generator_path}"
-        project.reference_for_path(generator_path).remove_from_project()
+        reference_for_path = project.reference_for_path(generator_path)
+        if reference_for_path?
+            reference_for_path.remove_from_project()
+        end
     end
 
 end
