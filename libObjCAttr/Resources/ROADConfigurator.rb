@@ -147,11 +147,13 @@ class ROADConfigurator
 
     def self.remove_configurator_from_project(project, path)
         configurator_path = "#{path}/Pods/libObjCAttr/libObjCAttr/Resources/ROADConfigurator.rb"
+        puts "#{configurator_path}"
         project.reference_for_path(configurator_path).remove_from_project()
     end
 
     def self.remove_generator_from_project(project, path)
         generator_path = "#{path}/Pods/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
+        puts "#{generator_path}"
         project.reference_for_path(generator_path).remove_from_project()
     end
 
