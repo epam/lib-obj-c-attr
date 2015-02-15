@@ -53,3 +53,8 @@
 }
 
 @end
+
+
+@implementation SubAnnotatedClass
+
+@end

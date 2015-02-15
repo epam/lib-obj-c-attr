@@ -62,12 +62,12 @@ const static char *testClassName = "testClassName";
 
     NSUInteger inc;
     for (inc = 0; inc <= numberOfProperties; inc++) {
-        
+
         objc_property_attribute_t backingivar  = { "V", [[NSString stringWithFormat:@"_Property%lud", (long unsigned)inc] UTF8String] };
         objc_property_attribute_t attrs[] = { type, ownership, backingivar };
-        
+
         SEL methodSelector = NSSelectorFromString([NSString stringWithFormat:@"Property%lud", (long unsigned)inc]);
-        
+
         class_addProperty(_testClass, [[NSString stringWithFormat:@"Property%lud", (long unsigned)inc] UTF8String], attrs, 3);
         class_addMethod(_testClass, methodSelector, nil, "@@:");
     }
@@ -80,15 +80,15 @@ const static char *testClassName = "testClassName";
         { "V", "_Property" },
         { "R", "" },
     };
-    
+
     NSString *propertyName = @"nameForTestPredicate";
     SEL methodSelector = NSSelectorFromString(propertyName);
-    
+
     class_addProperty(_testClass, "nameForTestPredicate", attrs, 3);
     class_addMethod(_testClass, methodSelector, nil, "@@:");
-    
+
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"propertyName == %@", propertyName];
-    
+
     RFPropertyInfo *propertyInfo = [[RFPropertyInfo propertiesForClass:_testClass withPredicate:predicate] lastObject];
     XCTAssertNotNil(propertyInfo, @"Can't find metadata of property by name");
 }
@@ -106,22 +106,22 @@ const static char *testClassName = "testClassName";
         { "N", "" },
         { "W", "" },
     };
-    
+
     NSString *propertyName = @"name";
     SEL methodSelector = NSSelectorFromString(propertyName);
-    
+
     class_addProperty(_testClass, "name", attrs, 10);
     class_addMethod(_testClass, methodSelector, nil, "@@:");
-    
+
     RFPropertyInfo *propertyInfo = [RFPropertyInfo RF_propertyNamed:propertyName forClass:_testClass];
     XCTAssertNotNil(propertyInfo, @"Can't find metadata of property by name");
-    
+
     XCTAssertTrue([propertyInfo.typeName isEqualToString:@"NSString"], @"It's not equals a type name of property");
     XCTAssertTrue([NSStringFromClass(propertyInfo.typeClass) isEqualToString:@"NSString"], @"It's not equals a type name of property");
     XCTAssertTrue([propertyInfo.className isEqualToString:@"testClassName"], @"It's not equals a name of class of property");
     XCTAssertTrue([propertyInfo.setterName isEqualToString:@"setter"], @"It's not equals a setter name of property");
     XCTAssertTrue([propertyInfo.getterName isEqualToString:@"getter"], @"It's not equals a getter name of property");
-    
+
     XCTAssertTrue(propertyInfo.isReadonly, @"It's not equal attribute 'readonly' of property");
     XCTAssertTrue(propertyInfo.isCopied, @"It's not equal attribute 'copy' of property");
     XCTAssertTrue(propertyInfo.isDynamic, @"It's not equal attribute 'dynamic' of property");
@@ -136,11 +136,33 @@ const static char *testClassName = "testClassName";
     unsigned int numberOfProperties = 0;
     class_copyPropertyList([annotatedClass class], &numberOfProperties);
     XCTAssertTrue([properties count] == numberOfProperties, @"properties must contain values");
-    
+
     RFPropertyInfo *property = [annotatedClass RF_propertyNamed:@"prop"];
     XCTAssertTrue([property.propertyName isEqualToString:@"prop"], @"please check properties");
     XCTAssertTrue([property.attributes count] == 2, @"It's not equals a sum of attributes for property");
     XCTAssertFalse(property.isPrimitive, @"It's not primitive property");
+}
+
+
+- (void)testRetreivingPropertiesWithDepth {
+    unsigned int numberOfAnnotatedClassProperties = 0;
+    class_copyPropertyList([AnnotatedClass class], &numberOfAnnotatedClassProperties);
+    unsigned int numberOfSubAnnotatedClassProperties = 0;
+    class_copyPropertyList([SubAnnotatedClass class], &numberOfSubAnnotatedClassProperties);
+    NSArray *allPropertiesForSubClass = [SubAnnotatedClass RF_propertiesWithDepth:2];
+    XCTAssertEqual([allPropertiesForSubClass count], numberOfAnnotatedClassProperties + numberOfSubAnnotatedClassProperties, @"Number of properies is not correct");
+}
+
+- (void)testRetreivingPropertiesWithoutDepth {
+    NSArray *allPropertiesForClass = [SubAnnotatedClass RF_propertiesWithDepth:1];
+    XCTAssertEqual([allPropertiesForClass count], 1, @"Number of properies is not correct");
+    NSArray *propertiesForClass = [SubAnnotatedClass RF_properties];
+    XCTAssertEqual([allPropertiesForClass count], [propertiesForClass count], @"Number of properies is not correct");
+}
+
+- (void)testRetreivingPropertiesWithZeroDepth {
+    NSArray *propertiesForClass = [SubAnnotatedClass RF_propertiesWithDepth:0];
+    XCTAssertEqual([propertiesForClass count], 0, @"Number of properies is not correct");
 }
 
 - (void)tearDown {

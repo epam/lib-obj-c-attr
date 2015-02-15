@@ -123,6 +123,15 @@
 + (NSArray *)propertiesForClass:(Class)aClass;
 
 /**
+ * Returns an array of info objects for the given class plus properties from superclasses limited with specified depth.
+ * @param aClass The class to fetch the property infos for.
+ * @param depth The depth of superclasses where properties should be gathered.
+ * 1 - only current class, 0 - always returns no properties. Invoked on an instance of a class.
+ * @result The array of filtered results.
+ */
++ (NSArray *)propertiesForClass:(Class)aClass depth:(NSUInteger)depth;
+
+/**
  * Returns an array of info objects for the given class filtered with the predicate.
  * @param aClass The class to fetch the infos for.
  * @param aPredicate The predicate to apply before returning the results.

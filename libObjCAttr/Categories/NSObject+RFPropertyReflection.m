@@ -40,12 +40,20 @@
     return [RFPropertyInfo propertiesForClass:self];
 }
 
++ (NSArray *)RF_propertiesWithDepth:(NSUInteger)depth {
+    return [RFPropertyInfo propertiesForClass:self depth:depth];
+}
+
 + (RFPropertyInfo *)RF_propertyNamed:(NSString *)name {
     return [RFPropertyInfo RF_propertyNamed:name forClass:self];
 }
 
 - (NSArray *)RF_properties {
     return [RFPropertyInfo propertiesForClass:[self class]];
+}
+
+- (NSArray *)RF_propertiesWithDepth:(NSUInteger)depth {
+    return [RFPropertyInfo propertiesForClass:[self class] depth:depth];
 }
 
 - (RFPropertyInfo *)RF_propertyNamed:(NSString *)name {

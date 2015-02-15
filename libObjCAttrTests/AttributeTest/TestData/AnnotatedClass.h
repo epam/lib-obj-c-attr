@@ -75,3 +75,13 @@ RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp", property1 
 @property (strong, nonatomic) NSString *window;
 
 @end
+
+
+@interface SubAnnotatedClass : AnnotatedClass
+
+///Testing of property with attributes
+RF_ATTRIBUTE(RFTestAttribute)
+RF_ATTRIBUTE(CustomRFTestAttribute, property2 = @"TestStringForProp", property1 = @"TestStringForProp") //Some other comment
+@property (strong, nonatomic) NSString *view;
+
+@end

@@ -74,6 +74,14 @@
 #pragma mark - Initialization
 
 + (NSArray *)propertiesForClass:(Class)aClass {
+    return [self propertiesForClass:aClass depth:1];
+}
+
++ (NSArray *)propertiesForClass:(Class)aClass depth:(NSUInteger)depth {
+    if (depth <= 0) {
+        return @[];
+    }
+
     NSMutableArray *result = [[NSMutableArray alloc] init];
     unsigned int numberOfProperties = 0;
     objc_property_t *propertiesArray = class_copyPropertyList(aClass, &numberOfProperties);
@@ -83,6 +91,9 @@
     }
     
     free(propertiesArray);
+
+    [result addObjectsFromArray:[self propertiesForClass:class_getSuperclass(aClass) depth:--depth]];
+
     return result;
 }
 
@@ -287,6 +298,10 @@ static const char * kPropertyInfoCopiedSpecifier = "C";
     _primitive = [RFTypeDecoder RF_isPrimitiveType:attributeName];
     
     _isAttributeNameFilled = YES;
+}
+
+- (NSString *)description {
+    return [[NSString alloc] initWithFormat:@"%@: hostClass = %@, property name = %@", NSStringFromClass([self class]), NSStringFromClass([self.hostClass class]), self.propertyName];
 }
 
 @end
