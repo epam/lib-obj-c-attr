@@ -25,6 +25,10 @@ class ROADConfigurator
 
             if target.user_project_path.exist? && target.user_target_uuids.any?
                 user_project = Xcodeproj::Project.open(target.user_project_path)
+                user_project_dir = File.dirname(user_project.path)
+
+                remove_configurator_from_project(user_project, user_project_dir)
+                remove_generator_from_project(user_project, user_project_dir)
 
                 user_targets = Array.new
                 target.user_target_uuids.each do |user_target_uuid|
@@ -32,7 +36,6 @@ class ROADConfigurator
                     if not user_target.nil?
                         user_targets.push(user_target)
 
-                        user_project_dir = File.dirname(user_project.path)
                         genereted_attributes_path = "#{user_project_dir}/#{user_target.name}/ROADGeneratedAttributes"
                         generated_attributes_file_path = ROADConfigurator::create_path_for_generated_attributes_file_for_folder_path(genereted_attributes_path)
 
@@ -141,4 +144,15 @@ class ROADConfigurator
         end
         project.save
     end
+
+    def self.remove_configurator_from_project(project, path)
+        configurator_path = "#{path}/Pods/libObjCAttr/libObjCAttr/Resources/ROADConfigurator.rb"
+        project.reference_for_path(configurator_path).remove_from_project()
+    end
+
+    def self.remove_generator_from_project(project, path)
+        generator_path = "#{path}/Pods/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
+        project.reference_for_path(generator_path).remove_from_project()
+    end
+
 end
