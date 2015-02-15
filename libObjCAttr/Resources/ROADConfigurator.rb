@@ -153,7 +153,7 @@ class ROADConfigurator
         configurator_path = "#{pod_path}/libObjCAttr/libObjCAttr/Resources/ROADConfigurator.rb"
         puts "#{configurator_path}"
         reference_for_path = project.reference_for_path(configurator_path)
-        if reference_for_path?
+        if reference_for_path != Nil
             reference_for_path.remove_from_project()
         end
     end
@@ -164,7 +164,7 @@ class ROADConfigurator
         generator_path = "#{pod_path}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
         puts "#{generator_path}"
         reference_for_path = project.reference_for_path(generator_path)
-        if reference_for_path?
+        if reference_for_path != Nil
             reference_for_path.remove_from_project()
         end
     end
