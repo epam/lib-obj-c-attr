@@ -158,7 +158,7 @@ class ROADConfigurator
         end
     end
 
-    def self.remove_generator_from_project(project, path)
+    def self.remove_generator_from_project(project)
         path = project.path
         pod_path = File.dirname(path)
         generator_path = "#{pod_path}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
