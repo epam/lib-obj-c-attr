@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
   
   s.requires_arc = true
 
-  s.source_files = 'libObjCAttr/**/*.{h,m}'
+  s.source_files = 'libObjCAttr/**/*.{h,m}', 'libObjCAttr/Resources/*', 'tools/binaries/*'
   s.public_header_files = 'libObjCAttr/**/*.h'
   s.header_dir = 'ROAD'
-  s.resources = ['libObjCAttr/Resources/*', 'tools/binaries/ROADAttributesCodeGenerator']
+  s.preserve_paths = 'libObjCAttr/Resources/*', 'tools/binaries/ROADAttributesCodeGenerator'
   
   s.social_media_url = 'https://twitter.com/libobjcattr'
 
