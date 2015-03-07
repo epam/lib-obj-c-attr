@@ -155,14 +155,14 @@ const static char *testClassName = "testClassName";
 
 - (void)testRetreivingPropertiesWithoutDepth {
     NSArray *allPropertiesForClass = [SubAnnotatedClass RF_propertiesWithDepth:1];
-    XCTAssertEqual([allPropertiesForClass count], 1, @"Number of properies is not correct");
+    XCTAssertEqual([allPropertiesForClass count], (NSUInteger)1, @"Number of properies is not correct");
     NSArray *propertiesForClass = [SubAnnotatedClass RF_properties];
     XCTAssertEqual([allPropertiesForClass count], [propertiesForClass count], @"Number of properies is not correct");
 }
 
 - (void)testRetreivingPropertiesWithZeroDepth {
     NSArray *propertiesForClass = [SubAnnotatedClass RF_propertiesWithDepth:0];
-    XCTAssertEqual([propertiesForClass count], 0, @"Number of properies is not correct");
+    XCTAssertEqual([propertiesForClass count], (NSUInteger)0, @"Number of properies is not correct");
 }
 
 - (void)tearDown {
