@@ -31,8 +31,8 @@
 //  for additional information regarding copyright ownership and licensing
 
 
-#import <Foundation/Foundation.h>
 #import "RFIvarInfo.h"
+
 
 /**
  * Category to retrieve member variable info objects from either a class or an instance of a class.
