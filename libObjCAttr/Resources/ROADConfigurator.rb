@@ -10,6 +10,9 @@ class ROADConfigurator
     end
 
     def self.modify_user_project(installer_representation)
+        remove_configurator_from_project(installer_representation.installer.pods_project)
+        remove_generator_from_project(installer_representation.installer.pods_project)
+
         installer_representation.installer.analysis_result.targets.each do |target|
 
             libObjCAttrPod = false
@@ -141,4 +144,27 @@ class ROADConfigurator
         end
         project.save
     end
+
+    def self.remove_configurator_from_project(project)
+        path = project.path
+        pod_path = File.dirname(path)
+        configurator_path = "#{pod_path}/libObjCAttr/libObjCAttr/Resources/ROADConfigurator.rb"
+        reference_for_path = project.reference_for_path(configurator_path)
+        if !reference_for_path.nil?
+            reference_for_path.remove_from_project()
+        end
+        project.save;
+    end
+
+    def self.remove_generator_from_project(project)
+        path = project.path
+        pod_path = File.dirname(path)
+        generator_path = "#{pod_path}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator"
+        reference_for_path = project.reference_for_path(generator_path)
+        if !reference_for_path.nil?
+            reference_for_path.remove_from_project()
+        end
+        project.save;
+    end
+
 end
