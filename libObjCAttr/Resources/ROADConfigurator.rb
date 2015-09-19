@@ -1,19 +1,19 @@
 require 'xcodeproj'
 
 class ROADConfigurator
-    def self.post_install(installer_representation, config_path = './ROADConfigurator.yml')
+    def self.post_install(installer, config_path = './ROADConfigurator.yml')
         if File.exists?(config_path)
           @@config = YAML::load(File.open(config_path))
         end
 
-        ROADConfigurator::modify_user_project(installer_representation)
+        ROADConfigurator::modify_user_project(installer)
     end
 
-    def self.modify_user_project(installer_representation)
-        remove_configurator_from_project(installer_representation.installer.pods_project)
-        remove_generator_from_project(installer_representation.installer.pods_project)
+    def self.modify_user_project(installer)
+        ROADConfigurator::remove_configurator_from_project(installer.pods_project)
+        ROADConfigurator::remove_generator_from_project(installer.pods_project)
 
-        installer_representation.installer.analysis_result.targets.each do |target|
+        installer.analysis_result.targets.each do |target|
 
             libObjCAttrPod = false
             target.pod_targets.each do |pod_target|
