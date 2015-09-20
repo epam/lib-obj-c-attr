@@ -24,6 +24,13 @@ post_install do |installer|
 end
 ```
 
+**Note:**
+If you want to get rid of warning from Xcodeproj gem, copy-paste and run in terminal next command before running `pod install`:
+
+```
+export COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=YES
+```
+
 
 ##Samples
 
