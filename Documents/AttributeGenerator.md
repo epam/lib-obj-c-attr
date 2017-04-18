@@ -1,8 +1,8 @@
-#Attribute Generator
+# Attribute Generator
 
 An attribute generator is executable file that takes your source code and generate attribute files for it. When you install our `pod`, CocoaPods copies the attribute generator here: `${PODS_ROOT}/libObjCAttr/tools/binaries/ROADAttributesCodeGenerator`. It's also adds a build phase to a target in your project where it calls the attribute generator with specific arguments. Meaning of these arguments as well as example you can find below.
 
-##Usage
+## Usage
 
 The attribute generator have two required arguments and bunch of optional.
 
@@ -29,7 +29,7 @@ Appy.h
 
 **Important:** arguments can't contain whitespace, unless you escape them or place double quotes around value. (Legit: `-src=My\ Project` or `-src="My Project"`)
 
-###ROADConfigurator.yml
+### ROADConfigurator.yml
 
 You can and should setup arguments from `ROADConfigurator.yml` file. You can specify path to this file as second parameter in `post_install` hook in your `Podfile`. 
 
